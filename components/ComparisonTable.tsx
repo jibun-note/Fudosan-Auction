@@ -57,43 +57,118 @@ function DataCellText({
 	return <span className={className}>{text}</span>;
 }
 
+const mobileParen = "mt-1 block text-xs font-normal leading-snug opacity-80";
+
+const mobileColumns = [
+	{
+		key: "intermediary" as const,
+		title: "一般仲介",
+		titleBg: headerNavy,
+		bodyColor: bodyMuted,
+		emphasis: false,
+	},
+	{
+		key: "purchase" as const,
+		title: "不動産買取",
+		titleBg: headerNavy,
+		bodyColor: bodyMuted,
+		emphasis: false,
+	},
+	{
+		key: "auction" as const,
+		title: "オークション",
+		titleBg: headerGold,
+		bodyColor: headerGold,
+		emphasis: true,
+	},
+];
+
 export default function ComparisonTable() {
 	return (
-		<section id="comparison" className="bg-white px-6 py-20">
+		<section id="comparison" className="bg-white px-4 py-12 md:px-6 md:py-20">
 			<div className="mx-auto max-w-6xl">
-				<h2 className="text-2xl font-bold text-[var(--navy)] md:text-3xl">
+				<h2 className="text-lg font-bold text-[var(--navy)] md:text-3xl">
 					仲介/買取/オークションの違いが一目で
 				</h2>
 				<div className="mt-2 h-1 w-16 bg-[var(--gold)]" />
 
-				<div className="mt-12 overflow-x-auto">
+				{/* モバイル: 見切れ防止のカード型（行ごとに3方式を縦並び） */}
+				<div className="mt-8 space-y-3 md:mt-12 md:hidden">
+					{rows.map((row) => (
+						<div
+							key={row.label}
+							className="overflow-hidden rounded-[10px] border border-gray-200 shadow-[0_4px_24px_rgba(45,50,90,0.06)]"
+						>
+							<div
+								className="px-3 py-2.5 text-sm font-bold"
+								style={{ backgroundColor: labelBg, color: headerNavy }}
+							>
+								{row.label}
+							</div>
+							<dl className="divide-y divide-gray-100 bg-white">
+								{mobileColumns.map((col) => {
+									const text = row[col.key];
+									return (
+										<div key={col.key} className="px-3 py-2.5">
+											<dt className="flex items-center gap-2">
+												<span
+													className="rounded px-2 py-0.5 text-[10px] font-bold text-white"
+													style={{ backgroundColor: col.titleBg }}
+												>
+													{col.title}
+												</span>
+											</dt>
+											<dd
+												className="mt-2 text-sm leading-relaxed"
+												style={{ color: col.bodyColor }}
+											>
+												<DataCellText
+													text={text}
+													className={col.emphasis ? "font-semibold" : "font-normal"}
+													parenClassName={
+														col.emphasis
+															? "mt-1 block text-xs font-normal leading-snug opacity-90"
+															: mobileParen
+													}
+												/>
+											</dd>
+										</div>
+									);
+								})}
+							</dl>
+						</div>
+					))}
+				</div>
+
+				{/* タブレット以上: 表レイアウト */}
+				<div className="mt-8 hidden overflow-x-auto md:mt-12 md:block">
 					<div
 						className="overflow-hidden rounded-[10px] shadow-[0_4px_24px_rgba(45,50,90,0.08)]"
 						style={{ minWidth: "min(100%, 520px)" }}
 					>
-						<table className="w-full min-w-[560px] border-collapse text-[0.9375rem] md:min-w-[640px] md:text-base">
+						<table className="w-full min-w-[520px] border-collapse text-[0.8125rem] md:min-w-[640px] md:text-base">
 							<thead>
 								<tr>
 									<th
-										className="px-5 py-5 text-center text-[0.95rem] font-bold text-white md:px-6 md:py-6 md:text-[1.05rem]"
+										className="px-3 py-3 text-center text-[0.8125rem] font-bold text-white md:px-6 md:py-6 md:text-[1.05rem]"
 										style={{ backgroundColor: headerNavy, width: "18%" }}
 									>
 										比較
 									</th>
 									<th
-										className="px-4 py-5 text-center text-[0.95rem] font-bold text-white md:px-5 md:py-6 md:text-[1.05rem]"
+										className="px-2 py-3 text-center text-[0.8125rem] font-bold text-white md:px-5 md:py-6 md:text-[1.05rem]"
 										style={{ backgroundColor: headerNavy, width: "22%" }}
 									>
 										一般仲介
 									</th>
 									<th
-										className="px-4 py-5 text-center text-[0.95rem] font-bold text-white md:px-5 md:py-6 md:text-[1.05rem]"
+										className="px-2 py-3 text-center text-[0.8125rem] font-bold text-white md:px-5 md:py-6 md:text-[1.05rem]"
 										style={{ backgroundColor: headerNavy, width: "22%" }}
 									>
 										不動産買取
 									</th>
 									<th
-										className="px-5 py-5 text-center text-[0.95rem] font-bold text-white md:px-6 md:py-6 md:text-[1.05rem]"
+										className="px-3 py-3 text-center text-[0.8125rem] font-bold text-white md:px-6 md:py-6 md:text-[1.05rem]"
 										style={{
 											backgroundColor: headerGold,
 											width: "30%",
@@ -108,13 +183,13 @@ export default function ComparisonTable() {
 								{rows.map((row) => (
 									<tr key={row.label} className="border-b border-gray-100 last:border-b-0">
 										<td
-											className="px-5 py-4 text-left text-[0.95rem] font-bold leading-relaxed md:px-6 md:py-[1.125rem] md:text-[1.05rem]"
+											className="px-3 py-2.5 text-left text-[0.8125rem] font-bold leading-relaxed md:px-6 md:py-[1.125rem] md:text-[1.05rem]"
 											style={{ backgroundColor: labelBg, color: headerNavy }}
 										>
 											{row.label}
 										</td>
 										<td
-											className="bg-white px-4 py-4 text-center align-middle leading-relaxed md:px-5 md:py-[1.125rem]"
+											className="bg-white px-2 py-2.5 text-center align-middle leading-snug md:px-5 md:py-[1.125rem] md:leading-relaxed"
 											style={{ color: bodyMuted }}
 										>
 											<DataCellText
@@ -124,7 +199,7 @@ export default function ComparisonTable() {
 											/>
 										</td>
 										<td
-											className="bg-white px-4 py-4 text-center align-middle leading-relaxed md:px-5 md:py-[1.125rem]"
+											className="bg-white px-2 py-2.5 text-center align-middle leading-snug md:px-5 md:py-[1.125rem] md:leading-relaxed"
 											style={{ color: bodyMuted }}
 										>
 											<DataCellText
@@ -134,7 +209,7 @@ export default function ComparisonTable() {
 											/>
 										</td>
 										<td
-											className="bg-white px-5 py-4 text-center align-middle leading-relaxed md:px-6 md:py-[1.125rem]"
+											className="bg-white px-3 py-2.5 text-center align-middle leading-snug md:px-6 md:py-[1.125rem] md:leading-relaxed"
 											style={{ color: headerGold }}
 										>
 											<DataCellText
@@ -149,12 +224,12 @@ export default function ComparisonTable() {
 						</table>
 					</div>
 				</div>
-				<p className="mt-4 text-right text-xs leading-relaxed text-gray-400 md:text-sm">
+				<p className="mt-4 text-right text-[0.65rem] leading-relaxed text-gray-400 md:text-sm">
 					※価格保証/最低落札価格の設計も可能です。工期・条件により変動します。
 				</p>
 				<Link
 					href="#"
-					className="mt-6 inline-block text-base font-medium text-blue-600 underline hover:text-blue-800"
+					className="mt-4 inline-block text-sm font-medium text-blue-600 underline hover:text-blue-800 md:mt-6 md:text-base"
 				>
 					より詳細な比較資料をダウンロード
 				</Link>

@@ -18,9 +18,9 @@ export default function Header() {
 
 	return (
 		<header className="shadow-md">
-			<div className="mx-auto max-w-7xl px-6 py-4">
+			<div className="mx-auto max-w-7xl px-4 py-3 md:px-6 md:py-4">
 				<div className="flex items-center justify-between">
-					<Link href="/" className="text-xl font-bold tracking-tight">
+					<Link href="/" className="text-base font-bold tracking-tight md:text-xl">
 						不動産オークション
 					</Link>
 					<nav className="hidden items-center gap-8 md:flex">
@@ -36,7 +36,7 @@ export default function Header() {
 					</nav>
 					<div className="flex items-center gap-3">
 						<Link
-							href="/form"
+							href="/home/form"
 							className="rounded-md bg-[var(--gold)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--gold-light)]"
 						>
 							無料で資料請求
