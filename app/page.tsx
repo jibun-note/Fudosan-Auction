@@ -9,7 +9,7 @@ import SchemeSection from "@/components/sesction/SchemeSection";
 
 export default function Home() {
 	return (
-		<div className="min-h-screen bg-white font-sans text-gray-900">
+		<div className="min-h-screen bg-white font-sans text-sm text-gray-900 md:text-base">
 			<main>
 				<Hero />
 				<SchemeSection />

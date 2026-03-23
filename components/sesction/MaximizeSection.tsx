@@ -24,13 +24,13 @@ const benefits = [
 
 export default function MaximizeSection() {
 	return (
-		<section className="bg-gray-50 px-6 py-20">
+		<section className="bg-gray-50 px-4 py-12 md:px-6 md:py-20">
 			<div className="mx-auto max-w-6xl">
-				<h2 className="text-2xl font-bold text-[var(--navy)] md:text-3xl">
+				<h2 className="text-lg font-bold text-[var(--navy)] md:text-3xl">
 					オークションが&quot;顧問先の利益&quot;を最大化
 				</h2>
 				<div className="mt-2 h-1 w-16 bg-[var(--gold)]" />
-				<div className="mt-12 grid gap-12 lg:grid-cols-2 lg:items-center">
+				<div className="mt-8 grid gap-8 md:mt-12 md:gap-12 lg:grid-cols-2 lg:items-center">
 					<div className="relative aspect-video overflow-hidden rounded-lg">
 						<Image
 							src="/images/AdobeStock_712266529_Preview.jpeg"
@@ -40,17 +40,17 @@ export default function MaximizeSection() {
 							sizes="(max-width: 1024px) 100vw, 50vw"
 						/>
 					</div>
-					<div className="space-y-8">
+					<div className="space-y-6 md:space-y-8">
 						{benefits.map(({ icon: Icon, title, description }, i) => (
-							<div key={title} className="flex gap-4">
-								<div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-amber-100 text-[var(--gold)]">
-									<Icon className="size-10" />
+							<div key={title} className="flex gap-3 md:gap-4">
+								<div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 text-[var(--gold)] md:h-12 md:w-12">
+									<Icon className="size-8 md:size-10" />
 								</div>
 								<div>
-									<h3 className="text-lg font-semibold text-[var(--navy)] md:text-xl">
+									<h3 className="text-base font-semibold text-[var(--navy)] md:text-xl">
 										{i + 1}. {title}
 									</h3>
-									<p className="mt-2 text-base leading-relaxed text-gray-600 md:text-base">
+									<p className="mt-1.5 text-sm leading-relaxed text-gray-600 md:mt-2 md:text-base">
 										{description}
 									</p>
 								</div>
