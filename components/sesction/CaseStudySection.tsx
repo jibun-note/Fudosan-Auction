@@ -9,12 +9,12 @@ export default function CaseStudySection() {
 	return (
 		<section id="case-study" className="bg-gray-50 px-4 py-12 md:px-6 md:py-20">
 			<div className="mx-auto max-w-6xl">
-				<h2 className="text-lg font-bold text-[var(--navy)] md:text-3xl">
+				<h2 className="text-lg font-bold text-navy md:text-3xl">
 					実例でわかる&quot;差額&quot;と&quot;税務効果&quot;
 				</h2>
-				<div className="mt-2 h-1 w-16 bg-[var(--gold)]" />
+				<div className="mt-2 h-1 w-16 bg-gold" />
 				<div className="mt-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:mt-12 md:p-8">
-					<p className="text-base font-semibold text-[var(--navy)] md:text-xl">
+					<p className="text-base font-semibold text-navy md:text-xl">
 						【匿名事例】築20年区分マンション(都心)
 					</p>
 					<p className="mt-2 text-sm leading-relaxed text-gray-600 md:text-base">
@@ -30,7 +30,7 @@ export default function CaseStudySection() {
 							</div>
 							<div className="rounded border-2 border-amber-200 bg-amber-50 p-3 md:p-4">
 								<p className="text-sm text-gray-600 md:text-base">オークション落札額</p>
-								<p className="mt-1 text-xl font-bold text-[var(--navy)] md:text-2xl">
+								<p className="mt-1 text-xl font-bold text-navy md:text-2xl">
 									{winning.toLocaleString()}万円
 								</p>
 								<p className="mt-2 text-sm font-semibold text-green-600 md:text-base">
@@ -39,7 +39,7 @@ export default function CaseStudySection() {
 							</div>
 						</div>
 						<div>
-							<p className="mb-2 text-base font-semibold text-[var(--navy)] md:text-xl">
+							<p className="mb-2 text-base font-semibold text-navy md:text-xl">
 								査定額 vs 落札額
 							</p>
 							<div className="space-y-2">
@@ -61,7 +61,7 @@ export default function CaseStudySection() {
 							</div>
 						</div>
 					</div>
-					<div className="mt-6 rounded-lg bg-[var(--accent-blue)] p-4 md:mt-8 md:p-6">
+					<div className="mt-6 rounded-lg bg-accent-blue p-4 md:mt-8 md:p-6">
 						<p className="text-sm leading-relaxed text-gray-700 md:text-base">
 							譲渡価額の上昇に伴う税額変動も事前にシミュレーション。手取り額の最大化を目指します。（※長期譲渡所得・控除適用前で計算）
 						</p>
@@ -75,7 +75,7 @@ export default function CaseStudySection() {
 					<div className="mt-6 text-center md:mt-8">
 						<Link
 							href="#"
-							className="inline-block rounded-md bg-[var(--navy)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--navy-dark)] md:px-6 md:py-3 md:text-base"
+							className="inline-block rounded-md bg-navy px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-navy-dark md:px-6 md:py-3 md:text-base"
 						>
 							匿名事例集・税務シミュレーション相談
 						</Link>

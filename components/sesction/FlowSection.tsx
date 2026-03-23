@@ -38,8 +38,8 @@ export default function FlowSection() {
 	return (
 		<section id="flow" className="bg-white px-4 py-12 md:px-6 md:py-20">
 			<div className="mx-auto max-w-6xl">
-				<h2 className="text-lg font-bold text-[var(--navy)] md:text-3xl">ご利用の流れ</h2>
-				<div className="mt-2 h-1 w-16 bg-[var(--gold)]" />
+				<h2 className="text-lg font-bold text-navy md:text-3xl">ご利用の流れ</h2>
+				<div className="mt-2 h-1 w-16 bg-gold" />
 				<div className="mt-8 md:mt-12">
 					<div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-0">
 						{steps.map(({ icon: Icon, title, description }, i) => (
@@ -48,10 +48,10 @@ export default function FlowSection() {
 								className="flex flex-1 flex-col items-center md:flex-row md:min-w-0"
 							>
 								<div className="flex flex-col items-center text-center md:flex-1">
-									<div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 text-[var(--gold)] md:h-12 md:w-12">
+									<div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 text-gold md:h-12 md:w-12">
 										<Icon className="size-8 md:size-10" />
 									</div>
-									<h3 className="mt-3 text-base font-semibold text-[var(--navy)] md:mt-4 md:text-xl">
+									<h3 className="mt-3 text-base font-semibold text-navy md:mt-4 md:text-xl">
 										{title}
 									</h3>
 									<p className="mt-1.5 text-sm leading-relaxed text-gray-600 md:mt-2 md:text-base">

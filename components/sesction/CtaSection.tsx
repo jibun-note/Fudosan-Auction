@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function CtaSection() {
 	return (
-		<section className="border-b border-white/10 bg-[var(--navy-dark)] px-4 py-10 text-white md:px-6 md:py-16">
+		<section className="border-b border-white/10 bg-navy-dark px-4 py-10 text-white md:px-6 md:py-16">
 			<div className="mx-auto max-w-4xl text-center">
 				<h2 className="text-lg font-bold md:text-2xl">
 					顧問先の資産価値を最大化する新しい一手を、今すぐご提案ください。
@@ -13,7 +13,7 @@ export default function CtaSection() {
 				<div className="mt-6 flex flex-wrap justify-center gap-2 md:mt-8 md:gap-4">
 					<Link
 						href="/home/form"
-						className="rounded-md bg-[var(--gold)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--gold-light)] md:px-6 md:py-3 md:text-base"
+						className="rounded-md bg-gold px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-gold-light md:px-6 md:py-3 md:text-base"
 					>
 						無料で資料請求する
 					</Link>

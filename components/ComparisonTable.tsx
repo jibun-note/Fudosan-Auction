@@ -87,10 +87,10 @@ export default function ComparisonTable() {
 	return (
 		<section id="comparison" className="bg-white px-4 py-12 md:px-6 md:py-20">
 			<div className="mx-auto max-w-6xl">
-				<h2 className="text-lg font-bold text-[var(--navy)] md:text-3xl">
+				<h2 className="text-lg font-bold text-navy md:text-3xl">
 					仲介/買取/オークションの違いが一目で
 				</h2>
-				<div className="mt-2 h-1 w-16 bg-[var(--gold)]" />
+				<div className="mt-2 h-1 w-16 bg-gold" />
 
 				{/* モバイル: 見切れ防止のカード型（行ごとに3方式を縦並び） */}
 				<div className="mt-8 space-y-3 md:mt-12 md:hidden">

@@ -35,7 +35,7 @@ const dmSans = DM_Sans({
 });
 
 const inputBaseCls =
-	"w-full rounded-lg border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-900 shadow-[0_1px_2px_rgba(0,0,0,.04)] outline-none transition-[border-color,box-shadow] placeholder:text-gray-400 focus:border-[var(--gold)] focus:ring-2 focus:ring-[var(--gold)]/20";
+	"w-full rounded-lg border border-gray-200 bg-white px-3.5 py-2.5 text-sm text-gray-900 shadow-[0_1px_2px_rgba(0,0,0,.04)] outline-none transition-[border-color,box-shadow] placeholder:text-gray-400 focus:border-gold focus:ring-2 focus:ring-gold/20";
 
 const WEEKDAY_LABELS = ["日", "月", "火", "水", "木", "金", "土"] as const;
 
@@ -278,14 +278,14 @@ export default function SeminarRequestForm() {
 				id="seminar-datetime-popover"
 				role="dialog"
 				aria-label="ご希望日の選択"
-				className="fixed z-[100] w-[280px] max-w-[calc(100vw-16px)] rounded-xl border border-gray-200 bg-white p-3 shadow-[0_10px_40px_rgba(0,0,0,.12),0_2px_8px_rgba(0,0,0,.06)]"
+				className="fixed z-100 w-70 max-w-[calc(100vw-16px)] rounded-xl border border-gray-200 bg-white p-3 shadow-[0_10px_40px_rgba(0,0,0,.12),0_2px_8px_rgba(0,0,0,.06)]"
 				style={{ top: popoverPos.top, left: popoverPos.left }}
 			>
 				<div className="flex items-center justify-between gap-1.5 mb-2">
 					<button
 						type="button"
 						onClick={goPrevMonth}
-						className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-gray-200 bg-white text-sm text-gray-700 hover:border-[var(--gold)] hover:text-[var(--gold)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold)]"
+						className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-gray-200 bg-white text-sm text-gray-700 hover:border-gold hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
 						aria-label="前の月へ"
 					>
 						‹
@@ -294,7 +294,7 @@ export default function SeminarRequestForm() {
 					<button
 						type="button"
 						onClick={goNextMonth}
-						className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-gray-200 bg-white text-sm text-gray-700 hover:border-[var(--gold)] hover:text-[var(--gold)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold)]"
+						className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-gray-200 bg-white text-sm text-gray-700 hover:border-gold hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
 						aria-label="次の月へ"
 					>
 						›
@@ -325,10 +325,8 @@ export default function SeminarRequestForm() {
 									"flex h-7 w-7 items-center justify-center rounded text-[11px] tabular-nums transition-colors",
 									disabled
 										? "cursor-not-allowed text-gray-300"
-										: "text-gray-800 hover:bg-[var(--gold)]/15",
-									selected && !disabled
-										? "bg-[var(--gold)] font-semibold text-white shadow-sm"
-										: "",
+										: "text-gray-800 hover:bg-gold/15",
+									selected && !disabled ? "bg-gold font-semibold text-white shadow-sm" : "",
 								].join(" ")}
 								aria-pressed={selected}
 								aria-label={`${viewMonth + 1}月${cell}日`}
@@ -338,14 +336,12 @@ export default function SeminarRequestForm() {
 						);
 					})}
 				</div>
-				<p className="mt-2 text-[9px] leading-snug text-gray-400">
-					土日・過去日は選択できません。
-				</p>
+				<p className="mt-2 text-[9px] leading-snug text-gray-400">土日・過去日は選択できません。</p>
 				<div className="mt-3 flex gap-2">
 					<button
 						type="button"
 						onClick={() => setIsPickerOpen(false)}
-						className="flex-1 rounded-md border border-gray-200 bg-white py-2 text-xs font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold)]"
+						className="flex-1 rounded-md border border-gray-200 bg-white py-2 text-xs font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
 					>
 						キャンセル
 					</button>
@@ -353,7 +349,7 @@ export default function SeminarRequestForm() {
 						type="button"
 						disabled={!canConfirmDate}
 						onClick={() => setIsPickerOpen(false)}
-						className="flex-1 rounded-md bg-[var(--gold)] py-2 text-xs font-semibold text-white shadow-sm hover:bg-[var(--gold-light)] disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold)] focus-visible:ring-offset-1"
+						className="flex-1 rounded-md bg-gold py-2 text-xs font-semibold text-white shadow-sm hover:bg-gold-light disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-1"
 					>
 						確定
 					</button>
@@ -364,17 +360,17 @@ export default function SeminarRequestForm() {
 
 	return (
 		<section
-			className={`relative z-[3] bg-white py-20 md:py-32 px-4 md:px-8 ${notoSansJP.className}`}
+			className={`relative z-3 bg-white py-20 md:py-32 px-4 md:px-8 ${notoSansJP.className}`}
 			aria-labelledby="seminar-form-heading"
 		>
-			<div className="relative z-10 mx-auto max-w-[1000px] pt-0 -mt-4 md:-mt-8">
+			<div className="relative z-10 mx-auto max-w-250 pt-0 -mt-4 md:-mt-8">
 				<div className="bg-white rounded-[20px] shadow-[0_2px_4px_rgba(0,0,0,.04),0_16px_56px_rgba(0,0,0,.09)] p-2.5 flex flex-col md:flex-row gap-2.5">
 					<div
-						className="relative flex flex-none flex-col rounded-[14px] overflow-hidden bg-gradient-to-br from-[var(--navy)] to-[var(--navy-dark)] p-[48px_40px] md:min-h-0 md:flex-[0_0_300px] min-h-[280px]"
+						className="relative flex flex-none flex-col rounded-[14px] overflow-hidden bg-linear-to-br from-navy to-navy-dark p-[48px_40px] md:min-h-0 md:flex-[0_0_300px] min-h-70"
 						aria-hidden="true"
 					>
 						<div
-							className="pointer-events-none absolute bottom-[-80px] right-[-80px] h-[240px] w-[240px] rounded-full"
+							className="pointer-events-none absolute -bottom-20 -right-20 h-60 w-60 rounded-full"
 							style={{
 								background:
 									"radial-gradient(circle, rgba(212,168,75,.18) 0%, transparent 70%)",
@@ -409,14 +405,14 @@ export default function SeminarRequestForm() {
 						</div>
 					</div>
 
-					<div className="flex-1 overflow-hidden min-h-[480px] md:min-h-[520px]">
+					<div className="flex-1 overflow-hidden min-h-120 md:min-h-130">
 						<div
 							className="flex w-[200%] transition-[transform_0.5s_cubic-bezier(0.22,0.61,0.36,1)] motion-reduce:transition-none"
 							style={{
 								transform: isSubmitted ? "translateX(-50%)" : "translateX(0)",
 							}}
 						>
-							<div className="w-1/2 flex-shrink-0 py-6 px-4 md:py-6 md:px-8 md:pl-5 flex flex-col justify-center">
+							<div className="w-1/2 shrink-0 py-6 px-4 md:py-6 md:px-8 md:pl-5 flex flex-col justify-center">
 								<h2
 									id="seminar-form-heading"
 									className={`text-sm tracking-[0.14em] text-gray-700 mb-6 flex items-center gap-3 ${shipporiMincho.className} text-balance`}
@@ -430,11 +426,8 @@ export default function SeminarRequestForm() {
 									<div className="relative">
 										<p className="text-xs font-medium tracking-[0.05em] text-gray-700 mb-2">
 											ご希望日
-											<span className="inline-flex items-center gap-0.5 text-[8.5px] text-[var(--gold-light)] ml-2">
-												<span
-													className="w-1 h-1 rounded-full bg-[var(--gold)]"
-													aria-hidden
-												/>
+											<span className="inline-flex items-center gap-0.5 text-[8.5px] text-gold-light ml-2">
+												<span className="w-1 h-1 rounded-full bg-gold" aria-hidden />
 												必須
 											</span>
 										</p>
@@ -459,10 +452,7 @@ export default function SeminarRequestForm() {
 											>
 												{triggerLabel}
 											</span>
-											<FiCalendar
-												className="h-4 w-4 shrink-0 text-[var(--gold)]"
-												aria-hidden
-											/>
+											<FiCalendar className="h-4 w-4 shrink-0 text-gold" aria-hidden />
 										</button>
 										<p className="mt-1.5 text-[10px] text-gray-400">
 											クリックするとカレンダーが開き、日付のみお選びください。
@@ -479,17 +469,16 @@ export default function SeminarRequestForm() {
 									>
 										<legend className="text-xs font-medium tracking-[0.05em] text-gray-700 mb-2 flex w-full flex-wrap items-center gap-2">
 											時間帯（平日）
-											<span className="inline-flex items-center gap-0.5 text-[8.5px] text-[var(--gold-light)]">
-												<span
-													className="w-1 h-1 rounded-full bg-[var(--gold)]"
-													aria-hidden
-												/>
+											<span className="inline-flex items-center gap-0.5 text-[8.5px] text-gold-light">
+												<span className="w-1 h-1 rounded-full bg-gold" aria-hidden />
 												必須
 											</span>
 										</legend>
 										<div
 											className={`rounded-lg border bg-gray-50/80 px-3.5 py-3 ${
-												errors.slot ? "border-red-300 ring-1 ring-red-200" : "border-gray-200"
+												errors.slot
+													? "border-red-300 ring-1 ring-red-200"
+													: "border-gray-200"
 											}`}
 										>
 											<div className="flex flex-col gap-2.5">
@@ -497,7 +486,9 @@ export default function SeminarRequestForm() {
 													<label
 														key={slot}
 														className={`flex cursor-pointer items-center gap-2.5 text-sm ${
-															!selectedDate ? "cursor-not-allowed opacity-50" : ""
+															!selectedDate
+																? "cursor-not-allowed opacity-50"
+																: ""
 														}`}
 													>
 														<input
@@ -508,9 +499,12 @@ export default function SeminarRequestForm() {
 															disabled={!selectedDate}
 															onChange={() => {
 																setSelectedSlot(slot);
-																setErrors((prev) => ({ ...prev, slot: undefined }));
+																setErrors((prev) => ({
+																	...prev,
+																	slot: undefined,
+																}));
 															}}
-															className="h-4 w-4 shrink-0 accent-[var(--gold)]"
+															className="h-4 w-4 shrink-0 accent-gold"
 														/>
 														<span className="text-gray-800">{slot}</span>
 													</label>
@@ -532,11 +526,8 @@ export default function SeminarRequestForm() {
 									<div>
 										<label className="flex justify-between items-center text-xs font-medium tracking-[0.05em] text-gray-700 mb-1">
 											お名前（申込者氏名）
-											<span className="inline-flex items-center gap-0.5 text-[8.5px] text-[var(--gold-light)]">
-												<span
-													className="w-1 h-1 rounded-full bg-[var(--gold)]"
-													aria-hidden
-												/>
+											<span className="inline-flex items-center gap-0.5 text-[8.5px] text-gold-light">
+												<span className="w-1 h-1 rounded-full bg-gold" aria-hidden />
 												必須
 											</span>
 										</label>
@@ -561,11 +552,8 @@ export default function SeminarRequestForm() {
 									<div>
 										<label className="flex justify-between items-center text-xs font-medium tracking-[0.05em] text-gray-700 mb-1">
 											住所
-											<span className="inline-flex items-center gap-0.5 text-[8.5px] text-[var(--gold-light)]">
-												<span
-													className="w-1 h-1 rounded-full bg-[var(--gold)]"
-													aria-hidden
-												/>
+											<span className="inline-flex items-center gap-0.5 text-[8.5px] text-gold-light">
+												<span className="w-1 h-1 rounded-full bg-gold" aria-hidden />
 												必須
 											</span>
 										</label>
@@ -573,7 +561,7 @@ export default function SeminarRequestForm() {
 											name="address"
 											value={form.address}
 											onChange={handleChange}
-											className={`${inputBaseCls} min-h-[100px] resize-y`}
+											className={`${inputBaseCls} min-h-25 resize-y`}
 											placeholder="〒100-0001&#10;東京都千代田区千代田1-1-1 ○○ビル3F"
 											rows={3}
 											autoComplete="street-address"
@@ -595,11 +583,8 @@ export default function SeminarRequestForm() {
 									<div>
 										<label className="flex justify-between items-center text-xs font-medium tracking-[0.05em] text-gray-700 mb-1">
 											電話番号
-											<span className="inline-flex items-center gap-0.5 text-[8.5px] text-[var(--gold-light)]">
-												<span
-													className="w-1 h-1 rounded-full bg-[var(--gold)]"
-													aria-hidden
-												/>
+											<span className="inline-flex items-center gap-0.5 text-[8.5px] text-gold-light">
+												<span className="w-1 h-1 rounded-full bg-gold" aria-hidden />
 												必須
 											</span>
 										</label>
@@ -630,7 +615,7 @@ export default function SeminarRequestForm() {
 											id="seminar-privacy"
 											checked={form.privacy}
 											onChange={handleChange}
-											className="mt-0.5 w-[15px] h-[15px] shrink-0 accent-[var(--gold)] cursor-pointer"
+											className="mt-0.5 size-3.75 shrink-0 accent-gold cursor-pointer"
 											aria-invalid={!!errors.privacy}
 											aria-describedby={
 												errors.privacy ? "error-seminar-privacy" : undefined
@@ -641,7 +626,7 @@ export default function SeminarRequestForm() {
 											className="text-sm text-gray-600 leading-[1.7] cursor-pointer text-pretty"
 										>
 											<Link
-												href="#"
+												href="/privacy#handling"
 												className="text-gray-800 font-medium border-b border-gray-800 hover:no-underline"
 											>
 												個人情報の取り扱い
@@ -658,7 +643,7 @@ export default function SeminarRequestForm() {
 									<div className="mt-1 w-full">
 										<button
 											type="submit"
-											className="flex w-full items-center justify-center gap-2 rounded-md bg-[var(--gold)] py-3.5 text-[13.5px] font-semibold text-white shadow-[0_4px_14px_rgba(184,134,11,.28)] transition-[background-color,opacity,transform,box-shadow] duration-200 hover:bg-[var(--gold-light)] hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(184,134,11,.35)] focus:outline-none focus:ring-2 focus:ring-[var(--gold)] focus:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+											className="flex w-full items-center justify-center gap-2 rounded-md bg-gold py-3.5 text-[13.5px] font-semibold text-white shadow-[0_4px_14px_rgba(184,134,11,.28)] transition-[background-color,opacity,transform,box-shadow] duration-200 hover:bg-gold-light hover:opacity-95 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(184,134,11,.35)] focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
 										>
 											説明会に申し込む
 										</button>
@@ -666,9 +651,9 @@ export default function SeminarRequestForm() {
 								</form>
 							</div>
 
-							<div className="w-1/2 flex-shrink-0 flex flex-col justify-center py-9 px-6 md:pt-12 md:pr-12 md:pb-10 md:pl-9">
+							<div className="w-1/2 shrink-0 flex flex-col justify-center py-9 px-6 md:pt-12 md:pr-12 md:pb-10 md:pl-9">
 								<div
-									className="text-[10px] tracking-[0.14em] text-[var(--gold)] mb-3.5 flex items-center gap-2.5 after:content-[''] after:w-8 after:h-px after:bg-[var(--gold-light)]/40"
+									className="text-[10px] tracking-[0.14em] text-gold mb-3.5 flex items-center gap-2.5 after:content-[''] after:w-8 after:h-px after:bg-gold-light/40"
 									aria-hidden
 								>
 									送信完了
@@ -680,21 +665,21 @@ export default function SeminarRequestForm() {
 								>
 									お申し込みを受け付けました
 								</h2>
-								<p className="text-[#7A5A3A] font-light leading-[1.9] text-pretty max-w-[340px] mb-4 text-sm md:text-base">
+								<p className="text-[#7A5A3A] font-light leading-[1.9] text-pretty max-w-85 mb-4 text-sm md:text-base">
 									ご希望の日時：
 									<span className="font-medium text-[#5c4428]">{formattedReservation}</span>
 								</p>
-								<p className="text-[#7A5A3A] font-light leading-[1.9] text-pretty max-w-[340px] mb-10 text-sm md:text-base">
+								<p className="text-[#7A5A3A] font-light leading-[1.9] text-pretty max-w-85 mb-10 text-sm md:text-base">
 									担当より日程の確定・オンライン接続のご案内をご連絡いたします（ダミー画面のため実際の送信は行われません）。
 								</p>
 								<div
-									className="w-full max-w-[340px] border-t border-[var(--gold-light)]/35 mb-8"
+									className="w-full max-w-85 border-t border-gold-light/35 mb-8"
 									aria-hidden
 								/>
 								<button
 									type="button"
 									onClick={handleBackToForm}
-									className={`inline-flex items-center gap-2 py-2.5 px-7 rounded-full border-[1.5px] border-[var(--gold-light)]/50 bg-transparent text-[var(--navy)] text-[13px] font-medium cursor-pointer hover:border-[var(--gold)] hover:text-[var(--gold)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gold)] focus-visible:ring-offset-2 motion-reduce:transition-none transition-[border-color,color] duration-200 ${dmSans.className}`}
+									className={`inline-flex items-center gap-2 py-2.5 px-7 rounded-full border-[1.5px] border-gold-light/50 bg-transparent text-navy text-[13px] font-medium cursor-pointer hover:border-gold hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 motion-reduce:transition-none transition-[border-color,color] duration-200 ${dmSans.className}`}
 								>
 									フォームに戻る
 								</button>

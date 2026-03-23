@@ -26,10 +26,10 @@ export default function MaximizeSection() {
 	return (
 		<section className="bg-gray-50 px-4 py-12 md:px-6 md:py-20">
 			<div className="mx-auto max-w-6xl">
-				<h2 className="text-lg font-bold text-[var(--navy)] md:text-3xl">
+				<h2 className="text-lg font-bold text-navy md:text-3xl">
 					オークションが&quot;顧問先の利益&quot;を最大化
 				</h2>
-				<div className="mt-2 h-1 w-16 bg-[var(--gold)]" />
+				<div className="mt-2 h-1 w-16 bg-gold" />
 				<div className="mt-8 grid gap-8 md:mt-12 md:gap-12 lg:grid-cols-2 lg:items-center">
 					<div className="relative aspect-video overflow-hidden rounded-lg">
 						<Image
@@ -43,11 +43,11 @@ export default function MaximizeSection() {
 					<div className="space-y-6 md:space-y-8">
 						{benefits.map(({ icon: Icon, title, description }, i) => (
 							<div key={title} className="flex gap-3 md:gap-4">
-								<div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 text-[var(--gold)] md:h-12 md:w-12">
+								<div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 text-gold md:h-12 md:w-12">
 									<Icon className="size-8 md:size-10" />
 								</div>
 								<div>
-									<h3 className="text-base font-semibold text-[var(--navy)] md:text-xl">
+									<h3 className="text-base font-semibold text-navy md:text-xl">
 										{i + 1}. {title}
 									</h3>
 									<p className="mt-1.5 text-sm leading-relaxed text-gray-600 md:mt-2 md:text-base">
