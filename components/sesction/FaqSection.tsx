@@ -28,8 +28,8 @@ export default function FaqSection() {
 	return (
 		<section id="faq" className="bg-gray-50 px-4 py-12 md:px-6 md:py-20">
 			<div className="mx-auto max-w-3xl">
-				<h2 className="text-lg font-bold text-[var(--navy)] md:text-3xl">よくあるご質問</h2>
-				<div className="mt-2 h-1 w-16 bg-[var(--gold)]" />
+				<h2 className="text-lg font-bold text-navy md:text-3xl">よくあるご質問</h2>
+				<div className="mt-2 h-1 w-16 bg-gold" />
 				<div className="mt-12 space-y-3">
 					{items.map((item, i) => (
 						<div
@@ -39,11 +39,11 @@ export default function FaqSection() {
 							<button
 								type="button"
 								onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
-								className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-base font-semibold text-[var(--navy)] md:gap-4 md:px-5 md:py-4 md:text-xl"
+								className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-base font-semibold text-navy md:gap-4 md:px-5 md:py-4 md:text-xl"
 							>
 								{item.question}
 								<HiOutlineChevronDown
-									className={`size-5 shrink-0 text-[var(--gold)] transition-transform md:size-6 ${openIndex === i ? "rotate-180" : ""}`}
+									className={`size-5 shrink-0 text-gold transition-transform md:size-6 ${openIndex === i ? "rotate-180" : ""}`}
 								/>
 							</button>
 							{openIndex === i && (

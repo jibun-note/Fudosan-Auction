@@ -44,7 +44,7 @@ export default function Header() {
 				<div className="flex items-center justify-between">
 					<Link
 						href="/"
-						className="text-base font-bold tracking-tight text-[var(--navy)] md:text-xl"
+						className="text-base font-bold tracking-tight text-navy md:text-xl"
 					>
 						不動産オークション
 					</Link>
@@ -53,7 +53,7 @@ export default function Header() {
 							<Link
 								key={item.href}
 								href={item.href}
-								className="text-sm text-[var(--navy)] transition hover:text-[var(--navy-dark)]"
+								className="text-sm text-navy transition hover:text-navy-dark"
 							>
 								{item.label}
 							</Link>
@@ -62,14 +62,14 @@ export default function Header() {
 					<div className="flex items-center gap-2 md:gap-3">
 						<Link
 							href="/home/form"
-							className="rounded-md bg-[var(--gold)] px-3 py-2 text-xs font-semibold text-white transition hover:bg-[var(--gold-light)] md:px-4 md:text-sm"
+							className="rounded-md bg-gold px-3 py-2 text-xs font-semibold text-white transition hover:bg-gold-light md:px-4 md:text-sm"
 						>
 							無料で資料請求
 						</Link>
 						<button
 							type="button"
 							onClick={() => setMobileOpen((o) => !o)}
-							className="rounded p-2 text-[var(--navy)] hover:bg-black/5 md:hidden"
+							className="rounded p-2 text-navy hover:bg-black/5 md:hidden"
 							aria-expanded={mobileOpen}
 							aria-controls="mobile-nav"
 							aria-label={mobileOpen ? "メニューを閉じる" : "メニューを開く"}
@@ -93,7 +93,7 @@ export default function Header() {
 								key={item.href}
 								href={item.href}
 								onClick={() => setMobileOpen(false)}
-								className="mx-2 rounded-md px-3 py-3 text-sm text-[var(--navy)] transition hover:bg-[var(--accent-blue)] hover:text-[var(--navy-dark)]"
+								className="mx-2 rounded-md px-3 py-3 text-sm text-navy transition hover:bg-accent-blue hover:text-navy-dark"
 							>
 								{item.label}
 							</Link>
