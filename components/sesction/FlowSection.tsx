@@ -1,10 +1,36 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { FaHandshake } from "react-icons/fa6";
 import {
 	HiOutlineChatBubbleBottomCenterText,
+	HiOutlineChevronLeft,
+	HiOutlineChevronRight,
 	HiOutlineCurrencyYen,
 	HiOutlineDocumentText,
-	HiOutlineHandRaised,
 	HiOutlineScale,
 } from "react-icons/hi2";
+
+/** 参考: GOLD / GOLD_LIGHT */
+const FLOW_GOLD = "#c5a55a";
+const FLOW_GOLD_LIGHT = "#e8d5a0";
+/** アクティブ円グラデの左上（メインよりやや濃い程度／#92753c は濃すぎるため中間トーン） */
+const FLOW_GOLD_DEEP = "#ab8d4b";
+/** メインカード背景（参考デザイン寄せのディープネイビー） */
+const CARD_BG = "#1c2e49";
+const FLOW_CREAM = "#f9f8f6";
+/** カード内の大きなステップ数字（背景よりわずかに明るいトーン） */
+const CARD_STEP_DIGIT = "#314b6b";
+/** タイムライン番号円: アクティブ（左上＝濃い → 右下＝薄い） */
+const GRADIENT_STEP_ACTIVE = `linear-gradient(to bottom right, ${FLOW_GOLD_DEEP} 0%, ${FLOW_GOLD} 48%, ${FLOW_GOLD_LIGHT} 100%)`;
+const CONNECTOR_TRACK = "#dcd5c8";
+const STEP_LABEL_MUTED = "#a3a3a3";
+const FOCUS_OUTLINE_GOLD =
+	"focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c5a55a]";
+const NAV_BUTTON_BASE =
+	"group flex w-11 shrink-0 items-center justify-center transition-colors hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#c5a55a] md:w-14";
+/** 自動で次のステップへ進むまでの時間（接続線アニメと同期） */
+const AUTO_SLIDE_MS = 5500;
 
 const steps = [
 	{
@@ -23,7 +49,7 @@ const steps = [
 		description: "募集から入札、最終確認まで。平均リードタイムは2-6週間です。",
 	},
 	{
-		icon: HiOutlineHandRaised,
+		icon: FaHandshake,
 		title: "成約・決済",
 		description: "スケジュールを確定し、顧問税理士様と連携して決済に進みます。",
 	},
@@ -32,36 +58,231 @@ const steps = [
 		title: "アフターフォロー",
 		description: "売却後の税務申告まで、必要に応じてサポートいたします。",
 	},
-];
+] as const;
 
 export default function FlowSection() {
+	const [active, setActive] = useState(0);
+
+	// ステップが変わるたびにタイマーを張り直し、一定間隔で自動遷移する
+	useEffect(() => {
+		const t = window.setTimeout(() => {
+			setActive((i) => (i + 1) % steps.length);
+		}, AUTO_SLIDE_MS);
+		return () => window.clearTimeout(t);
+	}, [active]);
+
+	const { icon: Icon, title, description } = steps[active];
+
+	const goPrev = () => {
+		setActive((i) => (i - 1 + steps.length) % steps.length);
+	};
+	const goNext = () => {
+		setActive((i) => (i + 1) % steps.length);
+	};
+
 	return (
-		<section id="flow" className="bg-white px-4 py-12 md:px-6 md:py-20">
-			<div className="mx-auto max-w-6xl">
-				<h2 className="text-lg font-bold text-navy md:text-3xl">ご利用の流れ</h2>
-				<div className="mt-2 h-1 w-16 bg-gold" />
-				<div className="mt-8 md:mt-12">
-					<div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between md:gap-0">
-						{steps.map(({ icon: Icon, title, description }, i) => (
-							<div
-								key={title}
-								className="flex flex-1 flex-col items-center md:flex-row md:min-w-0"
-							>
-								<div className="flex flex-col items-center text-center md:flex-1">
-									<div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 text-gold md:h-12 md:w-12">
-										<Icon className="size-8 md:size-10" />
+		<section
+			id="flow"
+			className="px-4 py-12 md:px-6 md:py-20"
+			style={{ backgroundColor: FLOW_CREAM }}
+		>
+			<div className="mx-auto max-w-6xl text-center">
+				<p
+					className="text-[11px] font-medium uppercase md:text-xs"
+					style={{ color: FLOW_GOLD, letterSpacing: "0.35em" }}
+				>
+					PROCESS
+				</p>
+				<h2 className="mt-3 font-extralight text-navy md:mt-4 md:text-4xl md:tracking-wide">
+					ご利用の流れ
+				</h2>
+				<div
+					className="mx-auto mt-4 h-px w-14 md:mt-5 md:w-16"
+					style={{ backgroundColor: FLOW_GOLD }}
+				/>
+
+				{/* 横タイムライン（進捗付き接続線）
+				    overflow-x-auto は overflow-y を auto にしがちで、パルスの box-shadow が上下で切れる。
+				    上に余白を足してリングが収まるようにする。 */}
+				<div className="mx-auto mt-10 max-w-4xl overflow-x-auto px-1 pb-2 pt-5 md:mt-14 md:px-0 md:pt-6">
+					<div className="mx-auto flex min-w-[min(100%,36rem)] max-w-4xl items-start justify-between gap-0 md:min-w-0">
+						{steps.map((step, i) => {
+							const isOn = i === active;
+							const isPassed = i < active;
+							return (
+								<div key={step.title} className="flex min-w-0 flex-1 items-start last:flex-none">
+									<div className="flex min-w-[4.5rem] max-w-[6.5rem] shrink-0 flex-col items-center px-0.5 md:max-w-[7rem] md:px-1">
+										<button
+											type="button"
+											onClick={() => setActive(i)}
+											className={`flex flex-col items-center rounded-full ${FOCUS_OUTLINE_GOLD}`}
+											aria-current={isOn ? "step" : undefined}
+											aria-label={`ステップ${i + 1}: ${step.title}`}
+										>
+											<span
+												className={`relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-medium transition-[background-image,background-color,box-shadow,color,border-color] md:h-10 md:w-10 md:text-base ${isOn ? "flow-step-pulse border-0" : "border"}`}
+												style={{
+													// 3状態: アクティブ(グラデ) / 通過済み(薄ゴールド) / 未通過(透明)
+													backgroundImage: isOn ? GRADIENT_STEP_ACTIVE : "none",
+													backgroundColor: isOn
+														? "transparent"
+														: isPassed
+															? "rgba(197, 165, 90, 0.2)"
+															: "transparent",
+													borderColor: isOn ? "transparent" : isPassed ? FLOW_GOLD : "#d6cfbf",
+													color: isOn ? "#fff" : isPassed ? FLOW_GOLD : "#7c7c7c",
+												}}
+											>
+												{i + 1}
+											</span>
+											<span
+												className="mt-2 line-clamp-2 max-w-[6.5rem] text-[10px] leading-tight md:max-w-none md:text-xs"
+												style={{ color: STEP_LABEL_MUTED }}
+											>
+												{step.title}
+											</span>
+										</button>
 									</div>
-									<h3 className="mt-3 text-base font-semibold text-navy md:mt-4 md:text-xl">
-										{title}
-									</h3>
-									<p className="mt-1.5 text-sm leading-relaxed text-gray-600 md:mt-2 md:text-base">
-										{description}
-									</p>
+									{i < steps.length - 1 && (
+										<div
+											className="mx-1 mt-[18px] flex min-h-px min-w-[1.75rem] flex-1 items-center md:mx-2 md:min-w-[3.5rem] lg:min-w-[5rem]"
+											aria-hidden
+										>
+											<div
+												className="relative h-px w-full overflow-hidden rounded-full"
+												style={{ backgroundColor: CONNECTOR_TRACK }}
+											>
+												{/* 通過済み区間は即時塗り、現在区間は進捗アニメで塗る */}
+												{i < active && (
+													<div
+														className="absolute inset-0 rounded-full"
+														style={{ backgroundColor: FLOW_GOLD }}
+													/>
+												)}
+												{i === active && (
+													<div
+														key={`flow-seg-${active}`}
+														className="flow-connector-anim absolute inset-y-0 left-0 w-full rounded-full"
+														style={{
+															backgroundColor: FLOW_GOLD,
+															animationDuration: `${AUTO_SLIDE_MS}ms`,
+														}}
+													/>
+												)}
+											</div>
+										</div>
+									)}
 								</div>
-								{i < steps.length - 1 && (
-									<div className="hidden h-0.5 w-8 shrink-0 self-center bg-amber-200 md:block" />
-								)}
+							);
+						})}
+					</div>
+				</div>
+
+				{/* メインカード（参考: ディープネイビー・左右ナビ・薄いステップ数字） */}
+				<div
+					className="mx-auto mt-8 flex max-w-4xl items-stretch overflow-hidden rounded-xl text-left shadow-[0_12px_40px_rgba(7,11,18,0.35)] md:mt-12 md:rounded-2xl"
+					style={{ backgroundColor: CARD_BG }}
+				>
+					<button
+						type="button"
+						onClick={goPrev}
+						className={NAV_BUTTON_BASE}
+						style={{ color: FLOW_GOLD }}
+						aria-label="前のステップ"
+					>
+						<span className="flex size-8 items-center justify-center rounded-full border border-transparent transition-colors group-hover:border-gold/35 md:size-9">
+							<HiOutlineChevronLeft className="size-4 opacity-0 transition-opacity group-hover:opacity-100 md:size-5" strokeWidth={1.5} />
+						</span>
+					</button>
+					<div className="flex min-w-0 flex-1 flex-col gap-8 px-5 py-8 md:flex-row md:items-center md:gap-10 md:px-10 md:py-10 lg:gap-14 lg:px-12">
+						<div className="flex shrink-0 flex-col items-center md:items-start">
+							<div
+								key={active}
+								className="flow-card-text-enter flex w-full flex-col items-center"
+							>
+								<div className="relative">
+									<span
+										className="block text-center text-[4.5rem] leading-none md:text-[7rem]"
+										style={{
+											fontFamily: "var(--font-pinyon-script), cursive",
+											color: CARD_STEP_DIGIT,
+											textShadow: "0 0 16px rgba(9, 15, 26, 0.18)",
+										}}
+									>
+										{String(active + 1).padStart(2, "0")}
+									</span>
+									<span
+										className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] font-bold uppercase md:text-[11px]"
+										style={{ color: FLOW_GOLD, letterSpacing: "0.35em" }}
+									>
+										STEP
+									</span>
+								</div>
+								<div
+									className="mt-3 flex size-20 items-center justify-center rounded-full border md:mt-5 md:size-24"
+									style={{
+										color: FLOW_GOLD,
+										backgroundImage: "url('/images/藤和ロゴ.svg')",
+										backgroundSize: "contain",
+										backgroundPosition: "center",
+										backgroundRepeat: "no-repeat",
+										borderColor: "transparent",
+									}}
+									aria-hidden
+								>
+									<Icon className="size-8 md:size-9" strokeWidth={0.9} />
+								</div>
 							</div>
+						</div>
+						<div className="min-w-0 flex-1 md:border-l-[0.5px] md:border-white/[0.04] md:pl-8 lg:pl-10">
+							<div key={active} className="flow-card-text-enter">
+								<h3 className="font-[family:var(--font-shippori-mincho)] text-lg font-normal tracking-[0.08em] text-white md:text-2xl">
+									{title}
+								</h3>
+								<div
+									className="mt-3 h-[0.5px] w-10 md:mt-4 md:w-12"
+									style={{ backgroundColor: "rgba(197, 165, 90, 0.72)" }}
+								/>
+								<p className="mt-4 text-sm font-light leading-[1.95] tracking-[0.04em] text-neutral-400 md:mt-5 md:text-base">
+									{description}
+								</p>
+							</div>
+						</div>
+					</div>
+					<button
+						type="button"
+						onClick={goNext}
+						className={NAV_BUTTON_BASE}
+						style={{ color: FLOW_GOLD }}
+						aria-label="次のステップ"
+					>
+						<span className="flex size-8 items-center justify-center rounded-full border border-transparent transition-colors group-hover:border-gold/35 md:size-9">
+							<HiOutlineChevronRight className="size-4 opacity-0 transition-opacity group-hover:opacity-100 md:size-5" strokeWidth={1.5} />
+						</span>
+					</button>
+				</div>
+
+				{/* 下部インジケーター */}
+				<div className="mt-8 flex justify-center md:mt-10">
+					<div className="flex items-center gap-2.5" aria-label="ステップの位置">
+						{steps.map((_, i) => (
+							<button
+								key={i}
+								type="button"
+								onClick={() => setActive(i)}
+								className={`rounded-full p-1 ${FOCUS_OUTLINE_GOLD}`}
+								aria-label={`ステップ${i + 1}へ`}
+								aria-current={i === active ? "step" : undefined}
+							>
+								{i === active ? (
+									<span
+										className="block h-1.5 w-7 rounded-full"
+										style={{ backgroundColor: FLOW_GOLD }}
+									/>
+								) : (
+									<span className="block size-1.5 rounded-full bg-gray-400/80" />
+								)}
+							</button>
 						))}
 					</div>
 				</div>
