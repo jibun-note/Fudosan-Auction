@@ -81,16 +81,10 @@ export default function FlowSection() {
 	};
 
 	return (
-		<section
-			id="flow"
-			className="px-4 py-12 md:px-6 md:py-20"
-			style={{ backgroundColor: FLOW_CREAM }}
-		>
+		<section id="flow" className="px-4 py-12 md:px-6 md:py-20" style={{ backgroundColor: FLOW_CREAM }}>
 			<div className="mx-auto max-w-6xl">
 				<div>
-					<h2 className="text-lg font-bold text-navy md:text-3xl">
-					ご利用の流れ
-					</h2>
+					<h2 className="text-lg font-bold text-navy md:text-3xl">ご利用の流れ</h2>
 					<div className="mt-2 h-1 w-16 bg-gold" />
 				</div>
 
@@ -103,7 +97,10 @@ export default function FlowSection() {
 							const isOn = i === active;
 							const isPassed = i < active;
 							return (
-								<div key={step.title} className="flex min-w-0 flex-1 items-start last:flex-none">
+								<div
+									key={step.title}
+									className="flex min-w-0 flex-1 items-start last:flex-none"
+								>
 									<div className="flex min-w-[4.5rem] max-w-[6.5rem] shrink-0 flex-col items-center px-0.5 md:max-w-[7rem] md:px-1">
 										<button
 											type="button"
@@ -122,7 +119,11 @@ export default function FlowSection() {
 														: isPassed
 															? "rgba(197, 165, 90, 0.2)"
 															: "transparent",
-													borderColor: isOn ? "transparent" : isPassed ? FLOW_GOLD : "#d6cfbf",
+													borderColor: isOn
+														? "transparent"
+														: isPassed
+															? FLOW_GOLD
+															: "#d6cfbf",
 													color: isOn ? "#fff" : isPassed ? FLOW_GOLD : "#7c7c7c",
 												}}
 											>
@@ -138,7 +139,7 @@ export default function FlowSection() {
 									</div>
 									{i < steps.length - 1 && (
 										<div
-											className="mx-1 mt-[18px] flex min-h-px min-w-[1.75rem] flex-1 items-center md:mx-2 md:min-w-[3.5rem] lg:min-w-[5rem]"
+											className="mx-1 mt-[18px] hidden min-h-px min-w-[1.75rem] flex-1 items-center md:mx-2 md:flex md:min-w-[3.5rem] lg:min-w-[5rem]"
 											aria-hidden
 										>
 											<div
@@ -184,7 +185,10 @@ export default function FlowSection() {
 						aria-label="前のステップ"
 					>
 						<span className="flex size-8 items-center justify-center rounded-full border border-transparent transition-colors group-hover:border-gold/35 md:size-9">
-							<HiOutlineChevronLeft className="size-4 opacity-0 transition-opacity group-hover:opacity-100 md:size-5" strokeWidth={1.5} />
+							<HiOutlineChevronLeft
+								className="size-4 opacity-0 transition-opacity group-hover:opacity-100 md:size-5"
+								strokeWidth={1.5}
+							/>
 						</span>
 					</button>
 					<div className="flex min-w-0 flex-1 flex-col gap-8 px-5 py-8 md:flex-row md:items-center md:gap-10 md:px-10 md:py-10 lg:gap-14 lg:px-12">
@@ -249,7 +253,10 @@ export default function FlowSection() {
 						aria-label="次のステップ"
 					>
 						<span className="flex size-8 items-center justify-center rounded-full border border-transparent transition-colors group-hover:border-gold/35 md:size-9">
-							<HiOutlineChevronRight className="size-4 opacity-0 transition-opacity group-hover:opacity-100 md:size-5" strokeWidth={1.5} />
+							<HiOutlineChevronRight
+								className="size-4 opacity-0 transition-opacity group-hover:opacity-100 md:size-5"
+								strokeWidth={1.5}
+							/>
 						</span>
 					</button>
 				</div>
