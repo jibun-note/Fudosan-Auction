@@ -24,7 +24,7 @@ const benefits = [
 
 export default function MaximizeSection() {
 	return (
-		<section className="bg-gray-50 px-4 py-12 md:px-6 md:py-20">
+		<section className="bg-white px-4 py-12 md:px-6 md:py-20">
 			<div className="mx-auto max-w-6xl">
 				<h2 className="text-lg font-bold text-navy md:text-3xl">
 					オークションが&quot;顧問先の利益&quot;を最大化
