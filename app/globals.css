@@ -6,8 +6,8 @@
 	/* LP theme */
 	--navy: #1e3a5f;
 	--navy-dark: #152942;
-	--gold: #b8860b;
-	--gold-light: #d4a84b;
+	--gold: #c5a55a;
+	--gold-light: #e8d5a0;
 	--accent-blue: #e8f4f8;
 }
 
@@ -34,4 +34,65 @@ body {
 	background: var(--background);
 	font-family: Arial, Helvetica, sans-serif;
 	color: #333333;
+}
+
+@keyframes flow-connector-fill {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+	}
+}
+
+@keyframes flow-pulse-ring {
+	0% {
+		box-shadow: 0 0 0 0 rgba(197, 165, 90, 0.45);
+	}
+	70% {
+		box-shadow: 0 0 0 14px rgba(197, 165, 90, 0);
+	}
+	100% {
+		box-shadow: 0 0 0 0 rgba(197, 165, 90, 0);
+	}
+}
+
+.flow-connector-anim {
+	transform-origin: left center;
+	animation: flow-connector-fill linear forwards;
+}
+
+.flow-step-pulse {
+	animation: flow-pulse-ring 2s ease-out infinite;
+}
+
+/* Remotion FadeText 相当: opacity 0→1, translateY(18px)→0（約20f@30fps ≒ 0.65s） */
+@keyframes flow-card-fade-text {
+	from {
+		opacity: 0;
+		transform: translateY(18px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.flow-card-text-enter {
+	animation: flow-card-fade-text 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.flow-connector-anim {
+		animation: none;
+		transform: scaleX(1);
+	}
+	.flow-step-pulse {
+		animation: none;
+	}
+	.flow-card-text-enter {
+		animation: none;
+		opacity: 1;
+		transform: none;
+	}
 }
