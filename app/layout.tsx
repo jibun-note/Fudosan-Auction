@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Pinyon_Script, Shippori_Mincho } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/layout/Layout";
 
@@ -10,6 +10,18 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
 	variable: "--font-geist-mono",
+	subsets: ["latin"],
+});
+
+const shipporiMincho = Shippori_Mincho({
+	variable: "--font-shippori-mincho",
+	weight: ["400", "500", "600"],
+	subsets: ["latin"],
+});
+
+const pinyonScript = Pinyon_Script({
+	variable: "--font-pinyon-script",
+	weight: "400",
 	subsets: ["latin"],
 });
 
@@ -26,7 +38,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="ja">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+			<body
+				className={`${geistSans.variable} ${geistMono.variable} ${shipporiMincho.variable} ${pinyonScript.variable} antialiased`}
+			>
 				<Layout>{children}</Layout>
 			</body>
 		</html>
