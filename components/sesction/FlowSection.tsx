@@ -113,7 +113,7 @@ export default function FlowSection() {
 											aria-label={`ステップ${i + 1}: ${step.title}`}
 										>
 											<span
-												className={`relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-medium transition-[background-image,background-color,box-shadow,color,border-color] md:h-10 md:w-10 md:text-base ${isOn ? "flow-step-pulse border-0" : "border"}`}
+												className={`relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-medium transition-[background-image,background-color,box-shadow,color,border-color] md:h-10 md:w-10 md:text-base ${isOn ? "flow-step-pulse border-0" : "border"}`}
 												style={{
 													// 3状態: アクティブ(グラデ) / 通過済み(薄ゴールド) / 未通過(透明)
 													backgroundImage: isOn ? GRADIENT_STEP_ACTIVE : "none",
@@ -129,7 +129,7 @@ export default function FlowSection() {
 												{i + 1}
 											</span>
 											<span
-												className="mt-2 line-clamp-2 max-w-[6.5rem] text-[10px] leading-tight md:max-w-none md:text-xs"
+												className="mt-2 line-clamp-2 max-w-[5.75rem] text-[10px] leading-tight md:max-w-none md:text-xs"
 												style={{ color: STEP_LABEL_MUTED }}
 											>
 												{step.title}
@@ -211,7 +211,7 @@ export default function FlowSection() {
 									</span>
 								</div>
 								<div
-									className="mt-3 flex size-20 items-center justify-center rounded-full border md:mt-5 md:size-24"
+									className="mt-3 flex size-16 items-center justify-center rounded-full border md:mt-5 md:size-24"
 									style={{
 										color: FLOW_GOLD,
 										backgroundImage: "url('/images/藤和ロゴ.svg')",
@@ -222,7 +222,7 @@ export default function FlowSection() {
 									}}
 									aria-hidden
 								>
-									<Icon className="size-8 md:size-9" strokeWidth={0.9} />
+									<Icon className="size-7 md:size-9" strokeWidth={0.9} />
 								</div>
 							</div>
 						</div>
