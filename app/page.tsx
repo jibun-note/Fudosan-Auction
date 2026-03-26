@@ -9,13 +9,13 @@ import SchemeSection from "@/components/sesction/SchemeSection";
 
 export default function Home() {
 	return (
-		<div className="min-h-screen bg-white font-sans text-sm text-gray-900 md:text-base">
+		<div className="min-h-screen bg-lp-surface font-sans text-sm text-gray-900 md:text-base">
 			<main>
 				<Hero />
 				<SchemeSection />
 				<MaximizeSection />
 				<ComparisonTable />
-				<CaseStudySection />
+				{/* <CaseStudySection /> */}
 				<FlowSection />
 				<FaqSection />
 				<CtaSection />

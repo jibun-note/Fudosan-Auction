@@ -229,7 +229,7 @@ export default function ComparisonTable() {
 				</p>
 				<Link
 					href="#"
-					className="mt-4 inline-block text-sm font-medium text-blue-600 underline hover:text-blue-800 md:mt-6 md:text-base"
+					className="mt-4 inline-block text-sm font-medium text-gold underline decoration-gold/40 underline-offset-2 transition hover:text-gold-light hover:decoration-gold md:mt-6 md:text-base"
 				>
 					より詳細な比較資料をダウンロード
 				</Link>

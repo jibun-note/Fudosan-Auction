@@ -3,22 +3,34 @@
 :root {
 	--background: #ffffff;
 	--foreground: #171717;
+	/* shadcn Card */
+	--card: #ffffff;
+	--card-foreground: #171717;
+	--muted-foreground: #737373;
 	/* LP theme */
 	--navy: #1e3a5f;
 	--navy-dark: #152942;
 	--gold: #c5a55a;
 	--gold-light: #e8d5a0;
 	--accent-blue: #e8f4f8;
+	/* LP: ネイビーをわずかに混ぜた下地（ゴールド差し色と相性のよいモダンなトーン） */
+	--lp-surface: color-mix(in srgb, var(--navy) 5%, white);
+	--lp-surface-elevated: color-mix(in srgb, var(--navy) 2.5%, white);
 }
 
 @theme inline {
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-muted-foreground: var(--muted-foreground);
 	--color-navy: var(--navy);
 	--color-navy-dark: var(--navy-dark);
 	--color-gold: var(--gold);
 	--color-gold-light: var(--gold-light);
 	--color-accent-blue: var(--accent-blue);
+	--color-lp-surface: var(--lp-surface);
+	--color-lp-surface-elevated: var(--lp-surface-elevated);
 	--font-sans: var(--font-geist-sans);
 	--font-mono: var(--font-geist-mono);
 }
