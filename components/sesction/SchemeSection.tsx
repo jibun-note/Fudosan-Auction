@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Building2, FileText, Gavel } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -71,9 +71,17 @@ const circlePositions = [
 
 export default function SchemeSection() {
 	const [activeIndex, setActiveIndex] = useState(0);
+	const [isMobile, setIsMobile] = useState(false);
+
+	useEffect(() => {
+		const onResize = () => setIsMobile(window.innerWidth < 768);
+		onResize();
+		window.addEventListener("resize", onResize);
+		return () => window.removeEventListener("resize", onResize);
+	}, []);
 	// リング幾何：中心からノードまでの距離 / 外周の余白 / SVG と絶対配置の共通サイズ
-	const radius = 205;
-	const ringPadding = 78;
+	const radius = isMobile ? 130 : 205;
+	const ringPadding = isMobile ? 48 : 78;
 	const boxSize = radius * 2 + ringPadding * 2;
 	const cx = boxSize / 2;
 	const cy = boxSize / 2;
@@ -124,11 +132,14 @@ export default function SchemeSection() {
 
 				{/* 三角リング UI：同心円デコ＋中央ラベル＋SVG 接続線＋周辺サービスボタン */}
 				<div className="mb-12 flex w-full justify-center md:mb-16">
-					<div className="relative mx-auto shrink-0" style={{ width: boxSize, height: boxSize }}>
+					<div
+						className="relative mx-auto w-full max-w-[min(100%,34rem)] shrink-0"
+						style={{ width: boxSize, height: boxSize }}
+					>
 						{/* 外枠リング（静的ボーダー） */}
 						<div className="absolute inset-0 rounded-full border border-gold/10" />
 						{/* 破線リングの代替：藤和ロゴ */}
-						<div className="pointer-events-none absolute" style={{ inset: 18 }}>
+						<div className="pointer-events-none absolute" style={{ inset: isMobile ? 14 : 18 }}>
 							<Image
 								src="/images/藤和ロゴ.svg"
 								alt=""
@@ -141,7 +152,7 @@ export default function SchemeSection() {
 						{/* ロゴの内側に収める円形ボーダー */}
 						<div
 							className="pointer-events-none absolute rounded-full border border-gold/10"
-							style={{ inset: 62 }}
+							style={{ inset: isMobile ? 44 : 62 }}
 						/>
 
 						{/* 選択中サービスに対応するキャッチコピー（label） */}
@@ -153,9 +164,9 @@ export default function SchemeSection() {
 									animate={{ opacity: 1, scale: 1 }}
 									exit={{ opacity: 0, scale: 0.8 }}
 									transition={{ duration: 0.4 }}
-									className="-translate-y-3 max-w-[min(100%,22rem)] px-3 text-center md:max-w-md md:px-4"
+									className="-translate-y-2 max-w-[min(100%,18rem)] px-2 text-center md:-translate-y-3 md:max-w-md md:px-4"
 								>
-									<p className="text-xl leading-snug font-semibold text-navy md:text-2xl lg:text-3xl">
+									<p className="text-lg leading-snug font-semibold text-navy md:text-2xl lg:text-3xl">
 										{services[activeIndex].label}
 									</p>
 								</motion.div>
@@ -193,7 +204,7 @@ export default function SchemeSection() {
 										)}
 
 										<div
-											className={`relative isolate flex size-21 items-center justify-center overflow-hidden rounded-full backdrop-blur-sm transition-all duration-500 md:size-28 lg:size-31 ${
+											className={`relative isolate flex size-18 items-center justify-center overflow-hidden rounded-full backdrop-blur-sm transition-all duration-500 md:size-28 lg:size-31 ${
 												isActive
 													? "border-2 border-gold/85 bg-linear-to-br from-white/45 via-gold/25 to-navy/12 shadow-[0_16px_36px_-18px_rgba(12,22,40,0.75),0_0_36px_-8px_hsl(38_70%_48%/0.45)] ring-2 ring-gold/25"
 													: "border-2 border-gray-300/70 bg-linear-to-br from-white/42 via-slate-200/45 to-slate-400/35 text-gray-600 shadow-[0_14px_28px_-20px_rgba(30,41,59,0.7)] hover:border-gray-200/90 hover:from-white/50 hover:via-slate-200/55 hover:to-slate-400/45"
@@ -201,7 +212,7 @@ export default function SchemeSection() {
 										>
 											<ServiceIcon
 												aria-hidden="true"
-												className={`pointer-events-none absolute z-0 size-12 transition-colors duration-500 md:size-16 lg:size-18 ${
+												className={`pointer-events-none absolute z-0 size-10 transition-colors duration-500 md:size-16 lg:size-18 ${
 													isActive ? "text-gold/18" : "text-navy/12"
 												}`}
 												strokeWidth={1.5}
@@ -211,7 +222,7 @@ export default function SchemeSection() {
 											{/* ガラス層の奥行き：斜めの薄い反射 */}
 											<span className="pointer-events-none absolute -right-1 top-2 z-0 h-1/2 w-1/2 rotate-12 rounded-full bg-white/20 blur-sm" />
 											<span
-												className={`relative z-10 line-clamp-3 max-w-19 whitespace-pre-line text-center text-[11px] leading-snug font-semibold tracking-tight md:max-w-23 md:text-xs lg:max-w-27 lg:text-sm ${
+												className={`relative z-10 line-clamp-3 max-w-16 whitespace-pre-line text-center text-[10px] leading-snug font-semibold tracking-tight md:max-w-23 md:text-xs lg:max-w-27 lg:text-sm ${
 													isActive ? "font-bold text-gold" : "text-gray-600"
 												}`}
 											>
