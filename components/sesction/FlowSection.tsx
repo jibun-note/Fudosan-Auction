@@ -86,20 +86,13 @@ export default function FlowSection() {
 			className="px-4 py-12 md:px-6 md:py-20"
 			style={{ backgroundColor: FLOW_CREAM }}
 		>
-			<div className="mx-auto max-w-6xl text-center">
-				<p
-					className="text-[11px] font-medium uppercase md:text-xs"
-					style={{ color: FLOW_GOLD, letterSpacing: "0.35em" }}
-				>
-					PROCESS
-				</p>
-				<h2 className="mt-3 font-extralight text-navy md:mt-4 md:text-4xl md:tracking-wide">
+			<div className="mx-auto max-w-6xl">
+				<div>
+					<h2 className="text-lg font-bold text-navy md:text-3xl">
 					ご利用の流れ
-				</h2>
-				<div
-					className="mx-auto mt-4 h-px w-14 md:mt-5 md:w-16"
-					style={{ backgroundColor: FLOW_GOLD }}
-				/>
+					</h2>
+					<div className="mt-2 h-1 w-16 bg-gold" />
+				</div>
 
 				{/* 横タイムライン（進捗付き接続線）
 				    overflow-x-auto は overflow-y を auto にしがちで、パルスの box-shadow が上下で切れる。
@@ -202,9 +195,8 @@ export default function FlowSection() {
 							>
 								<div className="relative">
 									<span
-										className="block text-center text-[4.5rem] leading-none md:text-[7rem]"
+										className="block text-center text-[4.5rem] leading-none font-extralight md:text-[7rem]"
 										style={{
-											fontFamily: "var(--font-pinyon-script), cursive",
 											color: CARD_STEP_DIGIT,
 											textShadow: "0 0 16px rgba(9, 15, 26, 0.18)",
 										}}
@@ -236,7 +228,7 @@ export default function FlowSection() {
 						</div>
 						<div className="min-w-0 flex-1 md:border-l-[0.5px] md:border-white/[0.04] md:pl-8 lg:pl-10">
 							<div key={active} className="flow-card-text-enter">
-								<h3 className="font-[family:var(--font-shippori-mincho)] text-lg font-normal tracking-[0.08em] text-white md:text-2xl">
+								<h3 className="text-lg font-normal tracking-[0.08em] text-white md:text-2xl">
 									{title}
 								</h3>
 								<div

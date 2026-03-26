@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Building2, FileText, Gavel } from "lucide-react";
+import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -25,6 +26,7 @@ const services = [
 			"修理・設備・買取「藤和安心保証システム」",
 		],
 		icon: Building2,
+		href: "https://towa-corporation.jp/re-born_hojin/",
 	},
 	{
 		id: "sales-plan",
@@ -40,6 +42,7 @@ const services = [
 			"迅速に結論を導きベストの選択をご提案",
 		],
 		icon: FileText,
+		href: "https://hudousantakakuuritai.com/keikakusyo/",
 	},
 	{
 		id: "auction",
@@ -55,6 +58,7 @@ const services = [
 			"オークションでさらに高値売却",
 		],
 		icon: Gavel,
+		href: "https://hudousantakakuuritai.com/jpnauction/",
 	},
 ];
 
@@ -230,12 +234,12 @@ export default function SchemeSection() {
 						exit={{ opacity: 0, y: -30, filter: "blur(6px)" }}
 						transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
 					>
-						<Card className="overflow-hidden rounded-3xl border-[#314b6b] bg-[#1c2e49] shadow-md shadow-navy/15 backdrop-blur-sm">
-							<CardContent className="p-0">
+						<Card className="overflow-hidden rounded-3xl border-white/15 bg-[#1c2e49] shadow-md shadow-navy/15 backdrop-blur-sm">
+							<CardContent className="bg-white p-0">
 								<div className="grid gap-0 lg:grid-cols-[1fr,1.2fr]">
 									<CardHeader className="space-y-0 rounded-none border-0 bg-transparent p-0 shadow-none">
 										<div className="px-8 pt-8 lg:px-12 lg:pt-12">
-											<div className="border-b border-[#314b6b] pb-8">
+											<div className="border-b border-gray-200 pb-8">
 												<motion.div
 													initial={{ opacity: 0, x: -20 }}
 													animate={{ opacity: 1, x: 0 }}
@@ -243,7 +247,7 @@ export default function SchemeSection() {
 													className="mb-6 flex items-center gap-3"
 												>
 													<div className="h-8 w-1 shrink-0 rounded-full bg-linear-to-b from-[#c5a55a] to-[rgba(197,165,90,0.16)]" />
-													<CardTitle className="text-2xl font-semibold text-white lg:text-3xl">
+													<CardTitle className="text-2xl font-semibold text-navy lg:text-3xl">
 														{services[activeIndex].title}
 													</CardTitle>
 												</motion.div>
@@ -252,7 +256,7 @@ export default function SchemeSection() {
 													animate={{ opacity: 1 }}
 													transition={{ delay: 0.3, duration: 0.5 }}
 												>
-													<CardDescription className="mb-6 text-sm font-medium tracking-wide text-[#c5a55a]">
+													<CardDescription className="mb-6 text-lg font-semibold tracking-wide text-gold/80">
 														{services[activeIndex].subtitle}
 													</CardDescription>
 												</motion.div>
@@ -260,7 +264,7 @@ export default function SchemeSection() {
 													initial={{ opacity: 0 }}
 													animate={{ opacity: 1 }}
 													transition={{ delay: 0.4, duration: 0.5 }}
-													className="text-sm leading-relaxed text-[#a3a3a3]"
+													className="text-base leading-relaxed font-semibold text-gray-600"
 												>
 													{services[activeIndex].description}
 												</motion.p>
@@ -269,7 +273,7 @@ export default function SchemeSection() {
 									</CardHeader>
 
 									<div className="flex flex-col justify-center p-8 lg:p-12">
-										<p className="mb-8 text-[10px] font-medium tracking-[0.3em] text-[#c5a55a] uppercase">
+										<p className="mb-8 text-base font-semibold tracking-[0.3em] text-gold/60 uppercase">
 											Points
 										</p>
 										<div className="space-y-5">
@@ -288,7 +292,7 @@ export default function SchemeSection() {
 													<span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full border border-[rgba(197,165,90,0.16)] bg-[rgba(197,165,90,0.16)] text-[11px] font-bold text-[#c5a55a]">
 														{i + 1}
 													</span>
-													<p className="pt-1 text-sm leading-relaxed text-[#a3a3a3] transition-colors duration-300 group-hover:text-white">
+													<p className="pt-1 text-sm leading-relaxed font-semibold text-gray-800 transition-colors duration-300 group-hover:text-navy">
 														{detail}
 													</p>
 												</motion.div>
@@ -299,18 +303,18 @@ export default function SchemeSection() {
 											initial={{ opacity: 0 }}
 											animate={{ opacity: 1 }}
 											transition={{ delay: 0.6, duration: 0.5 }}
-											className="mt-10 border-t border-[#314b6b] pt-8"
+											className="mt-10 border-t border-gray-200 pt-8"
 										>
-											<button
-												type="button"
-												className="group inline-flex cursor-pointer items-center gap-3 text-xs font-medium tracking-[0.2em] text-[#c5a55a] uppercase transition-colors duration-300 hover:text-[#e0c27a]"
+											<Link
+												href={services[activeIndex].href}
+												className="group inline-flex cursor-pointer items-center gap-3 text-base tracking-[0.2em] text-[#c5a55a] uppercase transition-colors duration-300 hover:text-[#e0c27a]"
 											>
 												詳しく見る
 												<motion.span
 													className="inline-block h-px w-8 origin-left bg-[rgba(197,165,90,0.16)] transition-colors duration-300 group-hover:bg-[#c5a55a]"
 													whileHover={{ scaleX: 1.5 }}
 												/>
-											</button>
+											</Link>
 										</motion.div>
 									</div>
 								</div>
@@ -318,20 +322,6 @@ export default function SchemeSection() {
 						</Card>
 					</motion.div>
 				</AnimatePresence>
-
-				{/* 補足 CTA：紹介スキームの説明と資料リンク（テーマはネイビー／ゴールド） */}
-				{/* <div className="mt-8 rounded-lg border border-navy/10 border-l-4 border-l-gold bg-linear-to-r from-gold/10 via-white to-white p-4 md:mt-12 md:p-6">
-					<h3 className="text-sm font-semibold text-navy md:text-base">紹介スキーム例</h3>
-					<p className="mt-2 text-xs text-gray-700 md:text-sm">
-						先生からのご紹介後、弊社専門スタッフが共同でご同席し、オークションプロセスを丁寧に説明します。成果の共有方法や守秘義務、利益相反ポリシーについては、個別にご説明資料を用意しております。
-					</p>
-					<Link
-						href="#"
-						className="mt-4 inline-block text-sm font-medium text-gold underline decoration-gold/40 underline-offset-2 transition hover:text-gold-light hover:decoration-gold"
-					>
-						紹介スキーム資料はこちら≫
-					</Link>
-				</div>*/}
 			</div>
 		</section>
 	);

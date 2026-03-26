@@ -27,10 +27,12 @@ export default function FaqSection() {
 
 	return (
 		<section id="faq" className="bg-white px-4 py-12 md:px-6 md:py-20">
-			<div className="mx-auto max-w-3xl">
-				<h2 className="text-lg font-bold text-navy md:text-3xl">よくあるご質問</h2>
-				<div className="mt-2 h-1 w-16 bg-gold" />
-				<div className="mt-12 space-y-3">
+			<div className="mx-auto max-w-6xl">
+				<div>
+					<h2 className="text-lg font-bold text-navy md:text-3xl">よくあるご質問</h2>
+					<div className="mt-2 h-1 w-16 bg-gold" />
+				</div>
+				<div className="mx-auto mt-12 max-w-3xl space-y-3">
 					{items.map((item, i) => (
 						<div
 							key={item.question}
