@@ -48,12 +48,13 @@ body {
 	color: #333333;
 }
 
+/* width で伸ばす（scaleX だと本番環境の GPU 合成で黒ボックスになるケースがある） */
 @keyframes flow-connector-fill {
 	from {
-		transform: scaleX(0);
+		width: 0%;
 	}
 	to {
-		transform: scaleX(1);
+		width: 100%;
 	}
 }
 
@@ -70,7 +71,11 @@ body {
 }
 
 .flow-connector-anim {
-	transform-origin: left center;
+	top: 0;
+	bottom: 0;
+	width: 0%;
+	min-width: 0;
+	max-width: 100%;
 	animation: flow-connector-fill linear forwards;
 }
 
@@ -97,7 +102,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
 	.flow-connector-anim {
 		animation: none;
-		transform: scaleX(1);
+		width: 100%;
 	}
 	.flow-step-pulse {
 		animation: none;
