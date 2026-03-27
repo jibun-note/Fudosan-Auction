@@ -4,8 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { FaHandshake } from "react-icons/fa6";
 import {
 	HiOutlineChatBubbleBottomCenterText,
-	HiOutlineChevronLeft,
-	HiOutlineChevronRight,
 	HiOutlineCurrencyYen,
 	HiOutlineDocumentText,
 	HiOutlineScale,
@@ -27,8 +25,8 @@ const CONNECTOR_TRACK = "#dcd5c8";
 const STEP_LABEL_MUTED = "#a3a3a3";
 const FOCUS_OUTLINE_GOLD =
 	"focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c5a55a]";
-const NAV_BUTTON_BASE =
-	"group flex w-11 shrink-0 items-center justify-center transition-colors hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#c5a55a] md:w-14";
+/** モバイル: この距離（px）以上の水平スワイプで前後ステップへ */
+const SWIPE_THRESHOLD_PX = 56;
 /** 自動で次のステップへ進むまでの時間（接続線アニメと同期） */
 const AUTO_SLIDE_MS = 5500;
 
@@ -113,6 +111,7 @@ function ConnectorProgressFill({
 
 export default function FlowSection() {
 	const [active, setActive] = useState(0);
+	const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
 	// ステップが変わるたびにタイマーを張り直し、一定間隔で自動遷移する
 	useEffect(() => {
@@ -123,13 +122,6 @@ export default function FlowSection() {
 	}, [active]);
 
 	const { icon: Icon, title, description } = steps[active];
-
-	const goPrev = () => {
-		setActive((i) => (i - 1 + steps.length) % steps.length);
-	};
-	const goNext = () => {
-		setActive((i) => (i + 1) % steps.length);
-	};
 
 	return (
 		<section id="flow" className="px-4 py-12 md:px-6 md:py-20" style={{ backgroundColor: FLOW_CREAM }}>
@@ -220,25 +212,33 @@ export default function FlowSection() {
 					</div>
 				</div>
 
-				{/* メインカード（参考: ディープネイビー・左右ナビ・薄いステップ数字） */}
+				{/* メインカード（モバイル: 水平スワイプで前後ステップ） */}
 				<div
 					className="mx-auto mt-8 flex max-w-4xl items-stretch overflow-hidden rounded-xl text-left shadow-[0_12px_40px_rgba(7,11,18,0.35)] md:mt-12 md:rounded-2xl"
 					style={{ backgroundColor: CARD_BG }}
+					onTouchStart={(e) => {
+						if (e.touches.length !== 1) return;
+						const t = e.touches[0];
+						touchStartRef.current = { x: t.clientX, y: t.clientY };
+					}}
+					onTouchEnd={(e) => {
+						const start = touchStartRef.current;
+						touchStartRef.current = null;
+						if (!start || e.changedTouches.length !== 1) return;
+						if (typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches) {
+							return;
+						}
+						const t = e.changedTouches[0];
+						const dx = t.clientX - start.x;
+						const dy = t.clientY - start.y;
+						if (Math.abs(dx) < SWIPE_THRESHOLD_PX || Math.abs(dx) <= Math.abs(dy)) return;
+						if (dx > 0) {
+							setActive((i) => (i - 1 + steps.length) % steps.length);
+						} else {
+							setActive((i) => (i + 1) % steps.length);
+						}
+					}}
 				>
-					<button
-						type="button"
-						onClick={goPrev}
-						className={NAV_BUTTON_BASE}
-						style={{ color: FLOW_GOLD }}
-						aria-label="前のステップ"
-					>
-						<span className="flex size-8 items-center justify-center rounded-full border border-transparent transition-colors group-hover:border-gold/35 md:size-9">
-							<HiOutlineChevronLeft
-								className="size-4 opacity-0 transition-opacity group-hover:opacity-100 md:size-5"
-								strokeWidth={1.5}
-							/>
-						</span>
-					</button>
 					<div className="flex min-w-0 flex-1 flex-col gap-8 px-5 py-8 md:flex-row md:items-center md:gap-10 md:px-10 md:py-10 lg:gap-14 lg:px-12">
 						<div className="flex shrink-0 flex-col items-center md:items-start">
 							<div
@@ -293,20 +293,6 @@ export default function FlowSection() {
 							</div>
 						</div>
 					</div>
-					<button
-						type="button"
-						onClick={goNext}
-						className={NAV_BUTTON_BASE}
-						style={{ color: FLOW_GOLD }}
-						aria-label="次のステップ"
-					>
-						<span className="flex size-8 items-center justify-center rounded-full border border-transparent transition-colors group-hover:border-gold/35 md:size-9">
-							<HiOutlineChevronRight
-								className="size-4 opacity-0 transition-opacity group-hover:opacity-100 md:size-5"
-								strokeWidth={1.5}
-							/>
-						</span>
-					</button>
 				</div>
 
 				{/* 下部インジケーター */}
