@@ -48,13 +48,13 @@ body {
 	color: #333333;
 }
 
-/* width で伸ばす（scaleX だと本番環境の GPU 合成で黒ボックスになるケースがある） */
+/* 左から塗る: scaleX は GPU 合成で黒帯になり得る。width% の補間は abs 子で止まることがあるため clip-path を使う */
 @keyframes flow-connector-fill {
 	from {
-		width: 0%;
+		clip-path: inset(0 100% 0 0);
 	}
 	to {
-		width: 100%;
+		clip-path: inset(0 0 0 0);
 	}
 }
 
@@ -71,12 +71,11 @@ body {
 }
 
 .flow-connector-anim {
-	top: 0;
-	bottom: 0;
-	width: 0%;
-	min-width: 0;
-	max-width: 100%;
-	animation: flow-connector-fill linear forwards;
+	clip-path: inset(0 100% 0 0);
+	animation-name: flow-connector-fill;
+	animation-duration: var(--flow-connector-ms, 5500ms);
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
 }
 
 .flow-step-pulse {
@@ -102,7 +101,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
 	.flow-connector-anim {
 		animation: none;
-		width: 100%;
+		clip-path: inset(0 0 0 0);
 	}
 	.flow-step-pulse {
 		animation: none;
