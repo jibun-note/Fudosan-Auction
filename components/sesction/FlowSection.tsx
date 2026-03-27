@@ -156,11 +156,13 @@ export default function FlowSection() {
 												{i === active && (
 													<div
 														key={`flow-seg-${active}`}
-														className="flow-connector-anim pointer-events-none absolute inset-y-0 left-0 rounded-full"
-														style={{
-															backgroundColor: FLOW_GOLD,
-															animationDuration: `${AUTO_SLIDE_MS}ms`,
-														}}
+														className="flow-connector-anim pointer-events-none absolute inset-y-0 left-0 w-full rounded-full"
+														style={
+															{
+																backgroundColor: FLOW_GOLD,
+																["--flow-connector-ms" as string]: `${AUTO_SLIDE_MS}ms`,
+															} as React.CSSProperties
+														}
 													/>
 												)}
 											</div>
