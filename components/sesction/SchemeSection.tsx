@@ -13,7 +13,7 @@ const services = [
 	{
 		id: "reborn",
 		name: "b'CASA re-born\n不動産",
-		label: "「法人税対策」が高いと言われた！",
+		label: "「法人税対策」が\n高いと言われた！",
 		title: "b'CASA re-born\n不動産",
 		subtitle: "b'CASA re-born不動産により節税と資産形成を実現！",
 		description: "「法人税が高い！」と言われた企業オーナー様必見",
@@ -48,7 +48,7 @@ const services = [
 		id: "auction",
 		name: "不動産の\nジャパン\nオークション",
 		label: "高く売るために！",
-		title: "不動産の\nジャパン\nオークション",
+		title: "不動産の\nジャパンオークション",
 		subtitle: "なぜ、不動産のジャパンオークションは高く売れるのか?",
 		description:
 			"その土地に何が建てられるか、どんな活用法があるのかあなたはご存知ですか？各専門分野のプロである私たちにお任せください。あなたの不動産の本当の価値を見極めます！",
@@ -89,8 +89,9 @@ export default function SchemeSection() {
 		return () => window.removeEventListener("resize", onResize);
 	}, []);
 	// リング幾何：中心からノードまでの距離 / 外周の余白 / SVG と絶対配置の共通サイズ
-	const radius = isMobile ? 130 : 205;
-	const ringPadding = isMobile ? 48 : 78;
+	// デスクトップはコンパクトにし、カードを主役に。xl 以上はグリッド 38%/62% でもリングが列内に収まる寸法にする
+	const radius = isMobile ? 130 : 142;
+	const ringPadding = isMobile ? 48 : 58;
 	const boxSize = radius * 2 + ringPadding * 2;
 	const ringCx = boxSize * SERVICERING_RING_CX_FRAC;
 	const ringCy = boxSize * SERVICERING_RING_CY_FRAC;
@@ -124,26 +125,28 @@ export default function SchemeSection() {
 			/>
 
 			<div className="relative z-10 mx-auto max-w-7xl xl:max-w-360">
-				{/* セクション見出し */}
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true, margin: "-40px" }}
-					transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-				>
-					<h2 className="text-lg font-bold text-navy md:text-3xl">
-						&quot;価値&quot;が返る3つのサービス
-					</h2>
-					<div className="mt-2 h-1 w-16 bg-gold" />
-					<p className="mt-3 mb-16 text-sm text-gray-600 md:mt-4 md:text-base">
-						顧問先への付加価値提案が、先生ご自身の信頼とビジネスを強化します。
-					</p>
-				</motion.div>
+				{/* セクション見出し（他セクションと同じ max-w-6xl で左端・幅を揃える） */}
+				<div className="mx-auto max-w-6xl">
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true, margin: "-40px" }}
+						transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+					>
+						<h2 className="text-lg font-bold text-navy md:text-3xl">
+							&quot;価値&quot;が返る3つのサービス
+						</h2>
+						<div className="mt-2 h-1 w-16 bg-gold" />
+						<p className="mt-3 mb-16 text-sm text-gray-600 md:mt-4 md:text-base">
+							顧問先への付加価値提案が、先生ご自身の信頼とビジネスを強化します。
+						</p>
+					</motion.div>
+				</div>
 
 				{/* デスクトップ：リングと詳細カードを横並び（スクロールなしで説明が見える）／モバイル：縦積み */}
-				<div className="flex w-full flex-col items-stretch gap-10 md:flex-row md:items-center md:gap-8 lg:gap-12">
+				<div className="flex w-full flex-col items-stretch gap-10 md:flex-row md:items-start md:gap-8 lg:gap-12 xl:grid xl:grid-cols-[minmax(0,38%)_minmax(0,1fr)] xl:items-stretch xl:gap-12">
 					{/* 三角リング UI：同心円デコ＋中央ラベル＋周辺サービスボタン */}
-					<div className="mx-auto flex shrink-0 justify-center md:mx-0 md:justify-start">
+					<div className="mx-auto flex shrink-0 justify-center md:mx-0 md:justify-start xl:justify-self-center">
 						<div
 							className="relative w-full max-w-[min(100%,34rem)] shrink-0"
 							style={{ width: boxSize, height: boxSize }}
@@ -155,7 +158,7 @@ export default function SchemeSection() {
 									alt=""
 									aria-hidden="true"
 									fill
-									sizes="(max-width: 768px) 80vw, 520px"
+									sizes="(max-width: 768px) 80vw, 420px"
 									className="object-contain opacity-25"
 								/>
 							</div>
@@ -169,9 +172,9 @@ export default function SchemeSection() {
 										animate={{ opacity: 1, scale: 1 }}
 										exit={{ opacity: 0, scale: 0.8 }}
 										transition={{ duration: 0.4 }}
-										className="-translate-y-2 max-w-[min(100%,18rem)] px-2 text-center md:-translate-y-3 md:max-w-md md:px-4"
+										className="-translate-y-2 max-w-[min(100%,18rem)] px-2 text-center md:-translate-y-2 md:max-w-sm md:px-3 lg:max-w-xs lg:px-4"
 									>
-										<p className="text-lg leading-snug font-semibold text-navy md:text-2xl lg:text-3xl">
+										<p className="whitespace-pre-line text-lg leading-snug font-semibold text-navy md:text-xl lg:text-2xl">
 											{services[activeIndex].label}
 										</p>
 									</motion.div>
@@ -205,29 +208,29 @@ export default function SchemeSection() {
 										>
 											{/* 選択中ノード：拡大せず、色だけで状態を示すリング */}
 											{isActive && (
-												<div className="absolute -inset-2 rounded-full border border-gold/30 opacity-80" />
+												<div className="absolute -inset-2 rounded-full border border-gold/30 opacity-80 md:-inset-1.5" />
 											)}
 
 											<div
-												className={`relative isolate flex size-18 items-center justify-center overflow-hidden rounded-full backdrop-blur-sm transition-all duration-500 md:size-28 lg:size-31 ${
+												className={`relative isolate flex size-19 items-center justify-center overflow-hidden rounded-full backdrop-blur-sm transition-all duration-500 md:size-24 lg:size-26 ${
 													isActive
-														? "border-2 border-gold/85 bg-linear-to-br from-white/45 via-gold/25 to-navy/12 shadow-[0_16px_36px_-18px_rgba(12,22,40,0.75),0_0_36px_-8px_hsl(38_70%_48%/0.45)] ring-2 ring-gold/25"
-														: "border-2 border-gray-300/70 bg-linear-to-br from-white/42 via-slate-200/45 to-slate-400/35 text-gray-600 shadow-[0_14px_28px_-20px_rgba(30,41,59,0.7)] hover:border-gray-200/90 hover:from-white/50 hover:via-slate-200/55 hover:to-slate-400/45"
+														? "border-2 border-gold/85 bg-linear-to-br from-white/45 via-gold/25 to-navy/12 shadow-[0_12px_28px_-14px_rgba(12,22,40,0.75),0_0_28px_-8px_hsl(38_70%_48%/0.45)] ring-2 ring-gold/25"
+														: "border-2 border-gray-300/70 bg-linear-to-br from-white/42 via-slate-200/45 to-slate-400/35 text-gray-600 shadow-[0_11px_24px_-18px_rgba(30,41,59,0.68)] hover:border-gray-200/90 hover:from-white/50 hover:via-slate-200/55 hover:to-slate-400/45"
 												}`}
 											>
 												<ServiceIcon
 													aria-hidden="true"
-													className={`pointer-events-none absolute z-0 size-10 transition-colors duration-500 md:size-16 lg:size-18 ${
+													className={`pointer-events-none absolute z-0 size-10 transition-colors duration-500 md:size-14 lg:size-16 ${
 														isActive ? "text-gold/18" : "text-navy/12"
 													}`}
 													strokeWidth={1.5}
 												/>
 												{/* ガラス反射：上部ハイライト */}
-												<span className="pointer-events-none absolute inset-x-2 top-1 z-0 h-1/3 rounded-full bg-linear-to-b from-white/55 to-transparent blur-[1px]" />
+												<span className="pointer-events-none absolute inset-x-2 top-1 z-0 h-1/3 rounded-full bg-linear-to-b from-white/55 to-transparent blur-[1px] md:inset-x-1.5 md:top-0.5" />
 												{/* ガラス層の奥行き：斜めの薄い反射 */}
-												<span className="pointer-events-none absolute -right-1 top-2 z-0 h-1/2 w-1/2 rotate-12 rounded-full bg-white/20 blur-sm" />
+												<span className="pointer-events-none absolute -right-1 top-2 z-0 h-1/2 w-1/2 rotate-12 rounded-full bg-white/20 blur-sm md:-right-0.5 md:top-1.5" />
 												<span
-													className={`relative z-10 line-clamp-3 max-w-16 whitespace-pre-line text-center text-[10px] leading-snug font-semibold tracking-tight md:max-w-23 md:text-xs lg:max-w-27 lg:text-sm ${
+													className={`relative z-10 line-clamp-3 max-w-15 whitespace-pre-line text-center text-[10px] leading-snug font-semibold tracking-tight md:max-w-20 md:text-[11px] lg:max-w-23 lg:text-xs ${
 														isActive ? "font-bold text-gold" : "text-gray-600"
 													}`}
 												>
@@ -241,8 +244,11 @@ export default function SchemeSection() {
 						</div>
 					</div>
 
-					{/* 選択サービスの詳細（タイトル・説明・箇条書き）：activeIndex 変更で差し替え */}
-					<div className="min-w-0 flex-1 md:min-h-0">
+					{/* 選択サービスの詳細：md 以上は高さをリング（boxSize）に固定、溢れは列内スクロール */}
+					<div
+						className="min-w-0 flex-1 md:min-h-0 md:self-start xl:self-stretch"
+						style={isMobile ? undefined : { height: boxSize }}
+					>
 						<AnimatePresence mode="wait">
 							<motion.div
 								key={activeIndex}
@@ -250,26 +256,26 @@ export default function SchemeSection() {
 								animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
 								exit={{ opacity: 0, x: -16, filter: "blur(6px)" }}
 								transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-								className="h-full"
+								className="md:h-full"
 							>
-								<Card className="h-full overflow-hidden rounded-3xl border-white/15 bg-[#1c2e49] shadow-md shadow-navy/15 backdrop-blur-sm">
-									<CardContent className="bg-white p-0">
-										<div className="grid gap-0 md:grid-cols-[minmax(0,1fr)_minmax(0,1.42fr)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)]">
-											<CardHeader className="relative space-y-0 rounded-none border-b border-gray-200 bg-transparent p-0 shadow-none md:border-b-0">
+								<Card className="overflow-hidden rounded-2xl border-white/15 bg-[#1c2e49] shadow-md shadow-navy/15 backdrop-blur-sm md:flex md:h-full md:min-h-0 md:flex-col">
+									<CardContent className="bg-white p-0 md:flex md:h-full md:min-h-0 md:flex-1 md:flex-col md:overflow-hidden">
+										<div className="grid gap-0 md:grid-cols-[minmax(0,1fr)_minmax(0,1.42fr)] md:grid-rows-1 md:h-full md:min-h-0 md:flex-1 md:overflow-hidden lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)]">
+											<CardHeader className="relative space-y-0 rounded-none border-b border-gray-200 bg-transparent p-0 shadow-none md:h-full md:min-h-0 md:overflow-y-auto md:border-b-0">
 												{/* カラム境目：上下に隙間（フッター横罫と同じトーン） */}
 												<span
 													aria-hidden
-													className="pointer-events-none absolute top-10 right-0 bottom-10 hidden w-px bg-gray-200 md:block"
+													className="pointer-events-none absolute top-6 right-0 bottom-6 hidden w-px bg-gray-200 md:block"
 												/>
-												<div className="px-8 py-8 md:px-10 md:py-10 lg:px-12 lg:py-12 lg:pr-10">
+												<div className="px-6 py-6 md:px-8 md:py-7 lg:px-10 lg:py-8 lg:pr-8">
 													<motion.div
 														initial={{ opacity: 0, x: -20 }}
 														animate={{ opacity: 1, x: 0 }}
 														transition={{ delay: 0.2, duration: 0.5 }}
-														className="mb-6 flex items-center gap-3"
+														className="mb-4 flex items-center gap-2.5"
 													>
-														<div className="h-8 w-1 shrink-0 rounded-full bg-linear-to-b from-[#c5a55a] to-[rgba(197,165,90,0.16)]" />
-														<CardTitle className="whitespace-pre-line text-xl font-semibold text-navy lg:text-2xl">
+														<div className="h-6 w-1 shrink-0 rounded-full bg-linear-to-b from-[#c5a55a] to-[rgba(197,165,90,0.16)]" />
+														<CardTitle className="whitespace-pre-line text-lg font-semibold text-navy lg:text-xl">
 															{services[activeIndex].title}
 														</CardTitle>
 													</motion.div>
@@ -278,7 +284,7 @@ export default function SchemeSection() {
 														animate={{ opacity: 1 }}
 														transition={{ delay: 0.3, duration: 0.5 }}
 													>
-														<CardDescription className="mb-6 text-lg font-semibold tracking-wide text-gold/80">
+														<CardDescription className="mb-4 text-base font-semibold tracking-wide text-gold/80">
 															{services[activeIndex].subtitle}
 														</CardDescription>
 													</motion.div>
@@ -286,18 +292,18 @@ export default function SchemeSection() {
 														initial={{ opacity: 0 }}
 														animate={{ opacity: 1 }}
 														transition={{ delay: 0.4, duration: 0.5 }}
-														className="text-base leading-relaxed font-semibold text-gray-600"
+														className="text-sm leading-snug font-semibold text-gray-600"
 													>
 														{services[activeIndex].description}
 													</motion.p>
 												</div>
 											</CardHeader>
 
-											<div className="flex flex-col justify-center p-8 md:p-10 lg:p-12">
-												<p className="mb-8 text-base font-semibold tracking-[0.3em] text-gold/60 uppercase">
+											<div className="flex flex-col justify-start p-6 md:h-full md:min-h-0 md:overflow-y-auto md:p-8 lg:p-9">
+												<p className="mb-5 text-sm font-semibold tracking-[0.28em] text-gold/60 uppercase">
 													Points
 												</p>
-												<div className="space-y-5">
+												<div className="space-y-3">
 													{services[activeIndex].details.map((detail, i) => (
 														<motion.div
 															key={detail}
@@ -308,12 +314,12 @@ export default function SchemeSection() {
 																duration: 0.5,
 																ease: [0.22, 1, 0.36, 1],
 															}}
-															className="group flex items-start gap-4"
+															className="group flex items-start gap-3"
 														>
-															<span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full border border-[rgba(197,165,90,0.16)] bg-[rgba(197,165,90,0.16)] text-[11px] font-bold text-[#c5a55a]">
+															<span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border border-[rgba(197,165,90,0.16)] bg-[rgba(197,165,90,0.16)] text-[10px] font-bold text-[#c5a55a]">
 																{i + 1}
 															</span>
-															<p className="pt-1 text-sm leading-relaxed font-semibold text-gray-800 transition-colors duration-300 group-hover:text-navy">
+															<p className="pt-0.5 text-sm leading-snug font-semibold text-gray-800 transition-colors duration-300 group-hover:text-navy">
 																{detail}
 															</p>
 														</motion.div>
@@ -324,15 +330,15 @@ export default function SchemeSection() {
 													initial={{ opacity: 0 }}
 													animate={{ opacity: 1 }}
 													transition={{ delay: 0.6, duration: 0.5 }}
-													className="mt-10 border-t border-gray-200 pt-8"
+													className="mt-6 border-t border-gray-200 pt-5"
 												>
 													<Link
 														href={services[activeIndex].href}
-														className="group inline-flex cursor-pointer items-center gap-3 text-base tracking-[0.2em] text-[#c5a55a] uppercase transition-colors duration-300 hover:text-[#e0c27a]"
+														className="group inline-flex cursor-pointer items-center gap-2.5 text-sm tracking-[0.18em] text-[#c5a55a] uppercase transition-colors duration-300 hover:text-[#e0c27a]"
 													>
 														詳しく見る
 														<motion.span
-															className="inline-block h-px w-8 origin-left bg-[rgba(197,165,90,0.16)] transition-colors duration-300 group-hover:bg-[#c5a55a]"
+															className="inline-block h-px w-7 origin-left bg-[rgba(197,165,90,0.16)] transition-colors duration-300 group-hover:bg-[#c5a55a]"
 															whileHover={{ scaleX: 1.5 }}
 														/>
 													</Link>
