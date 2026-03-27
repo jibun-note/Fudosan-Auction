@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaHandshake } from "react-icons/fa6";
 import {
 	HiOutlineChatBubbleBottomCenterText,
@@ -59,6 +59,57 @@ const steps = [
 		description: "売却後の税務申告まで、必要に応じてサポートいたします。",
 	},
 ] as const;
+
+/** 接続線の進捗は rAF で DOM を直接更新（大画面・一部環境で CSS キーフレーム / clip-path アニメが効かない事例への対策） */
+function ConnectorProgressFill({
+	durationMs,
+	backgroundColor,
+}: {
+	durationMs: number;
+	backgroundColor: string;
+}) {
+	const ref = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const el = ref.current;
+		if (!el) return;
+
+		const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		if (reduceMotion) {
+			el.style.clipPath = "inset(0 0 0 0)";
+			return;
+		}
+
+		let cancelled = false;
+		let rafId = 0;
+		el.style.clipPath = "inset(0 100% 0 0)";
+		const start = performance.now();
+		const tick = (now: number) => {
+			if (cancelled) return;
+			const p = Math.min(1, (now - start) / durationMs);
+			const rightInset = Math.max(0, (1 - p) * 100);
+			el.style.clipPath = `inset(0 ${rightInset}% 0 0)`;
+			if (p < 1) rafId = requestAnimationFrame(tick);
+		};
+		rafId = requestAnimationFrame(tick);
+		return () => {
+			cancelled = true;
+			cancelAnimationFrame(rafId);
+		};
+	}, [durationMs]);
+
+	return (
+		<div
+			ref={ref}
+			className="pointer-events-none absolute inset-y-0 left-0 w-full rounded-full"
+			style={{
+				backgroundColor,
+				clipPath: "inset(0 100% 0 0)",
+			}}
+			aria-hidden
+		/>
+	);
+}
 
 export default function FlowSection() {
 	const [active, setActive] = useState(0);
@@ -154,15 +205,10 @@ export default function FlowSection() {
 													/>
 												)}
 												{i === active && (
-													<div
-														key={`flow-seg-${active}`}
-														className="flow-connector-anim pointer-events-none absolute inset-y-0 left-0 w-full rounded-full"
-														style={
-															{
-																backgroundColor: FLOW_GOLD,
-																["--flow-connector-ms" as string]: `${AUTO_SLIDE_MS}ms`,
-															} as React.CSSProperties
-														}
+													<ConnectorProgressFill
+														key={`flow-connector-${active}`}
+														durationMs={AUTO_SLIDE_MS}
+														backgroundColor={FLOW_GOLD}
 													/>
 												)}
 											</div>
