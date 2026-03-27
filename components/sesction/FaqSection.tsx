@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { HiOutlineChevronDown } from "react-icons/hi2";
 
+/** アコーディオン表示用のFAQ項目（質問・回答のペア） */
 const items = [
 	{
 		question: "一般仲介との一番の違いは何ですか？",
@@ -22,16 +23,20 @@ const items = [
 	},
 ];
 
+/** アンカー `#faq` — よくある質問のアコーディオン一覧 */
 export default function FaqSection() {
+	// 同時に1件のみ開く（-1 はすべて閉じた状態）
 	const [openIndex, setOpenIndex] = useState(0);
 
 	return (
 		<section id="faq" className="bg-white px-4 py-12 md:px-6 md:py-20">
 			<div className="mx-auto max-w-6xl">
+				{/* セクション見出し */}
 				<div>
 					<h2 className="text-lg font-bold text-navy md:text-3xl">よくあるご質問</h2>
 					<div className="mt-2 h-1 w-16 bg-gold" />
 				</div>
+				{/* 質問クリックで回答を開閉 */}
 				<div className="mx-auto mt-12 max-w-3xl space-y-3">
 					{items.map((item, i) => (
 						<div

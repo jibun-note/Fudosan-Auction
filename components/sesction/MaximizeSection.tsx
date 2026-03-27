@@ -1,6 +1,7 @@
 import { HiOutlineBanknotes, HiOutlineCalculator, HiOutlineEye } from "react-icons/hi2";
 import Image from "next/image";
 
+/** オークションによる顧問先利益最大化の訴求（アイコン付き3ポイント） */
 const benefits = [
 	{
 		icon: HiOutlineBanknotes,
@@ -22,15 +23,18 @@ const benefits = [
 	},
 ];
 
+/** ビジュアル（物件イメージ）とベネフィット一覧の2カラムセクション */
 export default function MaximizeSection() {
 	return (
 		<section className="bg-white px-4 py-12 md:px-6 md:py-20">
 			<div className="mx-auto max-w-6xl">
+				{/* 見出し・ゴールド下線（他セクションと統一） */}
 				<h2 className="text-lg font-bold text-navy md:text-3xl">
 					オークションが&quot;顧問先の利益&quot;を最大化
 				</h2>
 				<div className="mt-2 h-1 w-16 bg-gold" />
 				<div className="mt-8 grid gap-8 md:mt-12 md:gap-12 lg:grid-cols-2 lg:items-center">
+					{/* 左：メインビジュアル */}
 					<div className="relative aspect-video overflow-hidden rounded-lg">
 						<Image
 							src="/images/AdobeStock_712266529_Preview.jpeg"
@@ -40,6 +44,7 @@ export default function MaximizeSection() {
 							sizes="(max-width: 1024px) 100vw, 50vw"
 						/>
 					</div>
+					{/* 右：番号付きベネフィットリスト */}
 					<div className="space-y-6 md:space-y-8">
 						{benefits.map(({ icon: Icon, title, description }, i) => (
 							<div key={title} className="flex gap-3 md:gap-4">
