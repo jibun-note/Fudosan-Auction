@@ -14,7 +14,7 @@ const services = [
 		id: "reborn",
 		name: "b'CASA re-born\n不動産",
 		label: "「法人税対策」が高いと言われた！",
-		title: "b'CASA re-born不動産",
+		title: "b'CASA re-born\n不動産",
 		subtitle: "b'CASA re-born不動産により節税と資産形成を実現！",
 		description: "「法人税が高い！」と言われた企業オーナー様必見",
 		details: [
@@ -32,7 +32,7 @@ const services = [
 		id: "sales-plan",
 		name: "不動産\n売却計画書",
 		label: "安く売らないために！",
-		title: "不動産売却計画書",
+		title: "不動産\n売却計画書",
 		subtitle: "あなたの不動産価値の最大化が目的です",
 		description:
 			"土地の価値（価格）はその利用方法で決まります。私たちは、分譲住宅、投資用アパートマンション、医療テナントなど様々な利用方法を専門スタッフが検証の上、ご提案。その土地の価値を引き出し、最大化いたします。",
@@ -48,7 +48,7 @@ const services = [
 		id: "auction",
 		name: "不動産の\nジャパン\nオークション",
 		label: "高く売るために！",
-		title: "不動産のジャパンオークション",
+		title: "不動産の\nジャパン\nオークション",
 		subtitle: "なぜ、不動産のジャパンオークションは高く売れるのか?",
 		description:
 			"その土地に何が建てられるか、どんな活用法があるのかあなたはご存知ですか？各専門分野のプロである私たちにお任せください。あなたの不動産の本当の価値を見極めます！",
@@ -62,12 +62,21 @@ const services = [
 	},
 ];
 
-/** 正三角形配置：単位ベクトル（半径1）→ radius 掛け算でノード座標に変換 */
+/** 正三角形配置：単位ベクトル（半径1）→ サイズ掛け算でノード座標に変換 */
 const circlePositions = [
 	{ x: 0, y: -1 },
 	{ x: 0.866, y: 0.5 },
 	{ x: -0.866, y: 0.5 },
 ];
+
+/**
+ * servicering.svg（viewBox 0 0 2720 2720）の二重円2パスをルート座標まで変換し、
+ * 中心線半径と平均中心を分数で保持（object-contain で boxSize に線形スケール）
+ */
+const SERVICERING_VIEWBOX = 2720;
+const SERVICERING_RING_CX_FRAC = 1358.999214778618 / SERVICERING_VIEWBOX;
+const SERVICERING_RING_CY_FRAC = 1361.6112931426508 / SERVICERING_VIEWBOX;
+const SERVICERING_RING_R_FRAC = 1186.0008193851131 / SERVICERING_VIEWBOX;
 
 export default function SchemeSection() {
 	const [activeIndex, setActiveIndex] = useState(0);
@@ -83,8 +92,9 @@ export default function SchemeSection() {
 	const radius = isMobile ? 130 : 205;
 	const ringPadding = isMobile ? 48 : 78;
 	const boxSize = radius * 2 + ringPadding * 2;
-	const cx = boxSize / 2;
-	const cy = boxSize / 2;
+	const ringCx = boxSize * SERVICERING_RING_CX_FRAC;
+	const ringCy = boxSize * SERVICERING_RING_CY_FRAC;
+	const ringR = boxSize * SERVICERING_RING_R_FRAC;
 
 	return (
 		<section
@@ -113,7 +123,7 @@ export default function SchemeSection() {
 				}}
 			/>
 
-			<div className="relative z-10 mx-auto max-w-6xl">
+			<div className="relative z-10 mx-auto max-w-7xl xl:max-w-360">
 				{/* セクション見出し */}
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
@@ -130,209 +140,211 @@ export default function SchemeSection() {
 					</p>
 				</motion.div>
 
-				{/* 三角リング UI：同心円デコ＋中央ラベル＋SVG 接続線＋周辺サービスボタン */}
-				<div className="mb-12 flex w-full justify-center md:mb-16">
-					<div
-						className="relative mx-auto w-full max-w-[min(100%,34rem)] shrink-0"
-						style={{ width: boxSize, height: boxSize }}
-					>
-						{/* 外枠リング（静的ボーダー） */}
-						<div className="absolute inset-0 rounded-full border border-gold/10" />
-						{/* 破線リングの代替：藤和ロゴ */}
-						<div className="pointer-events-none absolute" style={{ inset: isMobile ? 14 : 18 }}>
-							<Image
-								src="/images/藤和ロゴ.svg"
-								alt=""
-								aria-hidden="true"
-								fill
-								sizes="(max-width: 768px) 80vw, 420px"
-								className="object-contain opacity-25"
-							/>
-						</div>
-						{/* ロゴの内側に収める円形ボーダー */}
+				{/* デスクトップ：リングと詳細カードを横並び（スクロールなしで説明が見える）／モバイル：縦積み */}
+				<div className="flex w-full flex-col items-stretch gap-10 md:flex-row md:items-center md:gap-8 lg:gap-12">
+					{/* 三角リング UI：同心円デコ＋中央ラベル＋周辺サービスボタン */}
+					<div className="mx-auto flex shrink-0 justify-center md:mx-0 md:justify-start">
 						<div
-							className="pointer-events-none absolute rounded-full border border-gold/10"
-							style={{ inset: isMobile ? 44 : 62 }}
-						/>
+							className="relative w-full max-w-[min(100%,34rem)] shrink-0"
+							style={{ width: boxSize, height: boxSize }}
+						>
+							{/* サービスリング装飾（外周・内周・ロゴを含む単一 SVG） */}
+							<div className="pointer-events-none absolute inset-0">
+								<Image
+									src="/images/servicering.svg"
+									alt=""
+									aria-hidden="true"
+									fill
+									sizes="(max-width: 768px) 80vw, 520px"
+									className="object-contain opacity-25"
+								/>
+							</div>
 
-						{/* 選択中サービスに対応するキャッチコピー（label） */}
-						<div className="absolute inset-0 flex items-center justify-center">
-							<AnimatePresence mode="wait">
-								<motion.div
-									key={activeIndex}
-									initial={{ opacity: 0, scale: 0.8 }}
-									animate={{ opacity: 1, scale: 1 }}
-									exit={{ opacity: 0, scale: 0.8 }}
-									transition={{ duration: 0.4 }}
-									className="-translate-y-2 max-w-[min(100%,18rem)] px-2 text-center md:-translate-y-3 md:max-w-md md:px-4"
-								>
-									<p className="text-lg leading-snug font-semibold text-navy md:text-2xl lg:text-3xl">
-										{services[activeIndex].label}
-									</p>
-								</motion.div>
-							</AnimatePresence>
-						</div>
-
-						{/* 中心 ↔ 各ノード：選択はゴールド実線、非選択はグレー破線（色・太さは意図的に控えめ） */}
-
-						{/* 周辺のサービス名ボタン：activeIndex と同期し、詳細カードと連動 */}
-						{services.map((service, index) => {
-							const isActive = activeIndex === index;
-							const ServiceIcon = service.icon;
-							const pos = circlePositions[index];
-							const nodeX = cx + pos.x * radius;
-							const nodeY = cy + pos.y * radius;
-
-							return (
-								<div
-									key={service.id}
-									className="absolute"
-									style={{
-										left: nodeX,
-										top: nodeY,
-										transform: "translate(-50%, -50%)",
-									}}
-								>
-									<button
-										type="button"
-										onClick={() => setActiveIndex(index)}
-										className="relative cursor-pointer transition-transform duration-200 ease-out will-change-transform hover:scale-105"
+							{/* 選択中サービスに対応するキャッチコピー（label） */}
+							<div className="absolute inset-0 flex items-center justify-center">
+								<AnimatePresence mode="wait">
+									<motion.div
+										key={activeIndex}
+										initial={{ opacity: 0, scale: 0.8 }}
+										animate={{ opacity: 1, scale: 1 }}
+										exit={{ opacity: 0, scale: 0.8 }}
+										transition={{ duration: 0.4 }}
+										className="-translate-y-2 max-w-[min(100%,18rem)] px-2 text-center md:-translate-y-3 md:max-w-md md:px-4"
 									>
-										{/* 選択中ノード：拡大せず、色だけで状態を示すリング */}
-										{isActive && (
-											<div className="absolute -inset-2 rounded-full border border-gold/30 opacity-80" />
-										)}
+										<p className="text-lg leading-snug font-semibold text-navy md:text-2xl lg:text-3xl">
+											{services[activeIndex].label}
+										</p>
+									</motion.div>
+								</AnimatePresence>
+							</div>
 
-										<div
-											className={`relative isolate flex size-18 items-center justify-center overflow-hidden rounded-full backdrop-blur-sm transition-all duration-500 md:size-28 lg:size-31 ${
-												isActive
-													? "border-2 border-gold/85 bg-linear-to-br from-white/45 via-gold/25 to-navy/12 shadow-[0_16px_36px_-18px_rgba(12,22,40,0.75),0_0_36px_-8px_hsl(38_70%_48%/0.45)] ring-2 ring-gold/25"
-													: "border-2 border-gray-300/70 bg-linear-to-br from-white/42 via-slate-200/45 to-slate-400/35 text-gray-600 shadow-[0_14px_28px_-20px_rgba(30,41,59,0.7)] hover:border-gray-200/90 hover:from-white/50 hover:via-slate-200/55 hover:to-slate-400/45"
-											}`}
+							{/* 中心 ↔ 各ノード：選択はゴールド実線、非選択はグレー破線（色・太さは意図的に控えめ） */}
+
+							{/* 周辺のサービス名ボタン：activeIndex と同期し、詳細カードと連動 */}
+							{services.map((service, index) => {
+								const isActive = activeIndex === index;
+								const ServiceIcon = service.icon;
+								const pos = circlePositions[index];
+								const nodeX = ringCx + pos.x * ringR;
+								const nodeY = ringCy + pos.y * ringR;
+
+								return (
+									<div
+										key={service.id}
+										className="absolute"
+										style={{
+											left: nodeX,
+											top: nodeY,
+											transform: "translate(-50%, -50%)",
+										}}
+									>
+										<button
+											type="button"
+											onClick={() => setActiveIndex(index)}
+											className="relative cursor-pointer transition-transform duration-200 ease-out will-change-transform hover:scale-105"
 										>
-											<ServiceIcon
-												aria-hidden="true"
-												className={`pointer-events-none absolute z-0 size-10 transition-colors duration-500 md:size-16 lg:size-18 ${
-													isActive ? "text-gold/18" : "text-navy/12"
-												}`}
-												strokeWidth={1.5}
-											/>
-											{/* ガラス反射：上部ハイライト */}
-											<span className="pointer-events-none absolute inset-x-2 top-1 z-0 h-1/3 rounded-full bg-linear-to-b from-white/55 to-transparent blur-[1px]" />
-											{/* ガラス層の奥行き：斜めの薄い反射 */}
-											<span className="pointer-events-none absolute -right-1 top-2 z-0 h-1/2 w-1/2 rotate-12 rounded-full bg-white/20 blur-sm" />
-											<span
-												className={`relative z-10 line-clamp-3 max-w-16 whitespace-pre-line text-center text-[10px] leading-snug font-semibold tracking-tight md:max-w-23 md:text-xs lg:max-w-27 lg:text-sm ${
-													isActive ? "font-bold text-gold" : "text-gray-600"
+											{/* 選択中ノード：拡大せず、色だけで状態を示すリング */}
+											{isActive && (
+												<div className="absolute -inset-2 rounded-full border border-gold/30 opacity-80" />
+											)}
+
+											<div
+												className={`relative isolate flex size-18 items-center justify-center overflow-hidden rounded-full backdrop-blur-sm transition-all duration-500 md:size-28 lg:size-31 ${
+													isActive
+														? "border-2 border-gold/85 bg-linear-to-br from-white/45 via-gold/25 to-navy/12 shadow-[0_16px_36px_-18px_rgba(12,22,40,0.75),0_0_36px_-8px_hsl(38_70%_48%/0.45)] ring-2 ring-gold/25"
+														: "border-2 border-gray-300/70 bg-linear-to-br from-white/42 via-slate-200/45 to-slate-400/35 text-gray-600 shadow-[0_14px_28px_-20px_rgba(30,41,59,0.7)] hover:border-gray-200/90 hover:from-white/50 hover:via-slate-200/55 hover:to-slate-400/45"
 												}`}
 											>
-												{service.name}
-											</span>
-										</div>
-									</button>
-								</div>
-							);
-						})}
+												<ServiceIcon
+													aria-hidden="true"
+													className={`pointer-events-none absolute z-0 size-10 transition-colors duration-500 md:size-16 lg:size-18 ${
+														isActive ? "text-gold/18" : "text-navy/12"
+													}`}
+													strokeWidth={1.5}
+												/>
+												{/* ガラス反射：上部ハイライト */}
+												<span className="pointer-events-none absolute inset-x-2 top-1 z-0 h-1/3 rounded-full bg-linear-to-b from-white/55 to-transparent blur-[1px]" />
+												{/* ガラス層の奥行き：斜めの薄い反射 */}
+												<span className="pointer-events-none absolute -right-1 top-2 z-0 h-1/2 w-1/2 rotate-12 rounded-full bg-white/20 blur-sm" />
+												<span
+													className={`relative z-10 line-clamp-3 max-w-16 whitespace-pre-line text-center text-[10px] leading-snug font-semibold tracking-tight md:max-w-23 md:text-xs lg:max-w-27 lg:text-sm ${
+														isActive ? "font-bold text-gold" : "text-gray-600"
+													}`}
+												>
+													{service.name}
+												</span>
+											</div>
+										</button>
+									</div>
+								);
+							})}
+						</div>
 					</div>
-				</div>
 
-				{/* 選択サービスの詳細（タイトル・説明・箇条書き）：activeIndex 変更で差し替え */}
-				<AnimatePresence mode="wait">
-					<motion.div
-						key={activeIndex}
-						initial={{ opacity: 0, y: 40, filter: "blur(8px)" }}
-						animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-						exit={{ opacity: 0, y: -30, filter: "blur(6px)" }}
-						transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-					>
-						<Card className="overflow-hidden rounded-3xl border-white/15 bg-[#1c2e49] shadow-md shadow-navy/15 backdrop-blur-sm">
-							<CardContent className="bg-white p-0">
-								<div className="grid gap-0 lg:grid-cols-[1fr,1.2fr]">
-									<CardHeader className="space-y-0 rounded-none border-0 bg-transparent p-0 shadow-none">
-										<div className="px-8 pt-8 lg:px-12 lg:pt-12">
-											<div className="border-b border-gray-200 pb-8">
-												<motion.div
-													initial={{ opacity: 0, x: -20 }}
-													animate={{ opacity: 1, x: 0 }}
-													transition={{ delay: 0.2, duration: 0.5 }}
-													className="mb-6 flex items-center gap-3"
-												>
-													<div className="h-8 w-1 shrink-0 rounded-full bg-linear-to-b from-[#c5a55a] to-[rgba(197,165,90,0.16)]" />
-													<CardTitle className="text-2xl font-semibold text-navy lg:text-3xl">
-														{services[activeIndex].title}
-													</CardTitle>
-												</motion.div>
+					{/* 選択サービスの詳細（タイトル・説明・箇条書き）：activeIndex 変更で差し替え */}
+					<div className="min-w-0 flex-1 md:min-h-0">
+						<AnimatePresence mode="wait">
+							<motion.div
+								key={activeIndex}
+								initial={{ opacity: 0, x: 24, filter: "blur(8px)" }}
+								animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+								exit={{ opacity: 0, x: -16, filter: "blur(6px)" }}
+								transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+								className="h-full"
+							>
+								<Card className="h-full overflow-hidden rounded-3xl border-white/15 bg-[#1c2e49] shadow-md shadow-navy/15 backdrop-blur-sm">
+									<CardContent className="bg-white p-0">
+										<div className="grid gap-0 md:grid-cols-[minmax(0,1fr)_minmax(0,1.42fr)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)]">
+											<CardHeader className="relative space-y-0 rounded-none border-b border-gray-200 bg-transparent p-0 shadow-none md:border-b-0">
+												{/* カラム境目：上下に隙間（フッター横罫と同じトーン） */}
+												<span
+													aria-hidden
+													className="pointer-events-none absolute top-10 right-0 bottom-10 hidden w-px bg-gray-200 md:block"
+												/>
+												<div className="px-8 py-8 md:px-10 md:py-10 lg:px-12 lg:py-12 lg:pr-10">
+													<motion.div
+														initial={{ opacity: 0, x: -20 }}
+														animate={{ opacity: 1, x: 0 }}
+														transition={{ delay: 0.2, duration: 0.5 }}
+														className="mb-6 flex items-center gap-3"
+													>
+														<div className="h-8 w-1 shrink-0 rounded-full bg-linear-to-b from-[#c5a55a] to-[rgba(197,165,90,0.16)]" />
+														<CardTitle className="whitespace-pre-line text-xl font-semibold text-navy lg:text-2xl">
+															{services[activeIndex].title}
+														</CardTitle>
+													</motion.div>
+													<motion.div
+														initial={{ opacity: 0 }}
+														animate={{ opacity: 1 }}
+														transition={{ delay: 0.3, duration: 0.5 }}
+													>
+														<CardDescription className="mb-6 text-lg font-semibold tracking-wide text-gold/80">
+															{services[activeIndex].subtitle}
+														</CardDescription>
+													</motion.div>
+													<motion.p
+														initial={{ opacity: 0 }}
+														animate={{ opacity: 1 }}
+														transition={{ delay: 0.4, duration: 0.5 }}
+														className="text-base leading-relaxed font-semibold text-gray-600"
+													>
+														{services[activeIndex].description}
+													</motion.p>
+												</div>
+											</CardHeader>
+
+											<div className="flex flex-col justify-center p-8 md:p-10 lg:p-12">
+												<p className="mb-8 text-base font-semibold tracking-[0.3em] text-gold/60 uppercase">
+													Points
+												</p>
+												<div className="space-y-5">
+													{services[activeIndex].details.map((detail, i) => (
+														<motion.div
+															key={detail}
+															initial={{ opacity: 0, x: 30 }}
+															animate={{ opacity: 1, x: 0 }}
+															transition={{
+																delay: 0.2 + i * 0.12,
+																duration: 0.5,
+																ease: [0.22, 1, 0.36, 1],
+															}}
+															className="group flex items-start gap-4"
+														>
+															<span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full border border-[rgba(197,165,90,0.16)] bg-[rgba(197,165,90,0.16)] text-[11px] font-bold text-[#c5a55a]">
+																{i + 1}
+															</span>
+															<p className="pt-1 text-sm leading-relaxed font-semibold text-gray-800 transition-colors duration-300 group-hover:text-navy">
+																{detail}
+															</p>
+														</motion.div>
+													))}
+												</div>
+
 												<motion.div
 													initial={{ opacity: 0 }}
 													animate={{ opacity: 1 }}
-													transition={{ delay: 0.3, duration: 0.5 }}
+													transition={{ delay: 0.6, duration: 0.5 }}
+													className="mt-10 border-t border-gray-200 pt-8"
 												>
-													<CardDescription className="mb-6 text-lg font-semibold tracking-wide text-gold/80">
-														{services[activeIndex].subtitle}
-													</CardDescription>
+													<Link
+														href={services[activeIndex].href}
+														className="group inline-flex cursor-pointer items-center gap-3 text-base tracking-[0.2em] text-[#c5a55a] uppercase transition-colors duration-300 hover:text-[#e0c27a]"
+													>
+														詳しく見る
+														<motion.span
+															className="inline-block h-px w-8 origin-left bg-[rgba(197,165,90,0.16)] transition-colors duration-300 group-hover:bg-[#c5a55a]"
+															whileHover={{ scaleX: 1.5 }}
+														/>
+													</Link>
 												</motion.div>
-												<motion.p
-													initial={{ opacity: 0 }}
-													animate={{ opacity: 1 }}
-													transition={{ delay: 0.4, duration: 0.5 }}
-													className="text-base leading-relaxed font-semibold text-gray-600"
-												>
-													{services[activeIndex].description}
-												</motion.p>
 											</div>
 										</div>
-									</CardHeader>
-
-									<div className="flex flex-col justify-center p-8 lg:p-12">
-										<p className="mb-8 text-base font-semibold tracking-[0.3em] text-gold/60 uppercase">
-											Points
-										</p>
-										<div className="space-y-5">
-											{services[activeIndex].details.map((detail, i) => (
-												<motion.div
-													key={detail}
-													initial={{ opacity: 0, x: 30 }}
-													animate={{ opacity: 1, x: 0 }}
-													transition={{
-														delay: 0.2 + i * 0.12,
-														duration: 0.5,
-														ease: [0.22, 1, 0.36, 1],
-													}}
-													className="group flex items-start gap-4"
-												>
-													<span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full border border-[rgba(197,165,90,0.16)] bg-[rgba(197,165,90,0.16)] text-[11px] font-bold text-[#c5a55a]">
-														{i + 1}
-													</span>
-													<p className="pt-1 text-sm leading-relaxed font-semibold text-gray-800 transition-colors duration-300 group-hover:text-navy">
-														{detail}
-													</p>
-												</motion.div>
-											))}
-										</div>
-
-										<motion.div
-											initial={{ opacity: 0 }}
-											animate={{ opacity: 1 }}
-											transition={{ delay: 0.6, duration: 0.5 }}
-											className="mt-10 border-t border-gray-200 pt-8"
-										>
-											<Link
-												href={services[activeIndex].href}
-												className="group inline-flex cursor-pointer items-center gap-3 text-base tracking-[0.2em] text-[#c5a55a] uppercase transition-colors duration-300 hover:text-[#e0c27a]"
-											>
-												詳しく見る
-												<motion.span
-													className="inline-block h-px w-8 origin-left bg-[rgba(197,165,90,0.16)] transition-colors duration-300 group-hover:bg-[#c5a55a]"
-													whileHover={{ scaleX: 1.5 }}
-												/>
-											</Link>
-										</motion.div>
-									</div>
-								</div>
-							</CardContent>
-						</Card>
-					</motion.div>
-				</AnimatePresence>
+									</CardContent>
+								</Card>
+							</motion.div>
+						</AnimatePresence>
+					</div>
+				</div>
 			</div>
 		</section>
 	);
