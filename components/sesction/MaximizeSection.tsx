@@ -34,7 +34,7 @@ export default function MaximizeSection() {
 					<div className="relative aspect-video overflow-hidden rounded-lg">
 						<Image
 							src="/images/AdobeStock_712266529_Preview.jpeg"
-							alt="オープンプランのモダンなリビング、キッチン、屋外パティオガーデン"
+							alt="オープンプランのモダンなリビング"
 							fill
 							className="object-cover"
 							sizes="(max-width: 1024px) 100vw, 50vw"
