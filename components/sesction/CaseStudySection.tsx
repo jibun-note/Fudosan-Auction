@@ -1,6 +1,8 @@
 import Link from "next/link";
 
+/** LP「実例」ブロック：仲介査定とオークション落札の比較・税務の補足・CTA */
 export default function CaseStudySection() {
+	// 一般仲介の査定額（万円）／オークション落札額（万円）。バー比較は落札を100%基準に正規化
 	const appraisal = 6800;
 	const winning = 7320;
 	const diff = winning - appraisal;
@@ -9,10 +11,12 @@ export default function CaseStudySection() {
 	return (
 		<section id="case-study" className="bg-gray-50 px-4 py-12 md:px-6 md:py-20">
 			<div className="mx-auto max-w-6xl">
+				{/* 見出し・ゴールドアクセントライン */}
 				<h2 className="text-lg font-bold text-navy md:text-3xl">
 					実例でわかる&quot;差額&quot;と&quot;税務効果&quot;
 				</h2>
 				<div className="mt-2 h-1 w-16 bg-gold" />
+				{/* メインカード：匿名事例の数値比較と棒グラフ風ビジュアル */}
 				<div className="mt-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:mt-12 md:p-8">
 					<p className="text-base font-semibold text-navy md:text-xl">
 						【匿名事例】築20年区分マンション(都心)
@@ -20,6 +24,7 @@ export default function CaseStudySection() {
 					<p className="mt-2 text-sm leading-relaxed text-gray-600 md:text-base">
 						同条件でも&quot;売り方&quot;でこれだけの差が生まれます。
 					</p>
+					{/* 左：査定／落札の金額ブロック　右：幅で比較する簡易バー */}
 					<div className="mt-6 grid gap-6 md:mt-8 md:grid-cols-2 md:items-center md:gap-8">
 						<div className="space-y-3 md:space-y-4">
 							<div className="rounded border border-gray-200 bg-gray-50 p-3 md:p-4">
@@ -61,6 +66,7 @@ export default function CaseStudySection() {
 							</div>
 						</div>
 					</div>
+					{/* 税務：シミュレーション案内と譲渡所得の式（注釈付き） */}
 					<div className="mt-6 rounded-lg bg-accent-blue p-4 md:mt-8 md:p-6">
 						<p className="text-sm leading-relaxed text-gray-700 md:text-base">
 							譲渡価額の上昇に伴う税額変動も事前にシミュレーション。手取り額の最大化を目指します。（※長期譲渡所得・控除適用前で計算）
@@ -72,6 +78,7 @@ export default function CaseStudySection() {
 							※別控除や特例適用の分岐についても資料で詳しく解説します。
 						</p>
 					</div>
+					{/* 事例集・税務相談への導線（href は決まり次第差し替え） */}
 					<div className="mt-6 text-center md:mt-8">
 						<Link
 							href="#"
