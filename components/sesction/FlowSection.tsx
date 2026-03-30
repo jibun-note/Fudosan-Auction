@@ -148,7 +148,7 @@ export default function FlowSection() {
 										<button
 											type="button"
 											onClick={() => setActive(i)}
-											className={`flex flex-col items-center rounded-full ${FOCUS_OUTLINE_GOLD}`}
+											className={`flex flex-col items-center rounded-full cursor-pointer ${FOCUS_OUTLINE_GOLD}`}
 											aria-current={isOn ? "step" : undefined}
 											aria-label={`ステップ${i + 1}: ${step.title}`}
 										>
@@ -225,7 +225,10 @@ export default function FlowSection() {
 						const start = touchStartRef.current;
 						touchStartRef.current = null;
 						if (!start || e.changedTouches.length !== 1) return;
-						if (typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches) {
+						if (
+							typeof window !== "undefined" &&
+							window.matchMedia("(min-width: 768px)").matches
+						) {
 							return;
 						}
 						const t = e.changedTouches[0];
