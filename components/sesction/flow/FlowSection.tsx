@@ -37,10 +37,10 @@ export default function FlowSection() {
 	const { Icon, title, description } = steps[active]!;
 
 	return (
-		<section id="flow" className="px-4 py-12 md:px-6 md:py-20" style={{ backgroundColor: FLOW_CREAM }}>
+		<section id="flow" className="bg-[#f8f9fa] px-4 py-12 md:px-6 md:py-20">
 			<div className="mx-auto max-w-6xl">
 				<div>
-					<h2 className="text-lg font-bold text-navy md:text-3xl">ご利用の流れ</h2>
+					<h2 className="text-lg font-bold text-navy md:text-3xl">オークションご利用の流れ</h2>
 					<div className="mt-2 h-1 w-16 bg-gold" />
 				</div>
 
@@ -54,9 +54,7 @@ export default function FlowSection() {
 					title={title}
 					description={description}
 					Icon={Icon}
-					onRequestPrev={() =>
-						setActive((i) => (i - 1 + steps.length) % steps.length)
-					}
+					onRequestPrev={() => setActive((i) => (i - 1 + steps.length) % steps.length)}
 					onRequestNext={() => setActive((i) => (i + 1) % steps.length)}
 				/>
 

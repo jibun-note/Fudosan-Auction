@@ -43,10 +43,7 @@ export default function FlowMainCard({
 				const start = touchStartRef.current;
 				touchStartRef.current = null;
 				if (!start || e.changedTouches.length !== 1) return;
-				if (
-					typeof window !== "undefined" &&
-					window.matchMedia("(min-width: 768px)").matches
-				) {
+				if (typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches) {
 					return;
 				}
 				const t = e.changedTouches[0];
@@ -62,10 +59,7 @@ export default function FlowMainCard({
 		>
 			<div className="flex min-w-0 flex-1 flex-col gap-8 px-5 py-8 md:flex-row md:items-center md:gap-10 md:px-10 md:py-10 lg:gap-14 lg:px-12">
 				<div className="flex shrink-0 flex-col items-center md:items-start">
-					<div
-						key={active}
-						className="flow-card-text-enter flex w-full flex-col items-center"
-					>
+					<div key={active} className="flow-card-text-enter flex w-full flex-col items-center">
 						<div className="relative">
 							<span
 								className="block text-center text-[4.5rem] leading-none font-extralight md:text-[7rem]"
@@ -87,7 +81,7 @@ export default function FlowMainCard({
 							className="mt-3 flex size-16 items-center justify-center rounded-full border md:mt-5 md:size-24"
 							style={{
 								color: FLOW_GOLD,
-								backgroundImage: "url('/images/藤和ロゴ.svg')",
+								// backgroundImage: "url('/images/藤和ロゴ.svg')",
 								backgroundSize: "contain",
 								backgroundPosition: "center",
 								backgroundRepeat: "no-repeat",
