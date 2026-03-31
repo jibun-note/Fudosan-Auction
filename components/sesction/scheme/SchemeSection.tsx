@@ -1,9 +1,18 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
 
 import type { SchemeService } from "@/lib/data/scheme-services";
+import { cn } from "@/lib/utils";
+import {
+	type CarouselApi,
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/components/ui/carousel";
 
 import SchemeServiceDetailCard from "./SchemeServiceDetailCard";
 import SchemeServiceRing from "./SchemeServiceRing";
@@ -24,6 +33,7 @@ export type SchemeSectionProps = {
 export default function SchemeSection({ services }: SchemeSectionProps) {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [isMobile, setIsMobile] = useState(false);
+	const [carouselApi, setCarouselApi] = useState<CarouselApi>();
 
 	useEffect(() => {
 		const onResize = () => setIsMobile(window.innerWidth < 768);
@@ -32,14 +42,32 @@ export default function SchemeSection({ services }: SchemeSectionProps) {
 		return () => window.removeEventListener("resize", onResize);
 	}, []);
 
+	useEffect(() => {
+		if (!carouselApi) return;
+		const onSelect = () => {
+			setActiveIndex(carouselApi.selectedScrollSnap());
+		};
+		carouselApi.on("select", onSelect);
+		onSelect();
+		return () => {
+			carouselApi.off("select", onSelect);
+		};
+	}, [carouselApi]);
+
+	const handleRingSelect = useCallback(
+		(index: number) => {
+			setActiveIndex(index);
+			carouselApi?.scrollTo(index);
+		},
+		[carouselApi],
+	);
+
 	const radius = isMobile ? 130 : 142;
 	const ringPadding = isMobile ? 48 : 58;
 	const boxSize = radius * 2 + ringPadding * 2;
 	const ringCx = boxSize * SERVICERING_RING_CX_FRAC;
 	const ringCy = boxSize * SERVICERING_RING_CY_FRAC;
 	const ringR = boxSize * SERVICERING_RING_R_FRAC;
-
-	const active = services[activeIndex] ?? services[0];
 
 	return (
 		<section
@@ -84,12 +112,12 @@ export default function SchemeSection({ services }: SchemeSectionProps) {
 					</motion.div>
 				</div>
 
-				<div className="flex w-full flex-col items-stretch gap-10 md:flex-row md:items-start md:gap-8 lg:gap-12 xl:grid xl:grid-cols-[minmax(0,38%)_minmax(0,1fr)] xl:items-stretch xl:gap-12">
+				<div className="flex w-full flex-col items-stretch gap-10 md:flex-row md:items-start md:gap-8 lg:gap-12 xl:grid xl:grid-cols-[minmax(0,38%)_minmax(0,1fr)] xl:items-start xl:gap-12">
 					<div className="mx-auto flex shrink-0 justify-center md:mx-0 md:justify-start xl:justify-self-center">
 						<SchemeServiceRing
 							services={services}
 							activeIndex={activeIndex}
-							onSelectIndex={setActiveIndex}
+							onSelectIndex={handleRingSelect}
 							boxSize={boxSize}
 							ringCx={ringCx}
 							ringCy={ringCy}
@@ -97,22 +125,71 @@ export default function SchemeSection({ services }: SchemeSectionProps) {
 						/>
 					</div>
 
-					<div
-						className="min-w-0 flex-1 md:min-h-0 md:self-start xl:self-stretch"
-						style={isMobile ? undefined : { height: boxSize }}
-					>
-						<AnimatePresence mode="wait">
-							<motion.div
-								key={activeIndex}
-								initial={{ opacity: 0, x: 24, filter: "blur(8px)" }}
-								animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-								exit={{ opacity: 0, x: -16, filter: "blur(6px)" }}
-								transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-								className="md:h-full"
+					<div className="flex min-w-0 flex-1 flex-col gap-4 md:min-h-0 md:self-start xl:self-stretch">
+						<div
+							className="min-w-0 w-full min-h-0"
+							style={isMobile ? undefined : { height: boxSize }}
+						>
+							<div
+								className={cn(
+									"relative h-full overflow-hidden rounded-2xl",
+									"shadow-[0_22px_44px_-18px_rgba(12,22,40,0.42),0_10px_20px_-12px_rgba(15,23,42,0.28),inset_0_1px_0_0_rgba(255,255,255,0.12)]",
+									"ring-1 ring-white/15 ring-inset",
+								)}
 							>
-								<SchemeServiceDetailCard service={active} />
-							</motion.div>
-						</AnimatePresence>
+								<Carousel
+									setApi={setCarouselApi}
+									className={
+										isMobile
+											? "w-full"
+											: "h-full w-full [&_[data-slot=carousel-content]]:h-full [&_[data-slot=carousel-content]>div]:h-full [&_[data-slot=carousel-content]>div]:min-h-0"
+									}
+									opts={{ align: "start", loop: false }}
+								>
+									<CarouselContent className={isMobile ? undefined : "h-full min-h-0"}>
+										{services.map((service) => (
+											<CarouselItem
+												key={service.id}
+												className={isMobile ? undefined : "h-full"}
+											>
+												<SchemeServiceDetailCard service={service} />
+											</CarouselItem>
+										))}
+									</CarouselContent>
+									<CarouselPrevious
+										type="button"
+										className="left-1 top-1/2 z-10 -translate-y-1/2 border-white/20 bg-white/90 text-navy shadow-sm hover:bg-white md:left-2"
+									/>
+									<CarouselNext
+										type="button"
+										className="right-1 top-1/2 z-10 -translate-y-1/2 border-white/20 bg-white/90 text-navy shadow-sm hover:bg-white md:right-2"
+									/>
+								</Carousel>
+							</div>
+						</div>
+
+						<div
+							className="flex shrink-0 justify-center gap-2.5"
+							role="tablist"
+							aria-label="表示するサービス"
+						>
+							{services.map((service, index) => (
+								<button
+									key={service.id}
+									type="button"
+									role="tab"
+									aria-selected={activeIndex === index}
+									aria-label={`${service.title.replace(/\n/g, " ")} を表示`}
+									onClick={() => handleRingSelect(index)}
+									className={cn(
+										"h-2 rounded-full transition-[width,background-color,box-shadow] duration-300 ease-out",
+										activeIndex === index
+											? "w-8 bg-gold shadow-[0_0_12px_-2px_hsl(38_70%_48%/0.55)]"
+											: "w-2 bg-gray-300/90 hover:bg-gray-400/90",
+									)}
+								/>
+							))}
+						</div>
 					</div>
 				</div>
 			</div>
