@@ -1,11 +1,12 @@
 import Link from "next/link";
 
 const sitemapItems = [
-	{ label: "税理士のメリット", href: "#merit" },
+	{ label: "3つのサービス", href: "#scheme-showcase" },
+	{ label: "不動産売却計画書", href: "#plan" },
+	{ label: "re-born不動産", href: "#reborn-point" },
 	{ label: "他方式との比較", href: "#comparison" },
-	{ label: "成功事例", href: "#case-study" },
-	{ label: "利用の流れ", href: "#flow" },
-	{ label: "よくある質問", href: "#faq" },
+	{ label: "ご利用の流れ", href: "#flow" },
+	{ label: "FAQ", href: "#faq" },
 ];
 
 export default function Footer() {
@@ -15,14 +16,24 @@ export default function Footer() {
 				<div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-3">
 					<div>
 						<h3 className="font-semibold">会社情報</h3>
-						<p className="mt-3 text-sm text-white/80">
-							株式会社 不動産オークション
+						<p className="mt-3 text-xs text-white/80">
+							藤和コーポレーション　株式会社
 							<br />
-							〒100-0001 東京都千代田区千代田1-1
+							〒108-0075 東京都港区港南2-16-1 品川イーストワンタワー8階
 							<br />
-							宅地建物取引業免許: 東京都知事(1)第XXXXX号
+							建設業許可　東京都知事（特-1）第150358号　建築
 							<br />
-							加盟団体: ○○不動産協会、△△保証協会
+							建設業許可　東京都知事（般-1）第150358号　土木
+							<br />
+							建設業許可　東京都知事（特-2）第150358号　解体
+							<br />
+							建築士事務所　東京都知事免許登録　第62641号一級建築士事務所
+							<br />
+							宅地建物取引業者免許　東京都知事（1）第102684号
+							<br />
+							賃貸住宅管理業者登録　国土交通大臣（1）第005966号
+							<br />
+							総合不動産投資顧問業　総合-第167号
 						</p>
 					</div>
 					<div>
@@ -39,10 +50,10 @@ export default function Footer() {
 					</div>
 					<div>
 						<h3 className="font-semibold">お問い合わせ</h3>
-						<p className="mt-3 text-sm text-white/80">
-							TEL: 03-1234-5678（平日9:00-18:00）
+						<p className="mt-3 text-xs text-white/80">
+							[代表] TEL：03-6433-9933／FAX：03-6433-9950
 							<br />
-							Email: info@fudosan-auction.example.com
+							[賃貸管理部] TEL：03-6433-0199／FAX：03-6433-0059
 						</p>
 					</div>
 				</div>

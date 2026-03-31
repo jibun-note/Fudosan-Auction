@@ -5,12 +5,12 @@ import { useEffect, useState } from "react";
 import { HiOutlineBars3, HiOutlineXMark } from "react-icons/hi2";
 
 const navItems = [
-	{ label: "メリット", href: "#merit" },
+	{ label: "3つのサービス", href: "#scheme-showcase" },
+	{ label: "不動産売却計画書", href: "#plan" },
+	{ label: "re-born不動産", href: "#reborn-point" },
 	{ label: "他方式との比較", href: "#comparison" },
-	{ label: "成功事例", href: "#case-study" },
-	{ label: "利用の流れ", href: "#flow" },
+	{ label: "ご利用の流れ", href: "#flow" },
 	{ label: "FAQ", href: "#faq" },
-	{ label: "会社情報", href: "#company" },
 ];
 
 export default function Header() {
@@ -42,11 +42,8 @@ export default function Header() {
 			)}
 			<div className="relative z-50 mx-auto max-w-7xl px-4 py-3 md:px-6 md:py-4">
 				<div className="flex items-center justify-between">
-					<Link
-						href="/"
-						className="text-base font-bold tracking-tight text-navy md:text-xl"
-					>
-						不動産オークション
+					<Link href="/" className="text-base font-bold tracking-tight text-navy md:text-xl">
+						顧問先のための不動産売却戦略
 					</Link>
 					<nav className="hidden items-center gap-8 md:flex" aria-label="メイン">
 						{navItems.map((item) => (
@@ -60,12 +57,6 @@ export default function Header() {
 						))}
 					</nav>
 					<div className="flex items-center gap-2 md:gap-3">
-						<Link
-							href="/home/form"
-							className="rounded-md bg-gold px-3 py-2 text-xs font-semibold text-white transition hover:bg-gold-light md:px-4 md:text-sm"
-						>
-							無料で資料請求
-						</Link>
 						<button
 							type="button"
 							onClick={() => setMobileOpen((o) => !o)}
