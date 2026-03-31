@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Pinyon_Script, Shippori_Mincho } from "next/font/google";
+import { Geist, Geist_Mono, Pinyon_Script, Shippori_Mincho, Inter } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/layout/Layout";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -37,7 +40,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="ja">
+		<html lang="ja" className={cn("font-sans", inter.variable)}>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} ${shipporiMincho.variable} ${pinyonScript.variable} antialiased`}
 			>
