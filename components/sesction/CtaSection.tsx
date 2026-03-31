@@ -13,18 +13,12 @@ export default function CtaSection() {
 					オンラインでのご説明も随時対応しております。最短で即日のお打ち合わせも可能です。
 				</p>
 				{/* 主要CTAリンク */}
-				<div className="mt-6 flex flex-wrap justify-center gap-2 md:mt-8 md:gap-4">
+				<div className="mt-6 flex justify-center md:mt-8">
 					<Link
 						href="/home/form"
-						className="rounded-md bg-gold px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-gold-light md:px-6 md:py-3 md:text-base"
+						className="inline-flex items-center justify-center rounded-md bg-gold px-8 py-3 text-sm font-semibold text-white transition hover:bg-gold-light md:px-10 md:py-3.5 md:text-base"
 					>
-						無料で資料請求する
-					</Link>
-					<Link
-						href="/home/seminar"
-						className="rounded-md border border-white bg-transparent px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10 md:px-6 md:py-3 md:text-base"
-					>
-						オンライン説明会に申込む
+						無料面談に申し込む
 					</Link>
 				</div>
 			</div>

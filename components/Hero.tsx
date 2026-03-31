@@ -19,10 +19,12 @@ export default function Hero() {
 			<div className="relative mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-32">
 				<div className="max-w-3xl">
 					<h1 className="text-2xl font-bold leading-snug tracking-tight md:text-4xl md:leading-tight lg:text-5xl">
-						税理士の顧問先の不動産、もっと高く・安心して売却
+						税理士の顧問先の不動産を
+						<br />
+						もっと高く・安心して売却
 					</h1>
 					<p className="mt-3 text-sm text-white/90 md:mt-6 md:text-lg">
-						不動産オークション方式で、顧問先の資産価値を最大化。
+						当社サービスで、顧問先の資産価値を最大化。
 					</p>
 					<div className="mt-6 flex flex-wrap gap-2 md:mt-10 md:gap-4">
 						<Link
