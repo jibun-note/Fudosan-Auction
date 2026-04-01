@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 2509 1368" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
-    <g transform="matrix(1,0,0,1,-2838.870735,-1311.107484)">
+<svg width="100%" height="100%" viewBox="0 0 2533 2510" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-2814.69531,-169.615477)">
         <g transform="matrix(1.170902,0,0,1.136318,-436.824242,0)">
             <g transform="matrix(0.854043,0,0,0.880036,330.396539,-110.837459)">
                 <g transform="matrix(0.030486,0.999535,-0.999535,0.030486,6510.923398,-3837.517996)">
@@ -45,6 +45,52 @@
                 </g>
                 <g transform="matrix(-0.283326,-0.959024,0.959024,-0.283326,2099.128691,5477.212748)">
                     <text x="3096.112px" y="1954.272px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">N</text>
+                </g>
+            </g>
+        </g>
+        <g transform="matrix(1.170902,0,0,1.136318,-436.824242,0)">
+            <g transform="matrix(-0.790129,-0.334035,0.324169,-0.814176,6617.997249,3896.47479)">
+                <g transform="matrix(0.395964,0.918266,-0.918266,0.395964,4054.805221,-4064.507878)">
+                    <text x="5116.869px" y="1049.837px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">T</text>
+                </g>
+                <g transform="matrix(0.179302,0.983794,-0.983794,0.179302,5509.846006,-4082.330854)">
+                    <text x="5201.725px" y="1261.238px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">O</text>
+                </g>
+                <g transform="matrix(-0.082483,0.996592,-0.996592,-0.082483,7188.576117,-3581.706315)">
+                    <text x="5243.044px" y="1518.242px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">W</text>
+                </g>
+                <g transform="matrix(-0.313216,0.949682,-0.949682,-0.313216,8555.464514,-2580.80023)">
+                    <text x="5210.914px" y="1803.139px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">A</text>
+                </g>
+                <g transform="matrix(-0.519224,0.854638,-0.854638,-0.519224,9527.482438,-1287.356589)">
+                    <text x="5125.842px" y="2036.159px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">C</text>
+                </g>
+                <g transform="matrix(-0.695801,0.718235,-0.718235,-0.695801,10080.208788,204.936957)">
+                    <text x="4996.705px" y="2237.141px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">O</text>
+                </g>
+                <g transform="matrix(-0.829393,0.558666,-0.558666,-0.829393,10148.519092,1733.356189)">
+                    <text x="4809.591px" y="2416.272px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">P</text>
+                </g>
+                <g transform="matrix(-0.928068,0.37241,-0.37241,-0.928068,9879.088512,3148.429649)">
+                    <text x="4635.482px" y="2528.297px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">O</text>
+                </g>
+                <g transform="matrix(-0.987763,0.15596,-0.15596,-0.987763,9137.470073,4516.919364)">
+                    <text x="4391.537px" y="2616.922px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">R</text>
+                </g>
+                <g transform="matrix(-0.998323,-0.057893,0.057893,-0.998323,8149.905339,5531.255516)">
+                    <text x="4155.075px" y="2647.573px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">A</text>
+                </g>
+                <g transform="matrix(-0.967001,-0.254773,0.254773,-0.967001,7044.88023,6168.105264)">
+                    <text x="3921.898px" y="2627.813px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">T</text>
+                </g>
+                <g transform="matrix(-0.908747,-0.417347,0.417347,-0.908747,6002.429916,6435.268172)">
+                    <text x="3704.75px" y="2561.419px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">I</text>
+                </g>
+                <g transform="matrix(-0.816248,-0.577702,0.577702,-0.816248,5033.681781,6593.304712)">
+                    <text x="3565.421px" y="2496.11px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">O</text>
+                </g>
+                <g transform="matrix(-0.6571,-0.753803,0.753803,-0.6571,3799.95328,6408.368506)">
+                    <text x="3357.537px" y="2339.898px" style="font-family:'Castellar', sans-serif;font-size:220px;fill:rgb(197,165,90);">N</text>
                 </g>
             </g>
         </g>
