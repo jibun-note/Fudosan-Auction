@@ -81,7 +81,7 @@ export default function FlowMainCard({
 							className="mt-3 flex size-16 items-center justify-center rounded-full border md:mt-5 md:size-24"
 							style={{
 								color: FLOW_GOLD,
-								// backgroundImage: "url('/images/藤和ロゴ.svg')",
+								backgroundImage: "url('/images/藤和ロゴ.svg')",
 								backgroundSize: "contain",
 								backgroundPosition: "center",
 								backgroundRepeat: "no-repeat",
