@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+
+import { GoldButton } from "@/components/common/button/GoldButton";
 
 const ADVISOR_MATERIAL_FILE = "materials.pdf";
 const ADVISOR_MATERIAL_HREF = `/images/materials/${encodeURIComponent(ADVISOR_MATERIAL_FILE)}`;
@@ -27,12 +28,7 @@ export default function Hero() {
 						当社サービスで、顧問先の資産価値を最大化。
 					</p>
 					<div className="mt-6 flex flex-wrap gap-2 md:mt-10 md:gap-4">
-						<Link
-							href="/home/form"
-							className="rounded-md bg-gold px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-gold-light md:px-6 md:py-3 md:text-base"
-						>
-							無料で資料請求する
-						</Link>
+						<GoldButton href="/home/form">無料で資料請求する</GoldButton>
 						<a
 							href={ADVISOR_MATERIAL_HREF}
 							download={ADVISOR_MATERIAL_FILE}

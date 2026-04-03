@@ -11,17 +11,14 @@ import {
 	HiOutlineScale,
 } from "react-icons/hi2";
 
-import type { FlowStepIconKey } from "@/lib/data/flow-steps";
+import type { FlowStepIconKey } from "@/lib/data/flowSection";
 
 type FlowStepIconProps = {
 	className?: string;
 	strokeWidth?: number;
 };
 
-export const flowStepIcons: Record<
-	FlowStepIconKey,
-	ComponentType<FlowStepIconProps>
-> = {
+export const flowStepIcons: Record<FlowStepIconKey, ComponentType<FlowStepIconProps>> = {
 	document: HiOutlineDocumentText,
 	currencyYen: HiOutlineCurrencyYen,
 	scale: HiOutlineScale,

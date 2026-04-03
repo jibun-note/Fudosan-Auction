@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
 
-import type { SchemeService } from "@/lib/data/scheme-services";
+import type { SchemeService } from "@/lib/data/schemeSection";
 import { cn } from "@/lib/utils";
 import {
 	type CarouselApi,

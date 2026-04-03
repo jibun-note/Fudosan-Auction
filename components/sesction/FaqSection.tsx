@@ -1,12 +1,7 @@
 "use client";
 
-import {
-	Accordion,
-	AccordionContent,
-	AccordionItem,
-	AccordionTrigger,
-} from "@/components/ui/accordion";
-import { faqItems } from "@/lib/data/faq-items";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { faqItems } from "@/lib/data/faqSection";
 
 /** アンカー `#faq` — よくある質問のアコーディオン一覧 */
 export default function FaqSection() {

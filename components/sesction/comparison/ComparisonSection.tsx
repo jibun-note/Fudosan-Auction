@@ -1,4 +1,4 @@
-import type { ComparisonRow } from "@/lib/data/comparison-rows";
+import type { ComparisonRow } from "@/lib/data/comparisonSection";
 
 import ComparisonTable from "./ComparisonTable";
 

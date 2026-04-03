@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import type { SchemeService } from "@/lib/data/scheme-services";
+import type { SchemeService } from "@/lib/data/schemeSection";
 
 export type SchemeServiceDetailCardProps = {
 	service: SchemeService;
