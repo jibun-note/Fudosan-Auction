@@ -486,7 +486,9 @@ export default function MaterialRequestForm() {
 											</p>
 											<p>
 												<Link
-													href="/privacy"
+													href="https://towa-corporation.jp/privacy/"
+													target="_blank"
+													rel="noopener noreferrer"
 													className="text-gray-800 font-medium border-b border-gray-800 hover:no-underline"
 												>
 													「藤和コーポレーション株式会社」（プライバシーポリシー）

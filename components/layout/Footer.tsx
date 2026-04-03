@@ -61,12 +61,22 @@ export default function Footer() {
 			<section className="border-t border-white/10 px-6 py-6">
 				<div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
 					<div className="flex gap-6 text-sm text-white/70">
-						<Link href="/privacy" className="hover:text-white">
-							プライバシーポリシー
+						<Link
+							href="/privacy"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="hover:text-white"
+						>
+							個人情報に関する基本方針
 						</Link>
 						<span>|</span>
-						<Link href="#" className="hover:text-white">
-							利用規約
+						<Link
+							href="/antisocial"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="hover:text-white"
+						>
+							反社会的勢力に対する基本方針
 						</Link>
 					</div>
 					<p className="text-sm text-white/60">© 2024 Fudosan Auction Inc. All Rights Reserved.</p>
