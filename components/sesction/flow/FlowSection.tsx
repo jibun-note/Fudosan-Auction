@@ -7,7 +7,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { flowStepsData } from "@/lib/data/flow-steps";
+import { flowStepsData } from "@/lib/data/flowSection";
 
 import FlowMainCard from "./FlowMainCard";
 import FlowStepIndicators from "./FlowStepIndicators";

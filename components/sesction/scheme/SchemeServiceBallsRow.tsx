@@ -1,6 +1,6 @@
 "use client";
 
-import type { SchemeService } from "@/lib/data/scheme-services";
+import type { SchemeService } from "@/lib/data/schemeSection";
 import { cn } from "@/lib/utils";
 
 import SchemeServiceBallButton from "./SchemeServiceBallButton";
@@ -25,10 +25,7 @@ export default function SchemeServiceBallsRow({
 		<div
 			role="tablist"
 			aria-label="サービスカテゴリー"
-			className={cn(
-				"flex flex-wrap items-center justify-center gap-4 md:gap-7 lg:gap-9",
-				className,
-			)}
+			className={cn("flex flex-wrap items-center justify-center gap-4 md:gap-7 lg:gap-9", className)}
 		>
 			{services.map((service, index) => (
 				<div key={service.id} className="shrink-0">

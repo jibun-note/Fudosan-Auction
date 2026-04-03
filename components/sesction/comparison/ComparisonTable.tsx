@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import type { ComparisonRow } from "@/lib/data/comparison-rows";
+import type { ComparisonRow } from "@/lib/data/comparisonSection";
 
 /** 画像デザインに合わせた比較表用カラー */
 const headerNavy = "#2D325A";

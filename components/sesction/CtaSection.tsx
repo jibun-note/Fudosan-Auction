@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { GoldButton } from "@/components/common/button/GoldButton";
 
 /** LP下部の行動喚起（資料請求・説明会申込）セクション */
 export default function CtaSection() {
@@ -14,12 +14,7 @@ export default function CtaSection() {
 				</p>
 				{/* 主要CTAリンク */}
 				<div className="mt-6 flex justify-center md:mt-8">
-					<Link
-						href="/home/form"
-						className="inline-flex items-center justify-center rounded-md bg-gold px-8 py-3 text-sm font-semibold text-white transition hover:bg-gold-light md:px-10 md:py-3.5 md:text-base"
-					>
-						無料面談に申し込む
-					</Link>
+					<GoldButton href="/home/form">無料面談に申し込む</GoldButton>
 				</div>
 			</div>
 		</section>

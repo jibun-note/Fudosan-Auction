@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 
-import type { SchemeService } from "@/lib/data/scheme-services";
+import type { SchemeService } from "@/lib/data/schemeSection";
 
 import SchemeServiceBallButton from "./SchemeServiceBallButton";
 

@@ -1,11 +1,9 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronRight } from "lucide-react";
-import Link from "next/link";
 import { useCallback, useState } from "react";
 
-import type { SchemeService } from "@/lib/data/scheme-services";
+import type { SchemeService } from "@/lib/data/schemeSection";
 import { cn } from "@/lib/utils";
 
 import SchemeServiceBallsRow from "./SchemeServiceBallsRow";
@@ -66,9 +64,7 @@ export default function SchemeShowcaseSection({ services }: SchemeShowcaseSectio
 										exit={{ opacity: 0, y: -8 }}
 										transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
 									>
-										<p
-											className="mb-4 text-[4.5rem] leading-none font-extralight text-gold/85 md:text-[7rem]"
-										>
+										<p className="mb-4 text-[4.5rem] leading-none font-extralight text-gold/85 md:text-[7rem]">
 											{stepLabel}
 										</p>
 										<h2 className="whitespace-pre-line text-xl font-bold tracking-tight text-gray-900 md:text-2xl lg:text-[1.65rem]">
