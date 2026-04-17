@@ -2,7 +2,11 @@
 
 import { Building2, FileText, Gavel, type LucideIcon } from "lucide-react";
 
-import type { SchemeService, SchemeServiceIconKey } from "@/lib/data/schemeSection";
+import {
+	schemeServiceBallCaption,
+	type SchemeService,
+	type SchemeServiceIconKey,
+} from "@/lib/data/schemeSection";
 
 /** `SchemeSection2` などでも同じアイコンを使うため export */
 export const SCHEME_SERVICE_ICON_BY_KEY: Record<SchemeServiceIconKey, LucideIcon> = {
@@ -15,7 +19,7 @@ export type SchemeServiceBallButtonProps = {
 	service: SchemeService;
 	isActive: boolean;
 	onSelect: () => void;
-	/** スクリーンリーダー用（省略時は service.name を基に生成） */
+	/** スクリーンリーダー用（省略時は label または title を基に生成） */
 	ariaLabel?: string;
 	/** tablist 内のタブとして扱う（aria-selected を付与） */
 	variant?: "button" | "tab";
@@ -29,7 +33,8 @@ export default function SchemeServiceBallButton({
 	variant = "button",
 }: SchemeServiceBallButtonProps) {
 	const ServiceIcon = SCHEME_SERVICE_ICON_BY_KEY[service.iconKey];
-	const label = ariaLabel ?? `${service.name.replace(/\n/g, " ")} を選択`;
+	const captionOneLine = schemeServiceBallCaption(service).replace(/\n/g, " ");
+	const label = ariaLabel ?? `${captionOneLine} を選択`;
 	const isTab = variant === "tab";
 
 	return (
@@ -67,7 +72,7 @@ export default function SchemeServiceBallButton({
 						isActive ? "font-bold text-gold" : "text-gray-600"
 					}`}
 				>
-					{service.name}
+					{schemeServiceBallCaption(service)}
 				</span>
 			</div>
 		</button>
