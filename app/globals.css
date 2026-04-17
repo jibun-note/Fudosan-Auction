@@ -63,6 +63,7 @@
 	--color-lp-surface: var(--lp-surface);
 	--color-lp-surface-elevated: var(--lp-surface-elevated);
 	--font-sans: var(--font-sans);
+	--font-serif: var(--font-sans), ui-serif, serif;
 	--font-mono: var(--font-geist-mono);
 	--font-heading: var(--font-sans);
 	--color-sidebar-ring: var(--sidebar-ring);

@@ -10,9 +10,10 @@ import { useEffect, useMemo, useState } from "react";
 import { flowStepsData } from "@/lib/data/flowSection";
 
 import FlowMainCard from "./FlowMainCard";
+import FlowSnakeOverview from "./FlowSnakeOverview";
 import FlowStepIndicators from "./FlowStepIndicators";
 import { flowStepIcons } from "./flowStepIcons";
-import { AUTO_SLIDE_MS, FLOW_CREAM } from "./flowConstants";
+import { AUTO_SLIDE_MS } from "./flowConstants";
 import FlowTimeline from "./FlowTimeline";
 
 export default function FlowSection() {
@@ -44,10 +45,14 @@ export default function FlowSection() {
 					<div className="mt-2 h-1 w-16 bg-gold" />
 				</div>
 
+				<div className="mt-10 md:mt-12">
+					<FlowSnakeOverview />
+				</div>
+
 				{/* 横タイムライン（進捗付き接続線）
 				    overflow-x-auto は overflow-y を auto にしがちで、パルスの box-shadow が上下で切れる。
 				    上に余白を足してリングが収まるようにする。 */}
-				<FlowTimeline steps={steps} active={active} onSelectStep={setActive} />
+				{/*<FlowTimeline steps={steps} active={active} onSelectStep={setActive} />
 
 				<FlowMainCard
 					active={active}
@@ -58,7 +63,7 @@ export default function FlowSection() {
 					onRequestNext={() => setActive((i) => (i + 1) % steps.length)}
 				/>
 
-				<FlowStepIndicators stepCount={steps.length} active={active} onSelectStep={setActive} />
+				<FlowStepIndicators stepCount={steps.length} active={active} onSelectStep={setActive} /> */}
 			</div>
 		</section>
 	);

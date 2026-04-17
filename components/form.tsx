@@ -140,7 +140,7 @@ export default function MaterialRequestForm() {
 						<div className="relative z-0 flex flex-col flex-1 min-h-0">
 							<p
 								className={`flex-1 text-white/90 ${shipporiMinchoRegular.className} leading-[1.55] mb-0`}
-								style={{ fontSize: "clamp(20px, 2vw, 26px)" }}
+								style={{ fontSize: "clamp(18px, 1.85vw, 24px)" }}
 							>
 								<span
 									className="bg-clip-text text-transparent"
@@ -149,7 +149,7 @@ export default function MaterialRequestForm() {
 											"linear-gradient(120deg, var(--gold-light), var(--gold))",
 									}}
 								>
-									資料請求、無料面談へのご案内が可能です。
+									資料請求、無料面談のご案内が可能です。
 								</span>
 							</p>
 							<p
@@ -397,17 +397,9 @@ export default function MaterialRequestForm() {
 										<div className="space-y-1.5">
 											{[
 												"築古アパートを活用した短期減価償却事業（個人版）",
-												"忙しいお医者様のためのおすすめ資産防衛術",
 												"築古アパートを活用した短期減価償却事業（経営者・法人版）",
-												"１口1,000万円からの短期減価償却事業（小口化不動産版）",
-												"次世代の家族のための相続対策事業",
-												"旧耐震マンション再生コンサルティング事業",
-												"投資用マンション・アパート建設事業",
-												"自社管理システムによる賃貸管理事業",
-												"企画・用地取得・売却　ロジスティック事業",
 												"不動産のジャパンオークション",
 												"不動産売却計画書",
-												"リゾートホテル・海外レジデンシャル投資不動産用地取得～企画開発事業",
 											].map((label) => (
 												<label
 													key={label}

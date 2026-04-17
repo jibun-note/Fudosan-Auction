@@ -1,6 +1,6 @@
 "use client";
 
-import type { SchemeService } from "@/lib/data/schemeSection";
+import { schemeServiceBallCaption, type SchemeService } from "@/lib/data/schemeSection";
 import { cn } from "@/lib/utils";
 
 import SchemeServiceBallButton from "./SchemeServiceBallButton";
@@ -34,7 +34,7 @@ export default function SchemeServiceBallsRow({
 						service={service}
 						isActive={activeIndex === index}
 						onSelect={() => onSelectIndex(index)}
-						ariaLabel={`${service.name.replace(/\n/g, " ")} を表示`}
+						ariaLabel={`${schemeServiceBallCaption(service).replace(/\n/g, " ")} を表示`}
 					/>
 				</div>
 			))}
