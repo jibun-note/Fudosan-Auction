@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 const shipporiMincho = Shippori_Mincho({
 	variable: "--font-sans",
 	weight: ["400", "500", "600"],
-	subsets: ["latin", "japanese"],
+	subsets: ["latin", "latin-ext"],
 });
 
 const pinyonScript = Pinyon_Script({
