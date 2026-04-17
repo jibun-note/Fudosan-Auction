@@ -4,7 +4,8 @@ import { Building2, FileText, Gavel, type LucideIcon } from "lucide-react";
 
 import type { SchemeService, SchemeServiceIconKey } from "@/lib/data/schemeSection";
 
-const ICON_BY_KEY: Record<SchemeServiceIconKey, LucideIcon> = {
+/** `SchemeSection2` などでも同じアイコンを使うため export */
+export const SCHEME_SERVICE_ICON_BY_KEY: Record<SchemeServiceIconKey, LucideIcon> = {
 	building2: Building2,
 	fileText: FileText,
 	gavel: Gavel,
@@ -27,7 +28,7 @@ export default function SchemeServiceBallButton({
 	ariaLabel,
 	variant = "button",
 }: SchemeServiceBallButtonProps) {
-	const ServiceIcon = ICON_BY_KEY[service.iconKey];
+	const ServiceIcon = SCHEME_SERVICE_ICON_BY_KEY[service.iconKey];
 	const label = ariaLabel ?? `${service.name.replace(/\n/g, " ")} を選択`;
 	const isTab = variant === "tab";
 

@@ -3,7 +3,7 @@ import CtaSection from "@/components/sesction/CtaSection";
 import FaqSection from "@/components/sesction/FaqSection";
 import FlowSection from "@/components/sesction/flow";
 import Hero from "@/components/sesction/Hero";
-import { SchemeShowcaseSection } from "@/components/sesction/scheme";
+import { SchemeSection2 } from "@/components/sesction/scheme";
 import { RebornPointSection } from "@/components/sesction/reborn";
 import { SalePlanSection } from "@/components/sesction/sale-plan";
 import { comparisonRows } from "@/lib/data/comparisonSection";
@@ -15,7 +15,7 @@ export default function Home() {
 			<main>
 				<Hero />
 				{/* <SchemeSection services={schemeServices} /> */}
-				<SchemeShowcaseSection services={schemeServices} />
+				<SchemeSection2 services={schemeServices} />
 				{/* <MaximizeSection /> */}
 				<RebornPointSection />
 				<SalePlanSection />

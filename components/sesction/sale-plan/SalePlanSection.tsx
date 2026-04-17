@@ -12,7 +12,9 @@ export default function SalePlanSection() {
 		<section id="plan" className="bg-[#f8f9fa] px-4 py-12 md:px-6 md:py-20">
 			<div className="mx-auto max-w-6xl">
 				{/* セクション見出し・リード */}
-				<h2 className="text-lg font-bold text-navy md:text-3xl">「不動産売却計画書」の中身とは…</h2>
+				<h2 className="text-lg font-bold text-navy md:text-3xl">
+					クライアントの資産売却計画書＋オークション
+				</h2>
 				<div className="mt-2 h-1 w-16 bg-gold" />
 				<p className="mt-6 max-w-3xl leading-relaxed text-gray-700 md:mt-8 md:text-base">
 					豊富な物件資料とそれに基づき行われる様々な検証、そしてそこから導かれる

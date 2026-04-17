@@ -4,6 +4,9 @@ export type { SchemeSectionProps } from "./SchemeSection";
 export { default as SchemeShowcaseSection } from "./SchemeShowcaseSection";
 export type { SchemeShowcaseSectionProps } from "./SchemeShowcaseSection";
 
+export { default as SchemeSection2 } from "./SchemeSection2";
+export type { SchemeSection2Props } from "./SchemeSection2";
+
 export { default as SchemeServiceRing } from "./SchemeServiceRing";
 export type { SchemeServiceRingProps } from "./SchemeServiceRing";
 

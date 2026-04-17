@@ -27,7 +27,7 @@ export default function SchemeShowcaseSection({ services }: SchemeShowcaseSectio
 			<div className="mx-auto max-w-7xl">
 				<div className="mx-auto max-w-6xl">
 					<h2 className="text-lg font-bold text-navy md:text-3xl">
-						&quot;価値&quot;が返る3つのサービス
+						貴社を支える&quot;3つ&quot;のサービス
 					</h2>
 					<div className="mt-2 h-1 w-16 bg-gold" />
 					<p className="mt-3 mb-16 text-sm text-gray-600 md:mt-4 md:text-base">

@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import { HiOutlineBars3, HiOutlineXMark } from "react-icons/hi2";
 
 const navItems = [
-	{ label: "3つのサービス", href: "#scheme-showcase" },
-	{ label: "不動産売却計画書", href: "#plan" },
-	{ label: "re-born不動産", href: "#reborn-point" },
-	{ label: "他方式との比較", href: "#comparison" },
-	{ label: "ご利用の流れ", href: "#flow" },
+	{ label: "サービス", href: "#scheme-cards" },
+	{ label: "re-born", href: "#reborn" },
+	{ label: "business re-born", href: "#businessReborn" },
+	{ label: "不動産売却計画書＋オークション", href: "#plan" },
+	{ label: "オークション", href: "#flow" },
 	{ label: "FAQ", href: "#faq" },
 ];
 
@@ -30,7 +30,7 @@ export default function Header() {
 	}, [mobileOpen]);
 
 	return (
-		<header className="relative z-50 bg-white shadow-md">
+		<header className="sticky top-0 z-50 w-full bg-white shadow-md">
 			{mobileOpen && (
 				<button
 					type="button"
