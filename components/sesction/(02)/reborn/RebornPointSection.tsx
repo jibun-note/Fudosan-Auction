@@ -1,5 +1,5 @@
-import { BusinessRebornNavi } from "@/components/sesction/reborn/BusinessRebornNavi";
-import { RebornNavi } from "@/components/sesction/reborn/RebornNavi";
+import { BusinessRebornNavi } from "@/components/sesction/(02)/reborn/BusinessRebornNavi";
+import { RebornNavi } from "@/components/sesction/(02)/reborn/RebornNavi";
 
 export default function RebornPointSection() {
 	return (

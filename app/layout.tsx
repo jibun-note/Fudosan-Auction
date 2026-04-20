@@ -27,9 +27,8 @@ const pinyonScript = Pinyon_Script({
 });
 
 export const metadata: Metadata = {
-	title: "不動産オークション | 税理士の顧問先の資産価値を最大化",
-	description:
-		"税理士の顧問先の不動産を、もっと高く・安心して売却。不動産オークション方式で顧問先の資産価値を最大化します。",
+	title: "顧問先のための不動産売却戦略",
+	description: "顧客の不動産売却・節税・資産形成を“透明性と専門性”で支える、信頼できるパートナーへ。",
 };
 
 export default function RootLayout({

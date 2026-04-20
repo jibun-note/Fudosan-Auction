@@ -1,11 +1,11 @@
 import Link from "next/link";
 
 const sitemapItems = [
-	{ label: "3つのサービス", href: "#scheme-showcase" },
-	{ label: "不動産売却計画書", href: "#plan" },
-	{ label: "re-born不動産", href: "#reborn-point" },
-	{ label: "他方式との比較", href: "#comparison" },
-	{ label: "ご利用の流れ", href: "#flow" },
+	{ label: "サービス", href: "#scheme-cards" },
+	{ label: "re-born", href: "#reborn" },
+	{ label: "business re-born", href: "#businessReborn" },
+	{ label: "不動産売却計画書＋オークション", href: "#plan" },
+	{ label: "オークション", href: "#flow" },
 	{ label: "FAQ", href: "#faq" },
 ];
 

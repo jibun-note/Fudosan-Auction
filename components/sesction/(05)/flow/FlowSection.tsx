@@ -11,7 +11,7 @@ import SplitText, { sectionHeadingSplitTextProps } from "@/components/SplitText"
 import { flowStepsData } from "@/lib/data/flowSection";
 
 import FlowMainCard from "./FlowMainCard";
-import FlowSnakeOverview from "./FlowSnakeOverview";
+import FlowSingleRowOverview from "./FlowSingleRowOverview";
 import FlowStepIndicators from "./FlowStepIndicators";
 import { flowStepIcons } from "./flowStepIcons";
 import { AUTO_SLIDE_MS } from "./flowConstants";
@@ -53,7 +53,7 @@ export default function FlowSection() {
 				</div>
 
 				<div className="mt-10 md:mt-12">
-					<FlowSnakeOverview />
+					<FlowSingleRowOverview />
 				</div>
 
 				{/* 横タイムライン（進捗付き接続線）
