@@ -93,9 +93,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 									delay: activeIndex * 0.08,
 									ease: [0.22, 1, 0.36, 1],
 								}}
-								whileHover={
-									cardHoverOpen ? { scale: 1.03, zIndex: 10 } : undefined
-								}
+								whileHover={cardHoverOpen ? { scale: 1.03, zIndex: 10 } : undefined}
 								className={cn(
 									"group/card relative isolate min-h-88 overflow-hidden rounded-2xl border border-gray-200/90 shadow-[0_20px_40px_-24px_rgba(15,23,42,0.35)] will-change-transform md:min-h-104",
 								)}
@@ -224,7 +222,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 										onClick={(e) => e.stopPropagation()}
 										className="mt-4 w-full py-1 text-sm md:py-1.5 md:text-sm"
 									>
-										詳細へ
+										サービスを見る
 										<ChevronRight className="size-4" aria-hidden />
 									</GoldButton>
 								</div>

@@ -14,7 +14,7 @@ export function GoldButton({ className, children, ...linkProps }: GoldButtonProp
 		<Button
 			asChild
 			className={cn(
-				"h-auto min-h-0 shrink-0 border-transparent px-4 py-2.5 text-sm font-semibold text-white md:px-6 md:py-3 md:text-base",
+				"h-auto min-h-0 shrink-0 border-transparent px-4 py-1.5 text-sm font-semibold text-white md:px-6 md:py-2 md:text-base",
 				"inline-flex items-center justify-center gap-2 rounded-md",
 				"bg-linear-to-r from-[#a67c2e] to-[#c5a55a] shadow-md duration-200",
 				"hover:bg-transparent hover:brightness-110 hover:scale-[1.02]",
