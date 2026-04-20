@@ -186,10 +186,24 @@ body {
 	* {
 		@apply border-border outline-ring/50;
 	}
-	body {
-		@apply bg-background text-foreground;
-	}
 	html {
 		@apply font-sans;
+		/* モバイルで子要素の幅超過によるページ全体の横スクロールを防ぐ */
+		overflow-x: clip;
+	}
+	body {
+		@apply bg-background text-foreground;
+		overflow-x: clip;
+	}
+}
+
+/* GSAP SplitText: 行・語ラッパが nowrap になり折り返されないケースへの保険 */
+@layer components {
+	.split-parent,
+	.split-parent .split-line,
+	.split-parent .split-word {
+		white-space: normal !important;
+		overflow-wrap: anywhere;
+		word-break: normal;
 	}
 }

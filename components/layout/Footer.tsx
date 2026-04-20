@@ -60,7 +60,7 @@ export default function Footer() {
 			</section>
 			<section className="border-t border-white/10 px-6 py-6">
 				<div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
-					<div className="flex gap-6 text-sm text-white/70">
+					<div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/70 md:justify-start">
 						<Link
 							href="/privacy"
 							target="_blank"

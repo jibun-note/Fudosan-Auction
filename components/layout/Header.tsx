@@ -41,8 +41,11 @@ export default function Header() {
 				/>
 			)}
 			<div className="relative z-50 mx-auto max-w-7xl px-4 py-3 md:px-6 md:py-4">
-				<div className="flex items-center justify-between">
-					<Link href="/" className="text-base font-bold tracking-tight text-navy md:text-xl">
+				<div className="flex min-w-0 items-center justify-between gap-3">
+					<Link
+						href="/"
+						className="min-w-0 shrink text-balance text-base font-bold tracking-tight text-navy md:text-xl"
+					>
 						顧問先のための不動産売却戦略
 					</Link>
 					<nav className="hidden items-center gap-8 md:flex" aria-label="メイン">
