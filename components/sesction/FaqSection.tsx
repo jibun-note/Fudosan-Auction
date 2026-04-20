@@ -1,5 +1,6 @@
 "use client";
 
+import SplitText, { sectionHeadingSplitTextProps } from "@/components/SplitText";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { faqItems } from "@/lib/data/faqSection";
 
@@ -9,7 +10,13 @@ export default function FaqSection() {
 		<section id="faq" className="bg-white px-4 py-12 md:px-6 md:py-20">
 			<div className="mx-auto max-w-6xl">
 				<div>
-					<h2 className="text-lg font-bold text-navy md:text-3xl">よくあるご質問</h2>
+					<SplitText
+						tag="h2"
+						text="よくあるご質問"
+						className="text-lg font-bold text-navy md:text-3xl"
+						textAlign="left"
+						{...sectionHeadingSplitTextProps}
+					/>
 					<div className="mt-2 h-1 w-16 bg-gold" />
 				</div>
 				<Accordion

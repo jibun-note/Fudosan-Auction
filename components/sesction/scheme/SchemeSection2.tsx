@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { GoldButton } from "@/components/common/button/GoldButton";
+import SplitText, { sectionHeadingSplitTextProps } from "@/components/SplitText";
 import type { SchemeService } from "@/lib/data/schemeSection";
 import { cn } from "@/lib/utils";
 
@@ -41,9 +42,13 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 
 			<div className="relative z-10 mx-auto max-w-7xl">
 				<div className="mx-auto max-w-6xl">
-					<h2 className="text-lg font-bold text-navy md:text-3xl">
-						貴社を支える&quot;3つ&quot;のサービス
-					</h2>
+					<SplitText
+						tag="h2"
+						text={'貴社を支える"3つ"のサービス'}
+						className="text-lg font-bold text-navy md:text-3xl"
+						textAlign="left"
+						{...sectionHeadingSplitTextProps}
+					/>
 					<div className="mt-2 h-1 w-16 bg-gold" />
 					<p className="mt-3 mb-10 text-sm text-gray-600 md:mt-4 md:mb-14 md:text-base">
 						顧問先への付加価値提案が、先生ご自身の信頼とビジネスを強化します。
