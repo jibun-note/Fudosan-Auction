@@ -33,7 +33,9 @@ export function BusinessRebornNavi() {
 								textAlign="left"
 								{...sectionHeadingSplitTextProps}
 							/>
-							<span className="text-xs text-muted-foreground md:text-sm">（法人のオーナー様）</span>
+							<span className="text-xs text-muted-foreground md:text-sm">
+								（法人のオーナー様）
+							</span>
 						</h2>
 
 						<div className="mt-2 h-1 w-16 bg-gold" aria-hidden />
@@ -56,7 +58,7 @@ export function BusinessRebornNavi() {
 								target="_blank"
 								className="group w-fit justify-start"
 							>
-								詳細を見る
+								詳細へ
 								<ChevronRight
 									className="h-4 w-4 transition-transform group-hover:translate-x-1"
 									aria-hidden
