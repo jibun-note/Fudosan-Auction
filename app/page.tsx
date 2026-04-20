@@ -11,20 +11,18 @@ import { schemeServices } from "@/lib/data/schemeSection";
 
 export default function Home() {
 	return (
-		<div className="min-h-screen bg-lp-surface font-sans text-sm text-gray-900 md:text-base">
-			<main>
-				<Hero />
-				{/* <SchemeSection services={schemeServices} /> */}
-				<SchemeSection2 services={schemeServices} />
-				{/* <MaximizeSection /> */}
-				<RebornPointSection />
-				<SalePlanSection />
-				<ComparisonSection rows={comparisonRows} />
-				{/* <CaseStudySection /> */}
-				<FlowSection />
-				<FaqSection />
-				<CtaSection />
-			</main>
+		<div className="min-h-screen min-w-0 overflow-x-clip bg-lp-surface font-sans text-sm text-gray-900 md:text-base">
+			<Hero />
+			{/* <SchemeSection services={schemeServices} /> */}
+			<SchemeSection2 services={schemeServices} />
+			{/* <MaximizeSection /> */}
+			<RebornPointSection />
+			<SalePlanSection />
+			<ComparisonSection rows={comparisonRows} />
+			{/* <CaseStudySection /> */}
+			<FlowSection />
+			<FaqSection />
+			<CtaSection />
 		</div>
 	);
 }

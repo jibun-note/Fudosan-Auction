@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { GoldButton } from "@/components/common/button/GoldButton";
 import SplitText from "@/components/SplitText";
@@ -61,7 +61,8 @@ const HERO_SLIDES = [
 const heroSplitTextProps = {
 	delay: 35,
 	duration: 0.85,
-	splitType: "chars" as const,
+	/** コンテナ幅に応じた行の上で文字アニメ（chars のみだと1行に詰まりやすい） */
+	splitType: "lines,chars" as const,
 	from: { opacity: 0, y: 28 },
 	to: { opacity: 1, y: 0 },
 	threshold: 1,
@@ -86,19 +87,63 @@ export default function Hero() {
 		[],
 	);
 
+	/**
+	 * embla-carousel-fade はフェードが opacity 制御のため、"select" / "settle" イベントの
+	 * 発火タイミングが実際の画像切替より遅れ、テキスト/インジケーターが連動しない。
+	 * 対策として、毎フレーム `selectedScrollSnap()` を読み、変化があれば即 state を更新する。
+	 * 比較は軽量で、変化時のみ setState されるため再レンダリングコストは発生しない。
+	 */
 	useEffect(() => {
 		if (!carouselApi) return;
-		/** フェード完了後にコピー・インジケーターを同期（select だと切替途中でテキストが入れ替わりカクつく） */
-		const syncFromCarousel = () => {
-			setActiveIndex(carouselApi.selectedScrollSnap());
+		let rafId = 0;
+		let lastIndex = carouselApi.selectedScrollSnap();
+		setActiveIndex(lastIndex);
+		const tick = () => {
+			const current = carouselApi.selectedScrollSnap();
+			if (current !== lastIndex) {
+				lastIndex = current;
+				setActiveIndex(current);
+			}
+			rafId = window.requestAnimationFrame(tick);
 		};
-		carouselApi.on("settle", syncFromCarousel);
-		carouselApi.on("reInit", syncFromCarousel);
-		syncFromCarousel();
+		rafId = window.requestAnimationFrame(tick);
+		const handleReInit = () => {
+			lastIndex = carouselApi.selectedScrollSnap();
+			setActiveIndex(lastIndex);
+		};
+		carouselApi.on("reInit", handleReInit);
 		return () => {
-			carouselApi.off("settle", syncFromCarousel);
-			carouselApi.off("reInit", syncFromCarousel);
+			window.cancelAnimationFrame(rafId);
+			carouselApi.off("reInit", handleReInit);
 		};
+	}, [carouselApi]);
+
+	/**
+	 * クリック操作では Embla のイベントを待たず React state を先に更新する。
+	 * これにより、画像フェードの開始と同じタイミングで SplitText / インジケーターが切り替わる。
+	 */
+	const goToSlide = useCallback(
+		(index: number) => {
+			setActiveIndex(index);
+			carouselApi?.scrollTo(index);
+		},
+		[carouselApi],
+	);
+
+	const goToPrev = useCallback(() => {
+		if (!carouselApi) return;
+		const total = HERO_SLIDES.length;
+		const prev = (carouselApi.selectedScrollSnap() - 1 + total) % total;
+		setActiveIndex(prev);
+		carouselApi.scrollPrev();
+	}, [carouselApi]);
+
+	const goToNext = useCallback(() => {
+		if (!carouselApi) return;
+		const total = HERO_SLIDES.length;
+		const next = (carouselApi.selectedScrollSnap() + 1) % total;
+		setActiveIndex(next);
+		carouselApi.scrollNext();
 	}, [carouselApi]);
 
 	return (
@@ -131,14 +176,14 @@ export default function Hero() {
 			</div>
 			<div className="pointer-events-none absolute inset-0 z-1 bg-linear-to-b from-navy/35 via-navy/20 to-navy-dark/40" />
 			<div className="pointer-events-auto relative z-10 w-full max-w-7xl px-4 py-6 text-left md:px-24 md:py-16">
-				<div className="max-w-4xl text-left" aria-live="polite">
+				<div className="min-w-0 w-full max-w-4xl text-left" aria-live="polite">
 					{HERO_SLIDES[activeIndex].copy.kind === "headline" ? (
 						<>
 							<SplitText
 								key={`hero-title-${activeIndex}`}
 								tag="h1"
 								text={HERO_SLIDES[activeIndex].copy.title}
-								className="text-left text-2xl font-bold leading-snug tracking-tight md:text-4xl md:leading-tight"
+								className="text-left text-xl font-bold leading-snug tracking-tight md:text-4xl md:leading-tight"
 								textAlign="left"
 								{...heroSplitTextProps}
 							/>
@@ -146,7 +191,7 @@ export default function Hero() {
 								key={`hero-subtitle-${activeIndex}`}
 								tag="h2"
 								text={HERO_SLIDES[activeIndex].copy.subtitle}
-								className="mt-3 text-left text-xl font-bold text-white/90 md:mt-4 md:text-2xl"
+								className="mt-3 text-left text-base font-bold text-white/90 md:mt-4 md:text-2xl"
 								textAlign="left"
 								{...heroSplitTextProps}
 							/>
@@ -157,7 +202,7 @@ export default function Hero() {
 								key={`hero-line0-${activeIndex}`}
 								tag="h2"
 								text={HERO_SLIDES[activeIndex].copy.lines[0]}
-								className="text-left text-xl font-bold text-white/90 md:text-2xl"
+								className="text-left text-base font-bold text-white/90 md:text-2xl"
 								textAlign="left"
 								{...heroSplitTextProps}
 							/>
@@ -165,7 +210,7 @@ export default function Hero() {
 								key={`hero-line1-${activeIndex}`}
 								tag="h2"
 								text={HERO_SLIDES[activeIndex].copy.lines[1]}
-								className="text-left text-xl font-bold text-white/90 md:text-2xl"
+								className="text-left text-base font-bold text-white/90 md:text-2xl"
 								textAlign="left"
 								{...heroSplitTextProps}
 							/>
@@ -175,7 +220,7 @@ export default function Hero() {
 							key={`hero-single-${activeIndex}`}
 							tag="h2"
 							text={HERO_SLIDES[activeIndex].copy.text}
-							className="text-left text-xl font-bold text-white/90 md:text-2xl"
+							className="text-left text-base font-bold text-white/90 md:text-2xl"
 							textAlign="left"
 							{...heroSplitTextProps}
 						/>
@@ -201,7 +246,7 @@ export default function Hero() {
 					disabled={!carouselApi}
 					className="touch-manipulation rounded-full border-white/40 bg-navy/35 text-white hover:bg-navy/50 hover:text-white"
 					aria-label="前のスライドへ"
-					onClick={() => carouselApi?.scrollPrev()}
+					onClick={goToPrev}
 				>
 					<ChevronLeftIcon />
 				</Button>
@@ -214,7 +259,7 @@ export default function Hero() {
 					disabled={!carouselApi}
 					className="touch-manipulation rounded-full border-white/40 bg-navy/35 text-white hover:bg-navy/50 hover:text-white"
 					aria-label="次のスライドへ"
-					onClick={() => carouselApi?.scrollNext()}
+					onClick={goToNext}
 				>
 					<ChevronRightIcon />
 				</Button>
@@ -235,7 +280,7 @@ export default function Hero() {
 							"h-2 rounded-full transition-[width,background-color] duration-300",
 							activeIndex === index ? "w-8 bg-white" : "w-2 bg-white/40 hover:bg-white/65",
 						)}
-						onClick={() => carouselApi?.scrollTo(index)}
+						onClick={() => goToSlide(index)}
 					/>
 				))}
 			</div>

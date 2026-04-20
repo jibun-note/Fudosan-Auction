@@ -23,7 +23,8 @@ export interface SplitTextProps {
   delay?: number;
   duration?: number;
   ease?: string | ((t: number) => number);
-  splitType?: 'chars' | 'words' | 'lines' | 'words, chars';
+  /** GSAP の複合分割（例: 先に行→行内を文字）— 日本語の折り返しと相性がよい */
+  splitType?: 'chars' | 'words' | 'lines' | 'words, chars' | 'lines,chars' | 'lines, chars';
   from?: gsap.TweenVars;
   to?: gsap.TweenVars;
   threshold?: number;
@@ -58,6 +59,10 @@ const SplitText: React.FC<SplitTextProps> = ({
   const animationCompletedRef = useRef(false);
   const onCompleteRef = useRef(onLetterAnimationComplete);
   const [fontsLoaded, setFontsLoaded] = useState<boolean>(false);
+  /** lines 系はビューポート幅で行が変わるため、リサイズ時に再分割する */
+  const [lineLayoutKey, setLineLayoutKey] = useState(0);
+  const splitTypeStr = String(splitType);
+  const splitIncludesLines = splitTypeStr.includes('lines');
 
   // Keep callback ref updated
   useEffect(() => {
@@ -73,6 +78,23 @@ const SplitText: React.FC<SplitTextProps> = ({
       });
     }
   }, []);
+
+  useEffect(() => {
+    if (!splitIncludesLines || typeof window === 'undefined') return;
+    let timeoutId: number | undefined;
+    const onResize = () => {
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+      timeoutId = window.setTimeout(() => {
+        setLineLayoutKey((k) => k + 1);
+        ScrollTrigger.refresh();
+      }, 200);
+    };
+    window.addEventListener('resize', onResize);
+    return () => {
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+      window.removeEventListener('resize', onResize);
+    };
+  }, [splitIncludesLines]);
 
   /** 分割・from 適用前の1フレームで素テキストが見えないよう隠す（playOnMount 時） */
   useLayoutEffect(() => {
@@ -116,7 +138,7 @@ const SplitText: React.FC<SplitTextProps> = ({
       const splitInstance = new GSAPSplitText(el, {
         type: splitType,
         smartWrap: true,
-        autoSplit: splitType === 'lines',
+        autoSplit: splitIncludesLines,
         linesClass: 'split-line',
         wordsClass: 'split-word',
         charsClass: 'split-char',
@@ -177,7 +199,8 @@ const SplitText: React.FC<SplitTextProps> = ({
         threshold,
         rootMargin,
         fontsLoaded,
-        playOnMount
+        playOnMount,
+        lineLayoutKey
       ],
       scope: ref
     }
@@ -191,7 +214,7 @@ const SplitText: React.FC<SplitTextProps> = ({
       /** フォント待ち・分割前のチラ見え防止（onSplit で 1 に戻す） */
       ...(playOnMount && { opacity: 0 })
     };
-    const classes = `split-parent overflow-hidden inline-block whitespace-normal ${className}`;
+    const classes = `split-parent block w-full max-w-full min-w-0 overflow-hidden whitespace-normal break-words [overflow-wrap:anywhere] ${className}`;
     const Tag = (tag || 'p') as React.ElementType;
 
     return (

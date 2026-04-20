@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ChevronRight, X } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 import { GoldButton } from "@/components/common/button/GoldButton";
 import SplitText, { sectionHeadingSplitTextProps } from "@/components/SplitText";
@@ -23,8 +23,27 @@ const SERVICE_CARD_IMAGE_BY_ID: Record<string, string> = {
 	auction: "/images/AdobeStock_1589598207_Preview.jpeg",
 };
 
+/** タッチ専用端末ではホバーで開かず、タップ（openId）のみ。SSR では false。 */
+function useCardHoverOpen() {
+	return useSyncExternalStore(
+		(onChange) => {
+			if (typeof window === "undefined") return () => {};
+			const mq = window.matchMedia("(min-width: 768px) and (hover: hover)");
+			mq.addEventListener("change", onChange);
+			return () => mq.removeEventListener("change", onChange);
+		},
+		() =>
+			typeof window !== "undefined" &&
+			window.matchMedia("(min-width: 768px) and (hover: hover)").matches,
+		() => false,
+	);
+}
+
 export default function SchemeSection2({ services }: SchemeSection2Props) {
 	const [openId, setOpenId] = useState<string | null>(null);
+	const cardHoverOpen = useCardHoverOpen();
+	/** ホバーで開ける環境ではタップ用の openId を表示に使わない（派生で無効化し、同期 setState は不要） */
+	const activeTapId = cardHoverOpen ? null : openId;
 
 	return (
 		<section
@@ -60,7 +79,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 						const stepLabel = String(activeIndex + 1).padStart(2, "0");
 						const ServiceIcon = SCHEME_SERVICE_ICON_BY_KEY[service.iconKey];
 						const imageSrc = SERVICE_CARD_IMAGE_BY_ID[service.id];
-						const isTouchOpen = openId === service.id;
+						const isTapOpen = activeTapId === service.id;
 						const isHashLink = service.href.startsWith("#");
 
 						return (
@@ -74,17 +93,19 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 									delay: activeIndex * 0.08,
 									ease: [0.22, 1, 0.36, 1],
 								}}
-								whileHover={{ scale: 1.03, zIndex: 10 }}
+								whileHover={
+									cardHoverOpen ? { scale: 1.03, zIndex: 10 } : undefined
+								}
 								className={cn(
 									"group/card relative isolate min-h-88 overflow-hidden rounded-2xl border border-gray-200/90 shadow-[0_20px_40px_-24px_rgba(15,23,42,0.35)] will-change-transform md:min-h-104",
 								)}
-								data-expanded={isTouchOpen ? "true" : undefined}
+								data-expanded={isTapOpen ? "true" : undefined}
 							>
-								{/* モバイル: 折りたたみ時にタップで詳細表示 */}
-								{!isTouchOpen && (
+								{/* ホバーで開けない環境: 折りたたみ時はタップで詳細表示 */}
+								{!cardHoverOpen && !isTapOpen && (
 									<button
 										type="button"
-										className="absolute inset-0 z-15 md:hidden"
+										className="absolute inset-0 z-15 cursor-pointer touch-manipulation"
 										aria-label={`${service.title.replace(/\n/g, " ")}の詳細を開く`}
 										onClick={() => setOpenId(service.id)}
 									/>
@@ -106,8 +127,9 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 								<div
 									className={cn(
 										"relative z-10 flex h-full min-h-88 flex-col p-5 transition-opacity duration-300 md:min-h-104 md:p-6",
-										"md:group-hover/card:pointer-events-none md:group-hover/card:opacity-0 md:group-focus-within/card:pointer-events-none md:group-focus-within/card:opacity-0",
-										isTouchOpen && "pointer-events-none opacity-0",
+										cardHoverOpen &&
+											"md:group-hover/card:pointer-events-none md:group-hover/card:opacity-0 md:group-focus-within/card:pointer-events-none md:group-focus-within/card:opacity-0",
+										isTapOpen && "pointer-events-none opacity-0",
 									)}
 								>
 									<div className="relative flex min-h-0 flex-1 flex-col px-2 py-6">
@@ -142,14 +164,15 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 									className={cn(
 										"absolute inset-0 z-20 flex flex-col p-5 opacity-0 transition-opacity duration-300 md:min-h-0 md:p-6",
 										"bg-[rgba(28,46,73,0.72)] backdrop-blur-md",
-										"md:pointer-events-none md:group-hover/card:pointer-events-auto md:group-hover/card:opacity-100 md:group-focus-within/card:pointer-events-auto md:group-focus-within/card:opacity-100",
-										isTouchOpen && "pointer-events-auto opacity-100",
+										cardHoverOpen &&
+											"md:pointer-events-none md:group-hover/card:pointer-events-auto md:group-hover/card:opacity-100 md:group-focus-within/card:pointer-events-auto md:group-focus-within/card:opacity-100",
+										!cardHoverOpen && isTapOpen && "pointer-events-auto opacity-100",
 									)}
 								>
-									{isTouchOpen && (
+									{!cardHoverOpen && isTapOpen && (
 										<button
 											type="button"
-											className="absolute top-3 right-3 z-30 flex size-9 items-center justify-center rounded-full border border-white/20 bg-black/30 text-white md:hidden"
+											className="absolute top-3 right-3 z-30 flex size-9 items-center justify-center rounded-full border border-white/20 bg-black/30 text-white"
 											aria-label="詳細を閉じる"
 											onClick={() => setOpenId(null)}
 										>
