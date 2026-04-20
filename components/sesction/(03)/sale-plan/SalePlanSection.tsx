@@ -2,8 +2,8 @@
 
 import SplitText, { sectionHeadingSplitTextProps } from "@/components/SplitText";
 import { AchievementCard } from "@/components/sesction/common/achievement-card/AchievementCard";
-import { SalePlanThreeSteps } from "@/components/sesction/sale-plan/SalePlanThreeSteps";
-import { SalePlanVideo } from "@/components/sesction/sale-plan/SalePlanVideo";
+import { SalePlanThreeSteps } from "@/components/sesction/(03)/sale-plan/SalePlanThreeSteps";
+import { SalePlanVideo } from "@/components/sesction/(03)/sale-plan/SalePlanVideo";
 import { salePlanAchievementCard, salePlanIntroVideo, salePlanThreeSteps } from "@/lib/data/salePlanSection";
 
 /**

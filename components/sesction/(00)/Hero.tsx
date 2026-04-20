@@ -238,7 +238,7 @@ export default function Hero() {
 			 * ヒットテストが不安定になりシングルクリックが取りこぼされることがある。
 			 * 矢印・インジケーターはそれぞれ独立した pointer-events-auto ラッパーにする。
 			 */}
-			<div className="absolute top-1/2 left-3 z-30 -translate-y-1/2 md:left-8">
+			<div className="absolute top-1/2 left-3 z-30 hidden -translate-y-1/2 md:left-8 md:block">
 				<Button
 					type="button"
 					variant="outline"
@@ -251,7 +251,7 @@ export default function Hero() {
 					<ChevronLeftIcon />
 				</Button>
 			</div>
-			<div className="absolute top-1/2 right-3 z-30 -translate-y-1/2 md:right-8">
+			<div className="absolute top-1/2 right-3 z-30 hidden -translate-y-1/2 md:right-8 md:block">
 				<Button
 					type="button"
 					variant="outline"

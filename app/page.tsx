@@ -1,13 +1,13 @@
-import ComparisonSection from "@/components/sesction/comparison";
-import CtaSection from "@/components/sesction/CtaSection";
-import FaqSection from "@/components/sesction/FaqSection";
-import FlowSection from "@/components/sesction/flow";
-import Hero from "@/components/sesction/Hero";
-import { SchemeSection2 } from "@/components/sesction/scheme";
-import { RebornPointSection } from "@/components/sesction/reborn";
-import { SalePlanSection } from "@/components/sesction/sale-plan";
-import { comparisonRows } from "@/lib/data/comparisonSection";
+import Hero from "@/components/sesction/(00)/Hero";
+import { SchemeSection2 } from "@/components/sesction/(01)/scheme";
 import { schemeServices } from "@/lib/data/schemeSection";
+import { RebornPointSection } from "@/components/sesction/(02)/reborn";
+import { SalePlanSection } from "@/components/sesction/(03)/sale-plan";
+import ComparisonSection from "@/components/sesction/(04)/comparison";
+import { comparisonRows } from "@/lib/data/comparisonSection";
+import FlowSection from "@/components/sesction/(05)/flow";
+import FaqSection from "@/components/sesction/(06)/FaqSection";
+import CtaSection from "@/components/sesction/(07)/CtaSection";
 
 export default function Home() {
 	return (
