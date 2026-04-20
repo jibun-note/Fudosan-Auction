@@ -105,7 +105,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 								{!cardHoverOpen && !isTapOpen && (
 									<button
 										type="button"
-										className="absolute inset-0 z-15 cursor-pointer touch-manipulation"
+										className="absolute inset-0 z-25 cursor-pointer touch-manipulation"
 										aria-label={`${service.title.replace(/\n/g, " ")}の詳細を開く`}
 										onClick={() => setOpenId(service.id)}
 									/>
@@ -166,6 +166,8 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 										"bg-[rgba(28,46,73,0.72)] backdrop-blur-md",
 										cardHoverOpen &&
 											"md:pointer-events-none md:group-hover/card:pointer-events-auto md:group-hover/card:opacity-100 md:group-focus-within/card:pointer-events-auto md:group-focus-within/card:opacity-100",
+										/* タップモードで閉じている間も z-20 で全面に乗るため、透明でもクリックを奪わない */
+										!cardHoverOpen && !isTapOpen && "pointer-events-none",
 										!cardHoverOpen && isTapOpen && "pointer-events-auto opacity-100",
 									)}
 								>
