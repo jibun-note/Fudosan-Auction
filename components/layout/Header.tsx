@@ -50,7 +50,7 @@ export default function Header() {
 							<Link
 								key={item.href}
 								href={item.href}
-								className="text-sm text-navy transition hover:text-navy-dark"
+								className="relative inline-block pb-1.5 text-sm text-navy transition-colors duration-200 hover:text-navy-dark after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-left after:scale-x-0 after:bg-linear-to-r after:from-gold-light after:via-gold after:to-gold-light after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white focus-visible:after:scale-x-100 motion-reduce:after:transition-none motion-reduce:hover:after:scale-x-100"
 							>
 								{item.label}
 							</Link>
