@@ -1,3 +1,6 @@
+"use client";
+
+import SplitText, { sectionHeadingSplitTextProps } from "@/components/SplitText";
 import { HiOutlineCalculator, HiOutlineChartBarSquare, HiOutlineLightBulb } from "react-icons/hi2";
 import type { SalePlanThreeSteps, SalePlanThreeStepsIconKey } from "@/lib/data/salePlanSection";
 
@@ -16,9 +19,13 @@ export type SalePlanThreeStepsProps = {
 export function SalePlanThreeSteps({ steps }: SalePlanThreeStepsProps) {
 	return (
 		<div className="mt-14 md:mt-20">
-			<h3 className="text-center text-base font-bold text-navy md:text-2xl">
-				不動産売却計画書の3つのステップ
-			</h3>
+			<SplitText
+				tag="h3"
+				text="不動産売却計画書の3つのステップ"
+				className="text-center text-base font-bold text-navy md:text-2xl"
+				textAlign="center"
+				{...sectionHeadingSplitTextProps}
+			/>
 			<div className="mt-8 grid gap-6 md:mt-10 md:grid-cols-3 md:gap-8">
 				{steps.map(({ iconKey, step, title, subtitle, description }) => {
 					const Icon = salePlanThreeStepsIcons[iconKey];

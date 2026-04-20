@@ -6,6 +6,17 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger, GSAPSplitText, useGSAP);
 
+/** LP のセクション見出し（スクロールイン）向けの既定値 — Hero の `playOnMount` は使わない */
+export const sectionHeadingSplitTextProps = {
+  delay: 40,
+  duration: 1,
+  splitType: 'chars' as const,
+  from: { opacity: 0, y: 24 },
+  to: { opacity: 1, y: 0 },
+  threshold: 0.15,
+  rootMargin: '-80px',
+};
+
 export interface SplitTextProps {
   text: string;
   className?: string;

@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 
 import { GoldButton } from "@/components/common/button/GoldButton";
+import SplitText, { sectionHeadingSplitTextProps } from "@/components/SplitText";
 
 const heroImg = "/images/AdobeStock_1829773049_Preview.jpeg";
 
@@ -37,9 +40,15 @@ export function RebornNavi() {
 							</span>
 						</div>
 
-						<h2 className="font-serif text-3xl font-light tracking-tight text-navy md:text-4xl lg:text-5xl">
-							re-born
-							<span className="ml-2 text-xs text-muted-foreground md:text-sm">（個人版）</span>
+						<h2 className="flex flex-wrap items-baseline gap-x-2 font-serif text-3xl font-light tracking-tight text-navy md:text-4xl lg:text-5xl">
+							<SplitText
+								tag="span"
+								text="re-born"
+								className="font-serif text-3xl font-light tracking-tight text-navy md:text-4xl lg:text-5xl"
+								textAlign="left"
+								{...sectionHeadingSplitTextProps}
+							/>
+							<span className="text-xs text-muted-foreground md:text-sm">（個人版）</span>
 						</h2>
 
 						<div className="mt-2 h-1 w-16 bg-gold" aria-hidden />

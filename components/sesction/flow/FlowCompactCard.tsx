@@ -41,12 +41,10 @@ export default function FlowCompactCard({ stepIndex }: FlowCompactCardProps) {
 						{String(stepNo).padStart(2, "0")}
 					</span>
 				</div>
-				<h3 className="min-w-0 flex-1 text-sm font-bold leading-snug text-navy md:text-base">{step.title}</h3>
-				<span
-					className="absolute right-0 top-0 inline-flex"
-					style={{ color: FLOW_GOLD }}
-					aria-hidden
-				>
+				<h3 className="min-w-0 flex-1 text-sm font-bold leading-snug text-navy md:text-base">
+					{step.title}
+				</h3>
+				<span className="absolute right-0 top-0 inline-flex" style={{ color: FLOW_GOLD }} aria-hidden>
 					<Icon className="size-7 md:size-8" strokeWidth={0.9} />
 				</span>
 			</div>
