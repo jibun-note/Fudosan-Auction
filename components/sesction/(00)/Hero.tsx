@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 /** ヒーロー・メインビジュアルでよく使われる表示間隔（秒） */
-const SLIDE_INTERVAL_MS = 8000;
+const SLIDE_INTERVAL_MS = 6000;
 
 const HERO_SLIDES = [
 	{
