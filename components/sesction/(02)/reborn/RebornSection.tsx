@@ -10,6 +10,7 @@ import RebornScheme from "./RebornScheme";
 import { RebornGuarantee } from "./RebornGuarantee";
 import { rebornGuarantee } from "@/lib/data/rebornPointSection";
 import RebornAchievement from "./RebornAchievement";
+import { SectionClosedAccent } from "@/components/common/SectionClosedAccent";
 
 export default function ReborntSection() {
 	const [detailsOpen, setDetailsOpen] = useState(false);
@@ -30,9 +31,16 @@ export default function ReborntSection() {
 	}, []);
 
 	return (
-		<section id="rebornSection" className="bg-[#f8f9fa] px-4 py-12 md:px-6 md:py-20">
+		<section
+			id="rebornSection"
+			className={cn(
+				"bg-[#f8f9fa] px-4 pt-10 md:px-6 md:pt-16",
+				detailsOpen ? "pb-12 md:pb-20" : "pb-1 md:pb-2",
+			)}
+		>
 			<div className="mx-auto flex max-w-7xl flex-col gap-12 md:gap-16">
 				<RebornNavi detailsOpen={detailsOpen} onDetailsClick={handleDetailsClick} />
+				<SectionClosedAccent open={detailsOpen} />
 				<div
 					id="reborn-details"
 					className={cn(
