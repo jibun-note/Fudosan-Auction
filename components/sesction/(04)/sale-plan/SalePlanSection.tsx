@@ -14,6 +14,7 @@ import Comparison from "./Comparison";
 import { comparisonRows } from "@/lib/data/comparisonSection";
 import SalePlanFlow from "./SalePlanFlow";
 import SalePlanFAQ from "./SalePlanFAQ";
+import { SectionClosedAccent } from "@/components/common/SectionClosedAccent";
 
 export default function SalePlanSection() {
 	const [detailsOpen, setDetailsOpen] = useState(false);
@@ -33,9 +34,16 @@ export default function SalePlanSection() {
 	}, []);
 
 	return (
-		<section id="salePlanSection" className="bg-[#f8f9fa] px-4 py-12 md:px-6 md:py-20">
+		<section
+			id="salePlanSection"
+			className={cn(
+				"bg-[#f8f9fa] px-4 pt-10 md:px-6 md:pt-16",
+				detailsOpen ? "pb-12 md:pb-20" : "pb-1 md:pb-2",
+			)}
+		>
 			<div className="mx-auto flex max-w-7xl flex-col gap-12 md:gap-16">
 				<SalePlanNavi detailsOpen={detailsOpen} onDetailsClick={handleDetailsClick} />
+				<SectionClosedAccent open={detailsOpen} />
 				<div
 					id="salePlan-details"
 					className={cn(
