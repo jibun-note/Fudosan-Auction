@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import { HiOutlineBars3, HiOutlineXMark } from "react-icons/hi2";
 
 const navItems = [
-	{ label: "サービス", href: "#scheme-cards" },
-	{ label: "re-born", href: "#reborn" },
-	{ label: "business re-born", href: "#businessReborn" },
-	{ label: "不動産売却計画書＋オークション", href: "#salePlan" },
+	{ label: "サービス", href: "/#scheme-cards" },
+	{ label: "re-born", href: "/#reborn" },
+	{ label: "business re-born", href: "/#businessReborn" },
+	{ label: "不動産売却計画書＋オークション", href: "/#salePlan" },
 ];
 
 export default function Header() {
