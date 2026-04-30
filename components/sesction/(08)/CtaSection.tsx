@@ -16,7 +16,7 @@ export default function CtaSection() {
 					textAlign="center"
 					{...sectionHeadingSplitTextProps}
 				/>
-				<p className="mt-3 text-sm leading-relaxed text-white/80 md:mt-4 md:text-base">
+				<p className="mt-3 text-sm leading-relaxed text-white/90 md:mt-4 md:text-lg">
 					オンラインでのご説明も随時対応しております。最短で即日のお打ち合わせも可能です。
 				</p>
 				{/* 主要CTAリンク */}

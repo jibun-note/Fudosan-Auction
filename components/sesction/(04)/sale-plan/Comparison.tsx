@@ -5,22 +5,21 @@ import type { ComparisonRow } from "@/lib/data/comparisonSection";
 
 import ComparisonTable from "./ComparisonTable";
 
-export type ComparisonSectionProps = {
+export type ComparisonProps = {
 	rows: ComparisonRow[];
 };
 
-export default function ComparisonSection({ rows }: ComparisonSectionProps) {
+export default function Comparison({ rows }: ComparisonProps) {
 	return (
-		<section id="comparison" className="bg-white px-4 py-12 md:px-6 md:py-20">
+		<section id="comparison" className="bg-[#f8f9fa]">
 			<div className="mx-auto max-w-6xl">
 				<SplitText
 					tag="h2"
 					text="仲介/買取/オークションの違いが一目で"
 					className="text-lg font-bold text-navy md:text-3xl"
-					textAlign="left"
+					textAlign="center"
 					{...sectionHeadingSplitTextProps}
 				/>
-				<div className="mt-2 h-1 w-16 bg-gold" />
 
 				<ComparisonTable rows={rows} />
 

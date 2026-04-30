@@ -69,7 +69,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 						{...sectionHeadingSplitTextProps}
 					/>
 					<div className="mt-2 h-1 w-16 bg-gold" />
-					<p className="mt-3 mb-10 text-sm text-gray-600 md:mt-4 md:mb-14 md:text-base">
+					<p className="mt-3 mb-10 text-sm text-gray-600 md:mt-4 md:mb-14 md:text-lg">
 						顧問先への付加価値提案が、先生ご自身の信頼とビジネスを強化します。
 					</p>
 				</div>
@@ -118,7 +118,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 										sizes="(max-width: 768px) 100vw, 33vw"
 										priority={activeIndex === 0}
 									/>
-									<div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/35 to-black/20" />
+									<div className="absolute inset-0 bg-linear-to-t from-black/30 via-black/14 to-black/8" />
 								</div>
 
 								{/* 非ホバー: step / アイコン / タイトルのみ */}
@@ -141,13 +141,13 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 										</div>
 										<div className="flex min-h-0 flex-1 flex-col items-center justify-center text-center">
 											{service.label ? (
-												<p className="whitespace-pre-line text-sm font-bold leading-snug text-white drop-shadow-md md:text-md">
+												<p className="whitespace-pre-line text-sm font-bold leading-snug text-gray-200 drop-shadow-[0_1px_4px_rgba(0,0,0,0.96)] md:text-xl">
 													{service.label}
 												</p>
 											) : null}
 											<h3
 												className={cn(
-													"whitespace-pre-line text-xl font-bold leading-snug text-white drop-shadow-md md:text-2xl",
+													"whitespace-pre-line text-xl font-bold leading-snug text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.65)] md:text-3xl",
 													service.label ? "mt-1" : "",
 												)}
 											>
@@ -187,7 +187,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 												aria-hidden
 											/>
 										</div>
-										<h3 className="min-w-0 w-full whitespace-pre-line text-sm font-bold leading-snug text-white md:text-base">
+										<h3 className="min-w-0 w-full whitespace-pre-line text-sm font-bold leading-snug text-white md:text-lg">
 											{service.title}
 										</h3>
 									</div>
@@ -198,7 +198,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 												{service.details.map((line, i) => (
 													<li
 														key={`${service.id}-d-${i}`}
-														className="flex gap-3 text-xs leading-snug text-white/95"
+														className="flex gap-3 text-xs leading-snug text-white/95 md:text-base"
 													>
 														<span
 															className="mt-1.5 size-1.5 shrink-0 rounded-full bg-gold"
@@ -209,7 +209,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 												))}
 											</ul>
 										</div>
-										<p className="mt-3 text-xs text-center font-semibold leading-snug text-gold md:text-sm">
+										<p className="mt-3 text-xs text-center font-semibold leading-snug text-gold md:text-base">
 											{service.subtitle}
 										</p>
 									</div>

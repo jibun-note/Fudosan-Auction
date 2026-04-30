@@ -130,7 +130,8 @@ export default function Hero() {
 
 	return (
 		<section
-			className="relative flex w-full min-h-[calc(85dvh-5rem)] flex-col items-stretch justify-center overflow-hidden bg-navy text-white"
+			id="hero"
+			className="scroll-mt-20 relative flex w-full min-h-[calc(85dvh-5rem)] flex-col items-stretch justify-center overflow-hidden bg-navy text-white"
 			onTouchStart={handleTouchStart}
 			onTouchEnd={handleTouchEnd}
 		>
@@ -160,7 +161,7 @@ export default function Hero() {
 					))}
 				</div>
 			</div>
-			<div className="pointer-events-none absolute inset-0 z-1 bg-linear-to-b from-navy/35 via-navy/20 to-navy-dark/40" />
+			<div className="pointer-events-none absolute inset-0 z-1 bg-linear-to-t from-black/22 via-black/10 to-black/5" />
 			<div className="pointer-events-auto relative z-10 w-full max-w-7xl px-4 py-6 text-left md:px-24 md:py-16">
 				<div className="min-w-0 w-full max-w-4xl text-left" aria-live="polite">
 					{/* key を index に連動させ、スライド切替ごとに SplitText を再マウントして再生する */}
@@ -170,7 +171,7 @@ export default function Hero() {
 								key={`hero-title-${activeIndex}`}
 								tag="h1"
 								text={HERO_SLIDES[activeIndex].copy.title}
-								className="text-left text-xl font-bold leading-snug tracking-tight md:text-4xl md:leading-tight"
+								className="text-left text-xl text-gray-100 font-bold leading-snug tracking-tight drop-shadow-[0_2px_14px_rgba(0,0,0,0.65)] md:text-5xl md:leading-tight"
 								textAlign="left"
 								{...heroSplitTextProps}
 							/>
@@ -178,7 +179,7 @@ export default function Hero() {
 								key={`hero-subtitle-${activeIndex}`}
 								tag="h2"
 								text={HERO_SLIDES[activeIndex].copy.subtitle}
-								className="mt-3 text-left text-base font-bold text-white/90 md:mt-4 md:text-2xl"
+								className="mt-3 text-left text-lg font-bold text-gray-100/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.96)] md:mt-4 md:text-2xl"
 								textAlign="left"
 								{...heroSplitTextProps}
 							/>
@@ -189,7 +190,7 @@ export default function Hero() {
 								key={`hero-line0-${activeIndex}`}
 								tag="h2"
 								text={HERO_SLIDES[activeIndex].copy.lines[0]}
-								className="text-left text-base font-bold text-white/90 md:text-2xl"
+								className="text-left text-xl text-gray-100 font-bold drop-shadow-[0_2px_14px_rgba(0,0,0,0.65)] md:text-3xl"
 								textAlign="left"
 								{...heroSplitTextProps}
 							/>
@@ -197,7 +198,7 @@ export default function Hero() {
 								key={`hero-line1-${activeIndex}`}
 								tag="h2"
 								text={HERO_SLIDES[activeIndex].copy.lines[1]}
-								className="text-left text-base font-bold text-white/90 md:text-2xl"
+								className="text-left text-xl font-bold drop-shadow-[0_2px_14px_rgba(0,0,0,0.65)] md:text-3xl"
 								textAlign="left"
 								{...heroSplitTextProps}
 							/>
@@ -207,7 +208,7 @@ export default function Hero() {
 							key={`hero-single-${activeIndex}`}
 							tag="h2"
 							text={HERO_SLIDES[activeIndex].copy.text}
-							className="text-left text-base font-bold text-white/90 md:text-2xl"
+							className="text-left text-xl font-bold drop-shadow-[0_2px_14px_rgba(0,0,0,0.65)] md:text-3xl"
 							textAlign="left"
 							{...heroSplitTextProps}
 						/>

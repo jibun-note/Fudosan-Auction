@@ -136,3 +136,111 @@ export const rebornRentUpAchievementCard: AchievementCardData = {
 	footer: "物件利回りの上昇により、物件売却価格は上昇！",
 	currencyUnit: "円",
 };
+
+export const rebornIntroVideo = {
+	embedUrl: "https://www.youtube.com/embed/rkfF8KZLkG8?si=OA-jVj45N1JiLbgv",
+	title: "【3分で分かる】資産を「守る」「増やす」「最大化する」re-born不動産とは？【富裕層の資産形成の決定版】",
+} as const;
+
+export type RebornGuarantee = {
+	description: string;
+};
+
+/** リスクを軽減する100%保証ないの４つの内容 */
+export const rebornGuarantee: RebornGuarantee[] = [
+	{
+		description: "5年後売却時100％差額保証",
+	},
+	{
+		description: "短期節税（４年）",
+	},
+	{
+		description: "サブリースによる安定収入",
+	},
+	{
+		description: "設備＆原状回復費用（無料）",
+	},
+];
+
+/** 納税額比較（`RebornAchievement`）— 図表の文言・数値 */
+export type RebornTaxScenarioRow = {
+	label: string;
+	value: string;
+	/** 納税額など赤字強調 */
+	valueEmphasis?: boolean;
+};
+
+export type RebornTaxScenarioBlock = {
+	title: string;
+	/** ヘッダー直下の補足（例：物件価格） */
+	subTitle?: string;
+	rows: RebornTaxScenarioRow[];
+	/** 左：何もしなかった＝灰系／右：購入時＝マゼンタ系 */
+	variant: "neutral" | "purchase";
+};
+
+export type RebornTaxAchievementSummary = {
+	formulaLeft: string;
+	formulaRight: string;
+	/** 差額の数値部分のみ（太字赤） */
+	diffAmount: string;
+	diffSuffix: string;
+	/** 「4」年間…の年数 */
+	yearsHighlight: string;
+	/** 年数の直後に続く文言 */
+	savedMiddle: string;
+	/** 合計の数値 */
+	savedAmount: string;
+	savedUnit: string;
+};
+
+export type RebornTaxAchievementData = {
+	/** カード天部タイトル（未使用なら省略） */
+	title?: string;
+	/** 中央の丸＋矢印直下（`AchievementCard` の arrowLabel と同役割） */
+	arrowLabel?: string;
+	intro: string;
+	scenarioNothing: RebornTaxScenarioBlock;
+	scenarioPurchase: RebornTaxScenarioBlock;
+	summary: RebornTaxAchievementSummary;
+	disclaimer: string;
+};
+
+export const rebornTaxAchievement: RebornTaxAchievementData = {
+	arrowLabel: "納税比較",
+	intro: "「何もしなかった場合」と「b'CASA re-bornを購入した場合」では納税額に大きな差が生まれます。",
+	scenarioNothing: {
+		variant: "neutral",
+		title: "何もしなかった場合",
+		rows: [
+			{
+				label: "課税所得(年収3,000万円) (所得税・住民税税率50%)",
+				value: "2,700万円",
+			},
+			{ label: "納税額／年間", value: "1,090万円", valueEmphasis: true },
+		],
+	},
+	scenarioPurchase: {
+		variant: "purchase",
+		title: "b'CASA re-bornを購入した場合",
+		subTitle: "（物件価格：6,000万円）",
+		rows: [
+			{
+				label: "課税所得(損益通算後) (所得税・住民税税率50%)",
+				value: "2,270万円",
+			},
+			{ label: "納税額／年間", value: "526万円", valueEmphasis: true },
+		],
+	},
+	summary: {
+		formulaLeft: "1,090万円",
+		formulaRight: "526万円",
+		diffAmount: "564",
+		diffSuffix: "万円／年",
+		yearsHighlight: "4",
+		savedMiddle: "年間で得した納税金額は 合計",
+		savedAmount: "2,256",
+		savedUnit: "万円",
+	},
+	disclaimer: "売却時は、別途、長期譲渡税688万円を支払います。",
+};
