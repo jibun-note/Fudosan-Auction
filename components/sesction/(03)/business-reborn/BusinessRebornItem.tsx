@@ -13,7 +13,6 @@ const ITEMS: string[] = [
 	"少額減価償却資産や不良資産の処分",
 	"各種税額控除制度の利用",
 	"中古資産の購入による短期償却の利用",
-	"etc",
 ];
 
 const CHART_IMAGE = "/images/スクリーンショット 2026-04-27 155056.png";
@@ -59,6 +58,9 @@ export default function BusinessRebornItem({ className }: BusinessRebornItemProp
 								</li>
 							))}
 						</ul>
+						<p className="mt-3 pl-3.5 text-left text-sm leading-relaxed text-slate-700 md:pl-4 md:text-base">
+							etc
+						</p>
 						<div className="mt-6 border-t border-slate-200/80 pt-4 text-[11px] leading-relaxed text-slate-600 md:text-xs">
 							<p>
 								<span className="font-semibold text-navy">※1</span>
