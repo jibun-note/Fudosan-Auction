@@ -5,7 +5,7 @@
 import { flowStepsData } from "@/lib/data/flowSection";
 import { cn } from "@/lib/utils";
 
-import { CARD_BG, FLOW_GOLD } from "./flowConstants";
+import { CARD_BG, FLOW_GOLD } from "../../(06)/flow/flowConstants";
 
 export type FlowCompactCardProps = {
 	stepIndex: number;
@@ -45,12 +45,12 @@ export default function FlowCompactCard({ stepIndex, fluidRow }: FlowCompactCard
 						{String(stepNo).padStart(2, "0")}
 					</span>
 				</div>
-				<h3 className="min-w-0 flex-1 break-words text-xs font-bold leading-snug text-navy md:text-sm">
+				<h3 className="min-w-0 flex-1 break-words text-xs font-bold leading-snug text-navy md:text-base">
 					{step.title}
 				</h3>
 			</div>
 			<div className="flex min-h-0 flex-1 flex-col items-center justify-center px-0.5 pt-1.5 md:pt-2">
-				<p className="break-words text-[11px] font-light leading-relaxed tracking-wide text-neutral-600 md:text-xs">
+				<p className="break-words text-[11px] font-light leading-relaxed tracking-wide text-neutral-600 md:text-base">
 					{step.description}
 				</p>
 			</div>

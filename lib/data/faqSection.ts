@@ -1,11 +1,11 @@
 /** `@/components/sesction/FaqSection` 用（サーバー・クライアント双方からインポート可） */
 
-export type FaqItem = {
+export type SalePlanFAQItem = {
 	question: string;
 	answer: string;
 };
 
-export const faqItems: FaqItem[] = [
+export const salePlanFAQItems: SalePlanFAQItem[] = [
 	{
 		question: "一般仲介との一番の違いは何ですか？",
 		answer: "価格決定プロセス、透明性、買い手の競争性が一般仲介とは大きく異なります。一般仲介が1対1の交渉であるのに対し、オークションは多数の購入希望者が競争することで価格が吊り上がる効果を狙います。また、プロセスが可視化されるため、売主の納得感も高くなります。",

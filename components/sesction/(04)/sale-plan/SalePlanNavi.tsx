@@ -7,18 +7,18 @@ import { GoldButton } from "@/components/common/button/GoldButton";
 import SplitText, { sectionHeadingSplitTextProps } from "@/components/SplitText";
 import { cn } from "@/lib/utils";
 
-const heroImg = "/images/AdobeStock_1829773049_Preview.jpeg";
+const heroImg = "/images/AdobeStock_1589598207_Preview.jpeg";
 
-type RebornNaviProps = {
+type SalePlanNaviProps = {
 	detailsOpen?: boolean;
 	onDetailsClick?: () => void;
 };
 
-export function RebornNavi({ detailsOpen = false, onDetailsClick }: RebornNaviProps = {}) {
+export function SalePlanNavi({ detailsOpen = false, onDetailsClick }: SalePlanNaviProps = {}) {
 	return (
 		<section
-			id="reborn"
-			aria-label="b'CASA re-born"
+			id="salePlan"
+			aria-label="sale plan navi"
 			className="scroll-mt-10 relative w-full overflow-hidden bg-white"
 		>
 			<div className="grid grid-cols-1 items-stretch lg:grid-cols-12">
@@ -27,7 +27,7 @@ export function RebornNavi({ detailsOpen = false, onDetailsClick }: RebornNaviPr
 					<div className="absolute inset-0">
 						<Image
 							src={heroImg}
-							alt="法人向け節税・不動産投資のイメージ"
+							alt="クライアントの資産売却計画書＋オークション"
 							fill
 							className="object-cover object-center"
 							sizes="(max-width: 1024px) 100vw, 42vw"
@@ -56,40 +56,34 @@ export function RebornNavi({ detailsOpen = false, onDetailsClick }: RebornNaviPr
 									SERVICE
 								</span>
 								<p className="m-0 text-[2rem] font-bold leading-none tabular-nums text-gold/35 md:text-[4.5rem] md:text-gold/25">
-									01
+									03
 								</p>
 							</div>
-							<hgroup className="relative z-10 mt-8 md:mt-10">
-								<p className="m-0 font-serif text-sm tracking-[0.2em] text-muted-foreground">
-									b&apos;CASA
-								</p>
-								<h2 className=" flex flex-wrap items-baseline gap-x-1 font-serif text-3xl font-light tracking-tight text-navy md:text-4xl lg:text-5xl">
-									<SplitText
-										tag="span"
-										text="re-born"
-										className="font-serif text-3xl font-light tracking-tight text-navy md:text-4xl lg:text-5xl"
-										textAlign="left"
-										{...sectionHeadingSplitTextProps}
-									/>
-									<span className="text-xs text-muted-foreground md:text-sm">
-										（個人版）
-									</span>
-								</h2>
-							</hgroup>
+							<h2 className="relative z-10 mt-8 flex flex-wrap items-baseline gap-x-2 font-serif text-3xl font-light tracking-tight text-navy md:mt-10 md:text-4xl lg:text-5xl">
+								<SplitText
+									tag="span"
+									text="資産売却計画書＋オークション"
+									className="font-serif text-2xl font-light tracking-tight text-navy md:text-3xl lg:text-3xl"
+									textAlign="left"
+									{...sectionHeadingSplitTextProps}
+								/>
+							</h2>
 						</div>
 
 						<div className="mt-2 h-1 w-16 bg-gold" aria-hidden />
 
 						<p className="mt-4 text-base font-semibold text-navy md:text-xl lg:whitespace-nowrap">
-							築古アパートを活用した短期減価償却事業
+							不動産の価値を最大化し、オークションでさらに高く
 						</p>
 
 						<p className="mt-3 w-full text-sm leading-relaxed text-muted-foreground md:text-lg">
-							築古アパートの短期減価償却を活用した、[節税+家賃収入]投資商品
+							不動産の最大価値を様々な角度から分析し、近隣相場だけで算出する
 							<br className="hidden sm:block" />
-							業界初の売却時差額保証により売却時には購入価格の100%を保証。
+							単なる査定書とは異なる「売却計画書」を無料作成します。さらに、
 							<br className="hidden sm:block" />
-							リスクを限りなく抑えた投資商品をご提案します。
+							不動産オークションで売却希望のお客様と購入希望の企業をマッチング。
+							<br className="hidden sm:block" />
+							今までにない専門的なアプローチで高値売却を実現させましょう。
 						</p>
 
 						<div className="mt-6">
@@ -97,7 +91,7 @@ export function RebornNavi({ detailsOpen = false, onDetailsClick }: RebornNaviPr
 								type="button"
 								onClick={onDetailsClick}
 								aria-expanded={detailsOpen}
-								aria-controls="reborn-details"
+								aria-controls="salePlan-details"
 								className="group w-fit justify-start"
 							>
 								{detailsOpen ? "閉じる" : "詳細を見る"}

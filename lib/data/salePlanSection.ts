@@ -3,7 +3,7 @@
 import type { AchievementCardData } from "@/components/sesction/common/achievement-card/achievement-card-type";
 
 export const salePlanIntroVideo = {
-	embedUrl: "https://www.youtube-nocookie.com/embed/MlIg1--4If8?rel=0",
+	embedUrl: "https://www.youtube.com/embed/MlIg1--4If8?si=4NhSq4wHz8F7TPa3",
 	title: "3分で分かる！「不動産売却計画書」のヒミツ",
 } as const;
 
@@ -24,7 +24,7 @@ export const salePlanThreeSteps: SalePlanThreeSteps[] = [
 		iconKey: "chartBarSquare",
 		step: "01",
 		title: "物件分析",
-		subtitle: "豊富な資料を元にあらゆる角度から徹底分析",
+		subtitle: "豊富な資料を元に\nあらゆる角度から徹底分析",
 		description:
 			"近隣地盤の調査結果から近隣の不動産価格、家賃、アクセスや生活施設、土地の利用履歴や浸水の可能性に至るまで、売却価格変動の大きな要因となるデータを元に多角的分析を行います。",
 	},
@@ -48,7 +48,6 @@ export const salePlanThreeSteps: SalePlanThreeSteps[] = [
 
 /** 売却価格アップ事例 — `AchievementCard` に渡すデータ */
 export const salePlanAchievementCard: AchievementCardData = {
-	title: "不動産売却計画書で売却価格が大幅アップ！",
 	oldRentLabel: "古家つきの土地",
 	oldRentAmount: "3,000",
 	oldCaption: "一般査定額",
@@ -61,3 +60,27 @@ export const salePlanAchievementCard: AchievementCardData = {
 	footer: "",
 	currencyUnit: "万円",
 };
+
+export type SalePlanFAQItem = {
+	question: string;
+	answer: string;
+};
+
+export const salePlanFAQItems: SalePlanFAQItem[] = [
+	{
+		question: "一般仲介との一番の違いは何ですか？",
+		answer: "価格決定プロセス、透明性、買い手の競争性が一般仲介とは大きく異なります。一般仲介が1対1の交渉であるのに対し、オークションは多数の購入希望者が競争することで価格が吊り上がる効果を狙います。また、プロセスが可視化されるため、売主の納得感も高くなります。",
+	},
+	{
+		question: "もし売れなかった場合はどうなりますか？",
+		answer: "最低落札価格に達しない場合は不成立となり、再度オークションの設定を見直すか、他の売却方法を検討することが可能です。詳細はご相談ください。",
+	},
+	{
+		question: "手数料・コストについて教えてください。",
+		answer: "手数料体系は物件や条件により異なります。資料請求またはお問い合わせいただければ、個別にご説明いたします。",
+	},
+	{
+		question: "顧問税理士として、どこまで関与できますか？",
+		answer: "紹介スキームに基づき、顧問先様への説明同席や税務シミュレーションのご提案まで、役割に応じて関与いただけます。成果の共有方法・守秘義務・利益相反については個別資料でご説明します。",
+	},
+];

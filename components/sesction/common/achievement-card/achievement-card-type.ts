@@ -1,5 +1,5 @@
 export type AchievementCardData = {
-	title: string;
+	title?: string;
 	oldRentLabel: string;
 	oldRentAmount: string;
 	/** 左カード：金額直下の補足（任意） */

@@ -1,19 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import Autoplay from "embla-carousel-autoplay";
-import Fade from "embla-carousel-fade";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { GoldButton } from "@/components/common/button/GoldButton";
 import SplitText from "@/components/SplitText";
 import { Button } from "@/components/ui/button";
-import { type CarouselApi, Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
 /** ヒーロー・メインビジュアルでよく使われる表示間隔（秒） */
 const SLIDE_INTERVAL_MS = 6000;
+/** モバイルの縦スクロールを邪魔しにくい最小スワイプ量 */
+const SWIPE_THRESHOLD_PX = 48;
 
 const HERO_SLIDES = [
 	{
@@ -72,118 +71,107 @@ const heroSplitTextProps = {
 };
 
 export default function Hero() {
-	const [carouselApi, setCarouselApi] = useState<CarouselApi>();
 	const [activeIndex, setActiveIndex] = useState(0);
+	const totalSlides = HERO_SLIDES.length;
+	const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
-	const plugins = useMemo(
-		() => [
-			Fade(),
-			Autoplay({
-				delay: SLIDE_INTERVAL_MS,
-				stopOnInteraction: false,
-				stopOnMouseEnter: true,
-			}),
-		],
-		[],
-	);
-
-	/**
-	 * embla-carousel-fade はフェードが opacity 制御のため、"select" / "settle" イベントの
-	 * 発火タイミングが実際の画像切替より遅れ、テキスト/インジケーターが連動しない。
-	 * 対策として、毎フレーム `selectedScrollSnap()` を読み、変化があれば即 state を更新する。
-	 * 比較は軽量で、変化時のみ setState されるため再レンダリングコストは発生しない。
-	 */
+	/** activeIndex が変わるたびに次の 6 秒待機を張り直し、自動再生を単純化する */
 	useEffect(() => {
-		if (!carouselApi) return;
-		let rafId = 0;
-		let lastIndex = carouselApi.selectedScrollSnap();
-		setActiveIndex(lastIndex);
-		const tick = () => {
-			const current = carouselApi.selectedScrollSnap();
-			if (current !== lastIndex) {
-				lastIndex = current;
-				setActiveIndex(current);
-			}
-			rafId = window.requestAnimationFrame(tick);
-		};
-		rafId = window.requestAnimationFrame(tick);
-		const handleReInit = () => {
-			lastIndex = carouselApi.selectedScrollSnap();
-			setActiveIndex(lastIndex);
-		};
-		carouselApi.on("reInit", handleReInit);
-		return () => {
-			window.cancelAnimationFrame(rafId);
-			carouselApi.off("reInit", handleReInit);
-		};
-	}, [carouselApi]);
+		const timerId = window.setTimeout(() => {
+			setActiveIndex((current) => (current + 1) % totalSlides);
+		}, SLIDE_INTERVAL_MS);
 
-	/**
-	 * クリック操作では Embla のイベントを待たず React state を先に更新する。
-	 * これにより、画像フェードの開始と同じタイミングで SplitText / インジケーターが切り替わる。
-	 */
-	const goToSlide = useCallback(
-		(index: number) => {
-			setActiveIndex(index);
-			carouselApi?.scrollTo(index);
-		},
-		[carouselApi],
-	);
+		return () => {
+			window.clearTimeout(timerId);
+		};
+	}, [activeIndex, totalSlides]);
+
+	const goToSlide = useCallback((index: number) => {
+		setActiveIndex(index);
+	}, []);
 
 	const goToPrev = useCallback(() => {
-		if (!carouselApi) return;
-		const total = HERO_SLIDES.length;
-		const prev = (carouselApi.selectedScrollSnap() - 1 + total) % total;
-		setActiveIndex(prev);
-		carouselApi.scrollPrev();
-	}, [carouselApi]);
+		setActiveIndex((current) => (current - 1 + totalSlides) % totalSlides);
+	}, [totalSlides]);
 
 	const goToNext = useCallback(() => {
-		if (!carouselApi) return;
-		const total = HERO_SLIDES.length;
-		const next = (carouselApi.selectedScrollSnap() + 1) % total;
-		setActiveIndex(next);
-		carouselApi.scrollNext();
-	}, [carouselApi]);
+		setActiveIndex((current) => (current + 1) % totalSlides);
+	}, [totalSlides]);
+
+	/** タッチ開始位置だけを保持し、移動中は何もしない */
+	const handleTouchStart = useCallback((event: React.TouchEvent<HTMLElement>) => {
+		const touch = event.touches[0];
+		touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+	}, []);
+
+	/** 横移動が一定量を超え、かつ縦移動より大きい時だけ前後移動として扱う */
+	const handleTouchEnd = useCallback(
+		(event: React.TouchEvent<HTMLElement>) => {
+			if (!touchStartRef.current) return;
+
+			const touch = event.changedTouches[0];
+			const deltaX = touch.clientX - touchStartRef.current.x;
+			const deltaY = touch.clientY - touchStartRef.current.y;
+
+			touchStartRef.current = null;
+
+			if (Math.abs(deltaX) < SWIPE_THRESHOLD_PX) return;
+			if (Math.abs(deltaX) <= Math.abs(deltaY)) return;
+
+			if (deltaX < 0) {
+				goToNext();
+				return;
+			}
+
+			goToPrev();
+		},
+		[goToNext, goToPrev],
+	);
 
 	return (
-		<section className="relative flex w-full min-h-[calc(85dvh-5rem)] flex-col items-stretch justify-center overflow-hidden bg-navy text-white">
+		<section
+			id="hero"
+			className="scroll-mt-20 relative flex w-full min-h-[calc(85dvh-5rem)] flex-col items-stretch justify-center overflow-hidden bg-navy text-white"
+			onTouchStart={handleTouchStart}
+			onTouchEnd={handleTouchEnd}
+		>
 			<div className="absolute inset-0 z-0">
-				<Carousel
-					opts={{ loop: true, duration: 45 }}
-					plugins={plugins}
-					setApi={setCarouselApi}
-					className="h-full w-full"
-					aria-label="メインビジュアル"
-				>
-					<CarouselContent className="ml-0 h-full">
-						{HERO_SLIDES.map((slide, index) => (
-							<CarouselItem key={slide.src} className="basis-full pl-0">
-								<div className="relative h-full min-h-[calc(85dvh-5rem)] w-full">
-									<Image
-										src={slide.src}
-										alt={slide.alt}
-										fill
-										className="object-cover object-center"
-										priority={index === 0}
-										sizes="100vw"
-									/>
-								</div>
-							</CarouselItem>
-						))}
-					</CarouselContent>
-				</Carousel>
+				<div className="relative h-full w-full" aria-label="メインビジュアル">
+					{HERO_SLIDES.map((slide, index) => (
+						<div
+							key={slide.src}
+							aria-hidden={activeIndex !== index}
+							className={cn(
+								"absolute inset-0 transition-opacity duration-700 ease-out",
+								activeIndex === index ? "opacity-100" : "pointer-events-none opacity-0",
+							)}
+						>
+							{/* 画像は重ね描きし、activeIndex だけ opacity を上げてフェードさせる */}
+							<div className="relative h-full min-h-[calc(85dvh-5rem)] w-full">
+								<Image
+									src={slide.src}
+									alt={slide.alt}
+									fill
+									className="object-cover object-center"
+									priority={index === 0}
+									sizes="100vw"
+								/>
+							</div>
+						</div>
+					))}
+				</div>
 			</div>
-			<div className="pointer-events-none absolute inset-0 z-1 bg-linear-to-b from-navy/35 via-navy/20 to-navy-dark/40" />
+			<div className="pointer-events-none absolute inset-0 z-1 bg-linear-to-t from-black/22 via-black/10 to-black/5" />
 			<div className="pointer-events-auto relative z-10 w-full max-w-7xl px-4 py-6 text-left md:px-24 md:py-16">
 				<div className="min-w-0 w-full max-w-4xl text-left" aria-live="polite">
+					{/* key を index に連動させ、スライド切替ごとに SplitText を再マウントして再生する */}
 					{HERO_SLIDES[activeIndex].copy.kind === "headline" ? (
 						<>
 							<SplitText
 								key={`hero-title-${activeIndex}`}
 								tag="h1"
 								text={HERO_SLIDES[activeIndex].copy.title}
-								className="text-left text-xl font-bold leading-snug tracking-tight md:text-4xl md:leading-tight"
+								className="text-left text-xl text-gray-100 font-bold leading-snug tracking-tight drop-shadow-[0_2px_14px_rgba(0,0,0,0.65)] md:text-5xl md:leading-tight"
 								textAlign="left"
 								{...heroSplitTextProps}
 							/>
@@ -191,7 +179,7 @@ export default function Hero() {
 								key={`hero-subtitle-${activeIndex}`}
 								tag="h2"
 								text={HERO_SLIDES[activeIndex].copy.subtitle}
-								className="mt-3 text-left text-base font-bold text-white/90 md:mt-4 md:text-2xl"
+								className="mt-3 text-left text-lg font-bold text-gray-100/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.96)] md:mt-4 md:text-2xl"
 								textAlign="left"
 								{...heroSplitTextProps}
 							/>
@@ -202,7 +190,7 @@ export default function Hero() {
 								key={`hero-line0-${activeIndex}`}
 								tag="h2"
 								text={HERO_SLIDES[activeIndex].copy.lines[0]}
-								className="text-left text-base font-bold text-white/90 md:text-2xl"
+								className="text-left text-xl text-gray-100 font-bold drop-shadow-[0_2px_14px_rgba(0,0,0,0.65)] md:text-3xl"
 								textAlign="left"
 								{...heroSplitTextProps}
 							/>
@@ -210,7 +198,7 @@ export default function Hero() {
 								key={`hero-line1-${activeIndex}`}
 								tag="h2"
 								text={HERO_SLIDES[activeIndex].copy.lines[1]}
-								className="text-left text-base font-bold text-white/90 md:text-2xl"
+								className="text-left text-xl font-bold drop-shadow-[0_2px_14px_rgba(0,0,0,0.65)] md:text-3xl"
 								textAlign="left"
 								{...heroSplitTextProps}
 							/>
@@ -220,13 +208,13 @@ export default function Hero() {
 							key={`hero-single-${activeIndex}`}
 							tag="h2"
 							text={HERO_SLIDES[activeIndex].copy.text}
-							className="text-left text-base font-bold text-white/90 md:text-2xl"
+							className="text-left text-xl font-bold drop-shadow-[0_2px_14px_rgba(0,0,0,0.65)] md:text-3xl"
 							textAlign="left"
 							{...heroSplitTextProps}
 						/>
 					)}
 					<div className="mt-6 flex flex-wrap justify-start gap-2 md:mt-10 md:gap-4">
-						<GoldButton className="justify-start" href="/home/form">
+						<GoldButton className="justify-start" href="/form">
 							無料で資料請求する
 						</GoldButton>
 					</div>
@@ -238,12 +226,11 @@ export default function Hero() {
 			 * ヒットテストが不安定になりシングルクリックが取りこぼされることがある。
 			 * 矢印・インジケーターはそれぞれ独立した pointer-events-auto ラッパーにする。
 			 */}
-			<div className="absolute top-1/2 left-3 z-30 hidden -translate-y-1/2 md:left-8 md:block">
+			<div className="pointer-events-auto absolute top-1/2 left-3 z-30 hidden -translate-y-1/2 md:left-8 md:block">
 				<Button
 					type="button"
 					variant="outline"
 					size="icon-sm"
-					disabled={!carouselApi}
 					className="touch-manipulation rounded-full border-white/40 bg-navy/35 text-white hover:bg-navy/50 hover:text-white"
 					aria-label="前のスライドへ"
 					onClick={goToPrev}
@@ -251,12 +238,11 @@ export default function Hero() {
 					<ChevronLeftIcon />
 				</Button>
 			</div>
-			<div className="absolute top-1/2 right-3 z-30 hidden -translate-y-1/2 md:right-8 md:block">
+			<div className="pointer-events-auto absolute top-1/2 right-3 z-30 hidden -translate-y-1/2 md:right-8 md:block">
 				<Button
 					type="button"
 					variant="outline"
 					size="icon-sm"
-					disabled={!carouselApi}
 					className="touch-manipulation rounded-full border-white/40 bg-navy/35 text-white hover:bg-navy/50 hover:text-white"
 					aria-label="次のスライドへ"
 					onClick={goToNext}
@@ -265,7 +251,7 @@ export default function Hero() {
 				</Button>
 			</div>
 			<div
-				className="absolute bottom-6 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2 md:bottom-8"
+				className="pointer-events-auto absolute bottom-6 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2 md:bottom-8"
 				role="tablist"
 				aria-label="スライドの選択"
 			>

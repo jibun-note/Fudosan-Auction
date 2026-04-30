@@ -1,12 +1,10 @@
 import Link from "next/link";
 
 const sitemapItems = [
-	{ label: "サービス", href: "#scheme-cards" },
-	{ label: "re-born", href: "#reborn" },
-	{ label: "business re-born", href: "#businessReborn" },
-	{ label: "不動産売却計画書＋オークション", href: "#plan" },
-	{ label: "オークション", href: "#flow" },
-	{ label: "FAQ", href: "#faq" },
+	{ label: "サービス", href: "/#scheme-cards" },
+	{ label: "re-born", href: "/#reborn" },
+	{ label: "business re-born", href: "/#businessReborn" },
+	{ label: "不動産売却計画書＋オークション", href: "/#salePlan" },
 ];
 
 export default function Footer() {

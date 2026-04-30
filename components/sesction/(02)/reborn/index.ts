@@ -1,4 +1,4 @@
-export { default, default as RebornPointSection } from "./RebornPointSection";
+export { default, default as RebornSection } from "./RebornSection";
 
 export { RebornPointHeroSummary } from "./RebornPointHeroSummary";
 
