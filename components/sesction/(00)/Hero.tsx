@@ -214,7 +214,7 @@ export default function Hero() {
 						/>
 					)}
 					<div className="mt-6 flex flex-wrap justify-start gap-2 md:mt-10 md:gap-4">
-						<GoldButton className="justify-start" href="/home/form">
+						<GoldButton className="justify-start" href="/form">
 							無料で資料請求する
 						</GoldButton>
 					</div>

@@ -8,10 +8,7 @@ import { ChevronLeftIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export type BackButtonProps = Omit<
-	React.ComponentProps<"button">,
-	"type" | "onClick"
-> & {
+export type BackButtonProps = Omit<React.ComponentProps<"button">, "type" | "onClick"> & {
 	children: React.ReactNode;
 };
 
@@ -25,7 +22,7 @@ export function BackButton({ children, className, ...props }: BackButtonProps) {
 			variant="ghost"
 			onClick={() => router.back()}
 			className={cn(
-				"h-auto min-h-0 gap-1 px-0 py-1 text-sm font-medium text-foreground hover:bg-transparent hover:underline",
+				"h-auto min-h-0 gap-1 px-0 py-1 text-sm font-medium text-foreground cursor-pointer hover:bg-transparent hover:underline",
 				className,
 			)}
 			{...props}

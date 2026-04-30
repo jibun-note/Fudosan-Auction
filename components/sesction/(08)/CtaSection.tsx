@@ -21,7 +21,7 @@ export default function CtaSection() {
 				</p>
 				{/* 主要CTAリンク */}
 				<div className="mt-6 flex justify-center md:mt-8">
-					<GoldButton href="/home/form">無料面談に申し込む</GoldButton>
+					<GoldButton href="/form">無料面談に申し込む</GoldButton>
 				</div>
 			</div>
 		</section>
