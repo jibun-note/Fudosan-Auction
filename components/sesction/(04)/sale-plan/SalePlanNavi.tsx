@@ -1,20 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronRight } from "lucide-react";
 
-import { GoldButton } from "@/components/common/button/GoldButton";
 import SplitText, { sectionHeadingSplitTextProps } from "@/components/SplitText";
-import { cn } from "@/lib/utils";
 
 const heroImg = "/images/AdobeStock_1589598207_Preview.jpeg";
 
-type SalePlanNaviProps = {
-	detailsOpen?: boolean;
-	onDetailsClick?: () => void;
-};
-
-export function SalePlanNavi({ detailsOpen = false, onDetailsClick }: SalePlanNaviProps = {}) {
+export function SalePlanNavi() {
 	return (
 		<section
 			id="salePlan"
@@ -85,25 +77,6 @@ export function SalePlanNavi({ detailsOpen = false, onDetailsClick }: SalePlanNa
 							<br className="hidden sm:block" />
 							今までにない専門的なアプローチで高値売却を実現させましょう。
 						</p>
-
-						<div className="mt-6">
-							<GoldButton
-								type="button"
-								onClick={onDetailsClick}
-								aria-expanded={detailsOpen}
-								aria-controls="salePlan-details"
-								className="group w-fit justify-start"
-							>
-								{detailsOpen ? "閉じる" : "詳細を見る"}
-								<ChevronRight
-									className={cn(
-										"h-4 w-4 transition-transform group-hover:translate-x-1",
-										detailsOpen && "rotate-90",
-									)}
-									aria-hidden
-								/>
-							</GoldButton>
-						</div>
 					</div>
 				</div>
 			</div>

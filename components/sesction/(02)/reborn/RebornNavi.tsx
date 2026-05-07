@@ -1,20 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronRight } from "lucide-react";
 
-import { GoldButton } from "@/components/common/button/GoldButton";
 import SplitText, { sectionHeadingSplitTextProps } from "@/components/SplitText";
-import { cn } from "@/lib/utils";
 
 const heroImg = "/images/AdobeStock_1829773049_Preview.jpeg";
 
-type RebornNaviProps = {
-	detailsOpen?: boolean;
-	onDetailsClick?: () => void;
-};
-
-export function RebornNavi({ detailsOpen = false, onDetailsClick }: RebornNaviProps = {}) {
+export function RebornNavi() {
 	return (
 		<section
 			id="reborn"
@@ -91,25 +83,6 @@ export function RebornNavi({ detailsOpen = false, onDetailsClick }: RebornNaviPr
 							<br className="hidden sm:block" />
 							リスクを限りなく抑えた投資商品をご提案します。
 						</p>
-
-						<div className="mt-6">
-							<GoldButton
-								type="button"
-								onClick={onDetailsClick}
-								aria-expanded={detailsOpen}
-								aria-controls="reborn-details"
-								className="group w-fit justify-start"
-							>
-								{detailsOpen ? "閉じる" : "詳細を見る"}
-								<ChevronRight
-									className={cn(
-										"h-4 w-4 transition-transform group-hover:translate-x-1",
-										detailsOpen && "rotate-90",
-									)}
-									aria-hidden
-								/>
-							</GoldButton>
-						</div>
 					</div>
 				</div>
 			</div>

@@ -1,20 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { ChevronRight } from "lucide-react";
 
-import { GoldButton } from "@/components/common/button/GoldButton";
 import SplitText, { sectionHeadingSplitTextProps } from "@/components/SplitText";
-import { cn } from "@/lib/utils";
 
 const heroImg = "/images/AdobeStock_271171292_Preview.jpeg";
 
-type BusinessRebornNaviProps = {
-	detailsOpen?: boolean;
-	onDetailsClick?: () => void;
-};
-
-export function BusinessRebornNavi({ detailsOpen = false, onDetailsClick }: BusinessRebornNaviProps = {}) {
+export function BusinessRebornNavi() {
 	return (
 		<section
 			id="businessReborn"
@@ -69,25 +61,6 @@ export function BusinessRebornNavi({ detailsOpen = false, onDetailsClick }: Busi
 							<br className="hidden sm:block" />
 							大幅な税繰延べ効果でキャッシュフローの改善を実現します。
 						</p>
-
-						<div className="mt-6">
-							<GoldButton
-								type="button"
-								onClick={onDetailsClick}
-								aria-expanded={detailsOpen}
-								aria-controls="businessReborn-details"
-								className="group w-fit justify-start"
-							>
-								{detailsOpen ? "閉じる" : "詳細を見る"}
-								<ChevronRight
-									className={cn(
-										"h-4 w-4 transition-transform group-hover:translate-x-1",
-										detailsOpen && "rotate-90",
-									)}
-									aria-hidden
-								/>
-							</GoldButton>
-						</div>
 					</div>
 				</div>
 
