@@ -3,21 +3,15 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 type SectionClosedAccentProps = {
-	open: boolean;
 	className?: string;
 };
 
-export function SectionClosedAccent({ open, className }: SectionClosedAccentProps) {
+export function SectionClosedAccent({ className }: SectionClosedAccentProps) {
 	return (
-		<div
-			aria-hidden={open}
-			className={cn(
-				"overflow-hidden transition-[max-height,opacity,transform] duration-300 ease-out motion-reduce:transition-none",
-				open ? "max-h-0 translate-y-[-8px] opacity-0" : "max-h-40 translate-y-0 opacity-100",
-				className,
-			)}
+		<section
+			className={cn("bg-white px-4 pt-10 md:px-6 md:pt-16", className)}
 		>
-			<div className="flex flex-col items-center gap-3 pt-5 pb-0">
+			<div className="mx-auto flex max-w-7xl flex-col items-center gap-3 pb-0">
 				<div className="flex w-full max-w-4xl items-center gap-4 px-2 sm:gap-6">
 					<div className="h-px flex-1 bg-linear-to-r from-transparent via-[#c5a55a]/40 to-[#c5a55a]" />
 					<div className="relative flex size-20 shrink-0 items-center justify-center rounded-full border border-[#c5a55a]/25 bg-white/80 shadow-[0_12px_30px_rgba(17,24,39,0.08)] backdrop-blur-sm sm:size-24">
@@ -36,6 +30,6 @@ export function SectionClosedAccent({ open, className }: SectionClosedAccentProp
 					Towa Corporation
 				</p>
 			</div>
-		</div>
+		</section>
 	);
 }

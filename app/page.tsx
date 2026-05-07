@@ -3,6 +3,7 @@ import { SchemeSection2 } from "@/components/sesction/(01)/scheme";
 import { schemeServices } from "@/lib/data/schemeSection";
 import { RebornSection } from "@/components/sesction/(02)/reborn";
 import { BusinessRebornSection } from "@/components/sesction/(03)/business-reborn";
+import { SectionClosedAccent } from "@/components/common/SectionClosedAccent";
 import { SalePlanSection } from "@/components/sesction/(04)/sale-plan";
 import CtaSection from "@/components/sesction/(08)/CtaSection";
 
@@ -16,6 +17,7 @@ export default function Home() {
 			<RebornSection />
 			<BusinessRebornSection />
 			<SalePlanSection />
+			<SectionClosedAccent />
 			{/* <CaseStudySection /> */}
 
 			<CtaSection />
