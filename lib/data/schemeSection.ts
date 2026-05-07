@@ -56,6 +56,6 @@ export const schemeServices: SchemeService[] = [
 			"相続や事業継承に最適",
 		],
 		iconKey: "gavel",
-		href: "#plan",
+		href: "#salePlanSection",
 	},
 ];
