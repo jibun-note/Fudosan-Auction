@@ -7,9 +7,9 @@ import { HiOutlineBars3, HiOutlineXMark } from "react-icons/hi2";
 
 const navItems = [
 	{ label: "サービス", href: "/#scheme-cards" },
-	{ label: "re-born", href: "/#reborn" },
-	{ label: "business re-born", href: "/#businessReborn" },
+	{ label: "business re-born(法人のオーナー様)", href: "/#businessReborn" },
 	{ label: "不動産売却計画書＋オークション", href: "/#salePlan" },
+	{ label: "re-born(個人版)", href: "/#reborn" },
 ];
 
 export default function Header() {
