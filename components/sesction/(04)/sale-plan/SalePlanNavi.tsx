@@ -48,7 +48,7 @@ export function SalePlanNavi() {
 									SERVICE
 								</span>
 								<p className="m-0 text-[2rem] font-bold leading-none tabular-nums text-gold/35 md:text-[4.5rem] md:text-gold/25">
-									03
+									02
 								</p>
 							</div>
 							<h2 className="relative z-10 mt-8 flex flex-wrap items-baseline gap-x-2 font-serif text-3xl font-light tracking-tight text-navy md:mt-10 md:text-4xl lg:text-5xl">

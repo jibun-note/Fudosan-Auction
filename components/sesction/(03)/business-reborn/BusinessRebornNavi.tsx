@@ -26,7 +26,7 @@ export function BusinessRebornNavi() {
 									SERVICE
 								</span>
 								<p className="m-0 text-[2rem] font-bold leading-none tabular-nums text-gold/35 md:text-[4.5rem] md:text-gold/25">
-									02
+									01
 								</p>
 							</div>
 							<hgroup className="relative z-10 mt-8 md:mt-10">
