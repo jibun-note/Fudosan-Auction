@@ -26,7 +26,7 @@ export default function SalePlanSection() {
 					<SalePlanFAQ />
 					<div className="flex flex-wrap justify-center gap-4 md:gap-6">
 						<GoldButton
-							href="https://towa-corporation.jp/saleplan/"
+							href="https://hudousantakakuuritai.com/keikakusyo/"
 							target="_blank"
 							className="w-full max-w-[min(100%,22rem)] whitespace-normal px-4 py-3 text-center text-sm leading-snug sm:w-fit sm:max-w-none sm:whitespace-nowrap sm:px-10 sm:text-base md:px-20 md:py-3.5 md:text-lg"
 						>

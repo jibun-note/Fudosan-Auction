@@ -14,9 +14,9 @@ export default function Home() {
 			{/* <SchemeSection services={schemeServices} /> */}
 			<SchemeSection2 services={schemeServices} />
 			{/* <MaximizeSection /> */}
-			<RebornSection />
 			<BusinessRebornSection />
 			<SalePlanSection />
+			<RebornSection />
 			<SectionClosedAccent />
 			{/* <CaseStudySection /> */}
 

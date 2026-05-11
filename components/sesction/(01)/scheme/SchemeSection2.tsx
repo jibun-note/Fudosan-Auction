@@ -63,7 +63,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 				<div className="mx-auto max-w-6xl">
 					<SplitText
 						tag="h2"
-						text={'貴社を支える"3つ"のサービス'}
+						text={"貴社を支える新サービス"}
 						className="text-lg font-bold text-navy md:text-3xl"
 						textAlign="left"
 						{...sectionHeadingSplitTextProps}
@@ -74,7 +74,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 					</p>
 				</div>
 
-				<div className="grid gap-5 pb-2 md:grid-cols-3 md:gap-6 md:pb-4">
+				<div className="grid gap-5 pb-2 md:mx-auto md:max-w-[60rem] md:grid-cols-2 md:gap-20 md:pb-4">
 					{services.map((service, activeIndex) => {
 						const stepLabel = String(activeIndex + 1).padStart(2, "0");
 						const ServiceIcon = SCHEME_SERVICE_ICON_BY_KEY[service.iconKey];
@@ -118,7 +118,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 										sizes="(max-width: 768px) 100vw, 33vw"
 										priority={activeIndex === 0}
 									/>
-									<div className="absolute inset-0 bg-linear-to-t from-black/30 via-black/14 to-black/8" />
+									<div className="absolute inset-0 bg-linear-to-t from-black/32 via-black/17 to-black/12" />
 								</div>
 
 								{/* 非ホバー: step / アイコン / タイトルのみ */}
@@ -141,13 +141,13 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 										</div>
 										<div className="flex min-h-0 flex-1 flex-col items-center justify-center text-center">
 											{service.label ? (
-												<p className="whitespace-pre-line text-sm font-bold leading-snug text-gray-200 drop-shadow-[0_1px_4px_rgba(0,0,0,0.96)] md:text-xl">
+												<p className="whitespace-pre-line px-2 text-sm font-extrabold leading-snug tracking-[0.04em] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.98)] md:text-2xl">
 													{service.label}
 												</p>
 											) : null}
 											<h3
 												className={cn(
-													"whitespace-pre-line text-xl font-bold leading-snug text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.65)] md:text-3xl",
+													"whitespace-pre-line text-xl font-bold leading-snug text-white drop-shadow-[0_3px_16px_rgba(0,0,0,0.82)] md:text-3xl",
 													service.label ? "mt-1" : "",
 												)}
 											>

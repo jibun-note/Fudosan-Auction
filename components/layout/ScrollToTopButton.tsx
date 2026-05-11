@@ -47,16 +47,16 @@ export function ScrollToTopButton() {
 			aria-hidden={!visible}
 			className={cn(
 				"fixed left-auto top-auto z-60 flex flex-col items-center justify-center gap-0.5 rounded-full",
-				"bottom-[max(1.5rem,env(safe-area-inset-bottom,0px))] right-[max(1.5rem,env(safe-area-inset-right,0px))]",
-				"size-14 shadow-lg transition-[opacity,transform] duration-300 ease-out",
+				"bottom-[max(3.5rem,env(safe-area-inset-bottom,0px))] right-[max(1.5rem,env(safe-area-inset-right,0px))]",
+				"size-17 shadow-lg transition-[opacity,transform] duration-300 ease-out",
 				"bg-linear-to-r from-[#a67c2e] to-[#c5a55a] text-white",
 				"hover:brightness-110 active:scale-95",
 				"focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#a67c2e]",
 				visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0",
 			)}
 		>
-			<ChevronUp className="size-5 shrink-0" strokeWidth={2.5} aria-hidden />
-			<span className="text-[10px] font-bold leading-none tracking-tight">TOP</span>
+			<ChevronUp className="size-6 shrink-0" strokeWidth={2.5} aria-hidden />
+			<span className="text-[12px] font-bold leading-none tracking-tight">TOP</span>
 		</button>
 	);
 
