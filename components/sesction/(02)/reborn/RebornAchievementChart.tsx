@@ -67,7 +67,7 @@ export function RebornAchievementChart({
 				className,
 			)}
 		>
-			<div className="h-1 bg-gold" aria-hidden />
+			<div className="h-1 bg-linear-to-r from-[#e8d8b8] via-gold to-[#e8d8b8]" aria-hidden />
 			<CardContent className="p-0">
 				{d.title ? (
 					<p className="px-5 pb-0 pt-6 text-center text-lg font-bold text-navy md:px-10 md:pt-8 md:text-2xl">

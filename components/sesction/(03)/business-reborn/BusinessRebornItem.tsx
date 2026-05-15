@@ -29,7 +29,7 @@ export default function BusinessRebornItem({ className }: BusinessRebornItemProp
 				className,
 			)}
 		>
-			<div className="h-1 bg-gold" aria-hidden />
+			<div className="h-1 bg-linear-to-r from-[#e8d8b8] via-gold to-[#e8d8b8]" aria-hidden />
 			<CardContent className="p-0">
 				<div className="border-b border-gold/15 px-5 pb-5 pt-6 text-center md:px-10 md:pb-6 md:pt-8">
 					<p className="inline-block  pb-1 text-base font-medium tracking-wide text-slate-600 md:text-xl">

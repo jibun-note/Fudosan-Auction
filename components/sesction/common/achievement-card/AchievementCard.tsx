@@ -11,7 +11,7 @@ export function AchievementCard({ data = defaultRebornRentUpAchievementCard }: A
 	const d = data;
 	return (
 		<Card className="overflow-hidden rounded-2xl border-gold/30 bg-linear-to-br from-[#fdfaf3] to-white text-navy shadow-[0_10px_40px_rgba(30,58,95,0.08)]">
-			<div className="h-1 bg-gold" aria-hidden />
+			<div className="h-1 bg-linear-to-r from-[#e8d8b8] via-gold to-[#e8d8b8]" aria-hidden />
 			<CardHeader className="px-5 pb-2 pt-5 text-center text-lg font-bold text-navy md:px-10 md:pb-3 md:pt-6 md:text-2xl">
 				{d.title}
 			</CardHeader>
