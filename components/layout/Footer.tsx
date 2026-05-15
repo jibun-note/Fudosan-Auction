@@ -11,7 +11,7 @@ export default function Footer() {
 	return (
 		<footer className="bg-navy-dark text-white">
 			<section id="company" className="px-6 py-12">
-				<div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-3">
+				<div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-3">
 					<div>
 						<h3 className="font-semibold">会社情報</h3>
 						<p className="mt-3 text-xs text-white/80">
