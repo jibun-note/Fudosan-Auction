@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import { HiOutlineBars3, HiOutlineXMark } from "react-icons/hi2";
 
 const navItems = [
-	{ label: "サービス", href: "/#scheme-cards" },
-	{ label: "business re-born(法人のオーナー様)", href: "/#businessReborn" },
+	{ label: "新サービス", href: "/#scheme-cards" },
+	{ label: "business re-born(法人版)", href: "/#businessReborn" },
 	{ label: "不動産売却計画書＋オークション", href: "/#salePlan" },
 	{ label: "re-born(個人版)", href: "/#reborn" },
 ];

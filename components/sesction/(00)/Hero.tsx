@@ -153,15 +153,15 @@ export default function Hero() {
 			</div>
 			<div className="pointer-events-none absolute inset-0 z-1 bg-linear-to-t from-navy/22 via-navy/10 to-navy/5" />
 			<div className="pointer-events-auto relative z-10 w-full max-w-7xl px-4 py-6 text-left md:px-24 md:py-16">
-				<div className="min-w-0 w-full max-w-4xl text-left" aria-live="polite">
-					<p className="mt-4 mb-3 inline-flex max-w-4xl text-left text-xl font-black tracking-[0.05em] bg-linear-to-b from-[#fffef7] via-[#fff0c9] via-35% to-[#c39a45] bg-clip-text text-transparent drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)] md:mt-5 md:mb-4 md:text-3xl">
+				<div className="min-w-0 w-full max-w-7xl text-left" aria-live="polite">
+					<p className="mt-4 mb-3 inline-flex max-w-4xl text-left text-xl font-black tracking-tight bg-linear-to-b from-[#fffef7] via-[#fff0c9] via-35% to-[#c39a45] bg-clip-text text-transparent drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)] md:mt-5 md:mb-4 md:text-5xl">
 						{COMMON_CAPTION}
 					</p>
 					<SplitText
 						key={`hero-title-${activeIndex}`}
 						tag="h1"
 						text={HERO_SLIDES[activeIndex].copy.title}
-						className="text-left text-xl font-bold leading-snug tracking-tight text-gray-100 drop-shadow-[0_3px_14px_rgba(0,0,0,0.58)] md:text-4xl md:leading-tight"
+						className="text-left text-xl font-bold leading-snug tracking-tighter text-gray-100 drop-shadow-[0_3px_14px_rgba(0,0,0,0.58)] md:text-5xl md:leading-tight"
 						textAlign="left"
 						{...heroSplitTextProps}
 					/>
@@ -169,11 +169,11 @@ export default function Hero() {
 						key={`hero-subtitle-${activeIndex}`}
 						tag="h2"
 						text={HERO_SLIDES[activeIndex].copy.subtitle}
-						className="mt-3 text-left text-lg font-bold text-gray-100/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] md:mt-4 md:text-2xl"
+						className="mt-3 text-left text-lg font-bold tracking-tighter text-gray-100/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] md:mt-4 md:text-3xl md:leading-tight"
 						textAlign="left"
 						{...heroSplitTextProps}
 					/>
-					<p className="whitespace-pre-line mt-4 max-w-4xl text-left text-sm leading-relaxed text-white/90 drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)] md:mt-5 md:text-xl">
+					<p className="whitespace-pre-line mt-4 max-w-4xl text-left text-sm leading-relaxed text-white/90 drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)] md:mt-5 md:text-3xl md:leading-tight">
 						{activeIndex === 0 ? (
 							<>
 								税理士が顧問先から最も相談される
@@ -190,8 +190,11 @@ export default function Hero() {
 					</p>
 
 					<div className="mt-6 flex flex-wrap justify-start gap-2 md:mt-10 md:gap-4">
-						<GoldButton className="justify-start" href="/form">
-							無料で不動産査定する
+						<GoldButton
+							className="justify-start py-1 text-sm md:py-1.5 md:text-base"
+							href="/form"
+						>
+							無料面談に申し込む
 						</GoldButton>
 					</div>
 				</div>

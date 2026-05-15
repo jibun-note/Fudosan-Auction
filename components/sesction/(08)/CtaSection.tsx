@@ -13,11 +13,11 @@ export default function CtaSection() {
 					<SplitText
 						tag="h2"
 						text="顧問先の資産価値を最大化する新しい一手を、今すぐご提案ください。"
-						className="text-lg font-bold md:text-2xl"
+						className="text-lg font-bold md:text-3xl"
 						textAlign="center"
 						{...sectionHeadingSplitTextProps}
 					/>
-					<p className="mt-3 text-sm leading-relaxed text-white/90 md:mt-4 md:text-lg">
+					<p className="mt-3 text-sm leading-relaxed text-white/90 md:mt-4 md:text-xl">
 						オンラインでのご説明も随時対応しております。最短で即日のお打ち合わせも可能です。
 					</p>
 					{/* 主要CTAリンク */}

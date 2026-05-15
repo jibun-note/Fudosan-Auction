@@ -29,17 +29,17 @@ export function RebornGuarantee({ guarantee }: RebornGuaranteeProps) {
 				<SplitText
 					tag="h3"
 					text="リスクを軽減する100%保証"
-					className="text-lg font-bold text-navy md:text-3xl"
+					className="text-lg font-bold text-navy md:text-4xl"
 					textAlign="center"
 					{...sectionHeadingSplitTextProps}
 				/>
 
-				<p className="mt-6 max-w-3xl leading-relaxed text-sm text-gray-700 md:mt-8 md:text-lg">
+				<p className="mt-6 max-w-3xl leading-relaxed text-sm text-gray-700 md:mt-8 md:text-xl">
 					不動産投資は、節税と同時に、修繕・空室・売却リスクを抱えるもの。
 					<br />
 					こうした落とし穴を回避し、顧問先の「後悔しない選択」を実現させる、
 					<br />
-					保証と検査を標準化した仕組みを提供しています。
+					保証を標準化した仕組みを提供しています。
 				</p>
 				<div className="mt-8 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:mt-10 md:gap-6">
 					{guarantee.map(({ description }, i) => {

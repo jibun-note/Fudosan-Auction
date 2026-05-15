@@ -15,7 +15,7 @@ export function BusinessRebornGuarantee({ guarantee }: BusinessRebornGuaranteePr
 				<SplitText
 					tag="h3"
 					text="業界初！まるごと保証システムを構築"
-					className="text-center text-base font-bold text-navy md:text-3xl"
+					className="text-center text-base font-bold text-navy md:text-4xl"
 					textAlign="center"
 					{...sectionHeadingSplitTextProps}
 				/>
@@ -31,7 +31,7 @@ export function BusinessRebornGuarantee({ guarantee }: BusinessRebornGuaranteePr
 										<h4 className="text-center text-lg font-bold text-navy md:text-xl">
 											{title}
 										</h4>
-										<p className="mt-1.5 text-center text-sm font-semibold text-gold md:text-base">
+										<p className="mt-1.5 text-center text-base font-semibold text-gold md:text-xl">
 											{subtitle}
 										</p>
 									</div>

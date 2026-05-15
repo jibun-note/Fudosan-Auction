@@ -51,31 +51,29 @@ export function SalePlanNavi() {
 									02
 								</p>
 							</div>
-							<h2 className="relative z-10 mt-8 flex flex-wrap items-baseline gap-x-2 font-serif text-3xl font-light tracking-tight text-navy md:mt-10 md:text-4xl lg:text-5xl">
+							<h2 className="relative z-10 mt-8 flex flex-wrap items-baseline gap-x-2 font-serif  font-light tracking-tight text-navy md:mt-10 ">
 								<SplitText
 									tag="span"
-									text="資産売却計画書＋オークション"
-									className="font-serif text-2xl font-light tracking-tight text-navy md:text-3xl lg:text-3xl"
+									text="不動産売却計画書＋オークション"
+									className="font-serif text-2xl font-light tracking-tight text-navy md:text-4xl"
 									textAlign="left"
 									{...sectionHeadingSplitTextProps}
 								/>
 							</h2>
 						</div>
 
-						<div className="mt-2 h-1 w-16 bg-gold" aria-hidden />
+						<div className="mt-2 h-1 w-18 bg-gold" aria-hidden />
 
-						<p className="mt-4 text-base font-semibold text-navy md:text-xl lg:whitespace-nowrap">
+						{/* <p className="mt-4 text-base font-semibold text-navy md:text-xl lg:whitespace-nowrap">
 							不動産の価値を最大化し、オークションでさらに高く
-						</p>
+						</p> */}
 
-						<p className="mt-3 w-full text-sm leading-relaxed text-muted-foreground md:text-lg">
-							不動産の最大価値を様々な角度から分析し、近隣相場だけで算出する
+						<p className="mt-4 w-full text-sm leading-relaxed text-muted-foreground md:text-xl">
+							不動産の価値を多角的に分析し、近隣相場のみで算出する従来の査定とは異なる「売却計画書」を無料作成いたします。
 							<br className="hidden sm:block" />
-							単なる査定書とは異なる「売却計画書」を無料作成します。さらに、
+							さらに、不動産オークションを通じて不動産オークションで売却希望のお客様と購入希望の企業をマッチング。
 							<br className="hidden sm:block" />
-							不動産オークションで売却希望のお客様と購入希望の企業をマッチング。
-							<br className="hidden sm:block" />
-							今までにない専門的なアプローチで高値売却を実現させましょう。
+							売却希望者と購入企業をマッチングし、専門的なアプローチにより高値売却を実現させましょう。
 						</p>
 					</div>
 				</div>

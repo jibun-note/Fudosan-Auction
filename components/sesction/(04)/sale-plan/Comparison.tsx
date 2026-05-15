@@ -16,14 +16,14 @@ export default function Comparison({ rows }: ComparisonProps) {
 				<SplitText
 					tag="h2"
 					text="仲介/買取/オークションの違いが一目で"
-					className="text-lg font-bold text-navy md:text-3xl"
+					className="text-lg font-bold text-navy md:text-4xl"
 					textAlign="center"
 					{...sectionHeadingSplitTextProps}
 				/>
 
 				<ComparisonTable rows={rows} />
 
-				<p className="mt-4 text-right text-[0.65rem] leading-relaxed text-gray-400 md:text-sm">
+				<p className="mt-4 text-right text-[0.65rem] leading-relaxed text-gray-400 md:text-base">
 					※価格保証/最低落札価格の設計も可能です。工期・条件により変動します。
 				</p>
 			</div>

@@ -30,33 +30,33 @@ export function BusinessRebornNavi() {
 								</p>
 							</div>
 							<hgroup className="relative z-10 mt-8 md:mt-10">
-								<p className="m-0 font-serif text-sm tracking-[0.2em] text-muted-foreground">
+								{/* <p className="m-0 font-serif text-sm tracking-[0.2em] text-muted-foreground">
 									b&apos;CASA
-								</p>
-								<h2 className="flex flex-wrap items-baseline gap-x-2 font-serif text-3xl font-light tracking-tight text-navy md:text-4xl lg:text-5xl">
+								</p> */}
+								<h2 className="flex flex-wrap items-baseline gap-x-2 font-serif font-light tracking-tight text-navy">
 									<SplitText
 										tag="span"
 										text="business re-born"
-										className="font-serif text-3xl font-light tracking-tight text-navy md:text-4xl lg:text-5xl"
+										className="font-serif text-3xl font-light tracking-tight text-navy md:text-5xl"
 										textAlign="left"
 										{...sectionHeadingSplitTextProps}
 									/>
-									<span className="text-xs text-muted-foreground md:text-sm">
+									{/* <span className="text-xs text-muted-foreground md:text-sm">
 										（法人のオーナー様）
-									</span>
+									</span> */}
 								</h2>
 							</hgroup>
 						</div>
 
 						<div className="mt-2 h-1 w-16 bg-gold" aria-hidden />
 
-						<p className="mt-4 text-base font-semibold text-navy md:text-lg lg:text-xl lg:whitespace-nowrap">
-							築古アパートを活用した法人向け節税商品
+						<p className="mt-4 text-base font-semibold text-navy md:text-2xl lg:whitespace-nowrap">
+							中古アパートを活用した法人向け節税商品
 						</p>
 
-						<p className="mt-2 text-base font-bold text-gold md:text-lg">企業オーナー様必見</p>
+						<p className="mt-2 text-base font-bold text-gold md:text-xl">企業オーナー様必見</p>
 
-						<p className="mt-3 w-full text-sm leading-relaxed text-muted-foreground md:text-lg">
+						<p className="mt-3 w-full text-sm leading-relaxed text-muted-foreground md:text-xl">
 							法人保険やオペレーティングリースに代わる、
 							<br className="hidden sm:block" />
 							大幅な税繰延べ効果でキャッシュフローの改善を実現します。

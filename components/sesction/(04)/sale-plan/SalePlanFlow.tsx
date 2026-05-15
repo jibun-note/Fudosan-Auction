@@ -10,7 +10,7 @@ export default function SalePlanFlow() {
 					<SplitText
 						tag="h3"
 						text="オークションご利用の流れ"
-						className="text-lg font-bold text-navy md:text-3xl"
+						className="text-lg font-bold text-navy md:text-4xl"
 						textAlign="center"
 						{...sectionHeadingSplitTextProps}
 					/>

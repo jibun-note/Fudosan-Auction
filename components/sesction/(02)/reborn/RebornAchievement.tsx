@@ -9,7 +9,7 @@ export default function RebornAchievement() {
 				<SplitText
 					tag="h3"
 					text="節税対策した場合の納税シミュレーション"
-					className="text-lg font-bold text-navy md:text-3xl"
+					className="text-lg font-bold text-navy md:text-4xl"
 					textAlign="center"
 					{...sectionHeadingSplitTextProps}
 				/>

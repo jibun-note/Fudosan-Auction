@@ -64,12 +64,12 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 					<SplitText
 						tag="h2"
 						text={"貴社を支える新サービス"}
-						className="text-lg font-bold text-navy md:text-3xl"
+						className="text-lg font-bold text-navy md:text-4xl"
 						textAlign="left"
 						{...sectionHeadingSplitTextProps}
 					/>
-					<div className="mt-2 h-1 w-16 bg-gold" />
-					<p className="mt-3 mb-10 text-sm text-gray-600 md:mt-4 md:mb-14 md:text-lg">
+					<div className="mt-2 h-1 w-18 bg-gold" />
+					<p className="mt-3 mb-10 text-sm text-gray-600 md:mt-4 md:mb-14 md:text-xl">
 						顧問先への付加価値提案が、先生ご自身の信頼とビジネスを強化します。
 					</p>
 				</div>
@@ -131,7 +131,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 									)}
 								>
 									<div className="relative flex min-h-0 flex-1 flex-col px-2 py-6">
-										<div className="absolute left-2 top-4 flex flex-col items-start gap-1 md:gap-1.5">
+										<div className="absolute left-2 top-2 flex flex-col items-start">
 											<span className="text-[0.625rem] font-semibold tracking-[0.18em] text-white/50 md:text-[0.6875rem] md:tracking-[0.22em]">
 												SERVICE
 											</span>
@@ -141,13 +141,13 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 										</div>
 										<div className="flex min-h-0 flex-1 flex-col items-center justify-center text-center">
 											{service.label ? (
-												<p className="whitespace-pre-line px-2 text-sm font-extrabold leading-snug tracking-[0.04em] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.98)] md:text-2xl">
+												<p className="whitespace-pre-line px-2 text-sm font-extrabold leading-snug tracking-[0.04em] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.98)] md:text-3xl">
 													{service.label}
 												</p>
 											) : null}
 											<h3
 												className={cn(
-													"whitespace-pre-line text-xl font-bold leading-snug text-white drop-shadow-[0_3px_16px_rgba(0,0,0,0.82)] md:text-3xl",
+													"whitespace-pre-line text-xl font-bold leading-snug text-white drop-shadow-[0_3px_16px_rgba(0,0,0,0.82)] md:text-4xl",
 													service.label ? "mt-1" : "",
 												)}
 											>
@@ -187,7 +187,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 												aria-hidden
 											/>
 										</div>
-										<h3 className="min-w-0 w-full whitespace-pre-line text-sm font-bold leading-snug text-white md:text-lg">
+										<h3 className="min-w-0 w-full whitespace-pre-line text-sm font-bold leading-snug text-white md:text-2xl">
 											{service.title}
 										</h3>
 									</div>
@@ -198,7 +198,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 												{service.details.map((line, i) => (
 													<li
 														key={`${service.id}-d-${i}`}
-														className="flex gap-3 text-xs leading-snug text-white/95 md:text-base"
+														className="flex gap-3 text-sm leading-snug text-white/95 md:text-xl"
 													>
 														<span
 															className="mt-1.5 size-1.5 shrink-0 rounded-full bg-gold"
@@ -209,7 +209,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 												))}
 											</ul>
 										</div>
-										<p className="mt-3 text-xs text-center font-semibold leading-snug text-gold md:text-base">
+										<p className="mt-3 text-xs text-center font-semibold leading-snug text-gold md:text-xl">
 											{service.subtitle}
 										</p>
 									</div>
@@ -220,7 +220,7 @@ export default function SchemeSection2({ services }: SchemeSection2Props) {
 											? {}
 											: { target: "_blank" as const, rel: "noopener noreferrer" })}
 										onClick={(e) => e.stopPropagation()}
-										className="mt-4 w-full py-1 text-sm md:py-1.5 md:text-sm"
+										className="mt-8 w-full py-1 text-sm md:py-1.5 md:text-base"
 									>
 										サービスを見る
 										<ChevronRight className="size-4" aria-hidden />

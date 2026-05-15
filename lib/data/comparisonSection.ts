@@ -23,7 +23,7 @@ export const comparisonRows: ComparisonRow[] = [
 		label: "透明性",
 		intermediary: "中（交渉過程が不透明）",
 		purchase: "低（業者提示額のみ）",
-		auction: "高（入札プロセス透明）",
+		auction: "高（入札プロセス透明性）",
 	},
 	{
 		label: "顧客満足度",

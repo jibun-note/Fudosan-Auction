@@ -118,29 +118,29 @@ export default function ComparisonTable({ rows }: ComparisonTableProps) {
 					className="overflow-hidden rounded-[10px] shadow-[0_4px_24px_rgba(45,50,90,0.08)]"
 					style={{ minWidth: "min(100%, 520px)" }}
 				>
-					<Table className="min-w-[520px] border-collapse text-[0.8125rem] md:min-w-[640px] md:text-base">
+					<Table className="min-w-[520px] border-collapse text-[0.8125rem] md:min-w-[640px] md:text-lg">
 						<TableHeader>
 							<TableRow className="border-gray-100 hover:bg-transparent">
 								<TableHead
-									className="h-auto px-3 py-2 text-center text-[0.8125rem] font-bold leading-tight text-white md:px-6 md:py-3 md:text-[1.05rem]"
+									className="h-auto px-3 py-2 text-center text-[0.8125rem] font-bold leading-tight text-white md:px-6 md:py-3 md:text-[1.15rem]"
 									style={{ backgroundColor: headerNavy, width: "18%" }}
 								>
 									比較
 								</TableHead>
 								<TableHead
-									className="h-auto px-2 py-2 text-center text-[0.8125rem] font-bold leading-tight text-white md:px-5 md:py-3 md:text-[1.05rem]"
+									className="h-auto px-2 py-2 text-center text-[0.8125rem] font-bold leading-tight text-white md:px-5 md:py-3 md:text-[1.15rem]"
 									style={{ backgroundColor: headerNavy, width: "22%" }}
 								>
 									一般仲介
 								</TableHead>
 								<TableHead
-									className="h-auto px-2 py-2 text-center text-[0.8125rem] font-bold leading-tight text-white md:px-5 md:py-3 md:text-[1.05rem]"
+									className="h-auto px-2 py-2 text-center text-[0.8125rem] font-bold leading-tight text-white md:px-5 md:py-3 md:text-[1.15rem]"
 									style={{ backgroundColor: headerNavy, width: "22%" }}
 								>
 									不動産買取
 								</TableHead>
 								<TableHead
-									className="h-auto px-3 py-2 text-center text-[0.8125rem] font-bold leading-tight text-white md:px-6 md:py-3 md:text-[1.05rem]"
+									className="h-auto px-3 py-2 text-center text-[0.8125rem] font-bold leading-tight text-white md:px-6 md:py-3 md:text-[1.15rem]"
 									style={{
 										backgroundColor: headerGold,
 										width: "30%",
@@ -158,7 +158,7 @@ export default function ComparisonTable({ rows }: ComparisonTableProps) {
 									className="border-gray-100 last:border-b-0 hover:bg-transparent"
 								>
 									<TableCell
-										className="whitespace-normal px-3 py-2.5 text-left text-[0.8125rem] font-bold leading-relaxed md:px-6 md:py-[1.125rem] md:text-[1.05rem]"
+										className="whitespace-normal px-3 py-2.5 text-left text-[0.8125rem] font-bold leading-relaxed md:px-6 md:py-[1.125rem] md:text-[1.15rem]"
 										style={{ backgroundColor: labelBg, color: headerNavy }}
 									>
 										{row.label}
@@ -170,7 +170,7 @@ export default function ComparisonTable({ rows }: ComparisonTableProps) {
 										<DataCellText
 											text={row.intermediary}
 											className="font-normal"
-											parenClassName="mt-0.5 block text-[0.8125rem] font-normal leading-snug opacity-80 md:mt-0 md:inline md:text-[0.875rem]"
+											parenClassName="mt-0.5 block text-[0.8125rem] font-normal leading-snug opacity-80 md:mt-0 md:inline md:text-[0.975rem]"
 										/>
 									</TableCell>
 									<TableCell
@@ -180,7 +180,7 @@ export default function ComparisonTable({ rows }: ComparisonTableProps) {
 										<DataCellText
 											text={row.purchase}
 											className="font-normal"
-											parenClassName="mt-0.5 block text-[0.8125rem] font-normal leading-snug opacity-80 md:mt-0 md:inline md:text-[0.875rem]"
+											parenClassName="mt-0.5 block text-[0.8125rem] font-normal leading-snug opacity-80 md:mt-0 md:inline md:text-[0.975rem]"
 										/>
 									</TableCell>
 									<TableCell
@@ -190,7 +190,7 @@ export default function ComparisonTable({ rows }: ComparisonTableProps) {
 										<DataCellText
 											text={row.auction}
 											className="font-semibold"
-											parenClassName="mt-0.5 block text-[0.8125rem] font-normal leading-snug opacity-90 md:mt-0 md:inline md:text-[0.875rem]"
+											parenClassName="mt-0.5 block text-[0.8125rem] font-normal leading-snug opacity-90 md:mt-0 md:inline md:text-[0.975rem]"
 										/>
 									</TableCell>
 								</TableRow>
