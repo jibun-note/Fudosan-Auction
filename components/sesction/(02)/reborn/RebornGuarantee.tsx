@@ -1,20 +1,36 @@
 "use client";
 
 import {
-	HiOutlineBanknotes,
-	HiOutlineClock,
+	HiOutlineArrowTrendingUp,
+	HiOutlineCalendarDays,
 	HiOutlineHomeModern,
-	HiOutlineShieldCheck,
+	HiOutlineWrenchScrewdriver,
 } from "react-icons/hi2";
 import SplitText, { sectionHeadingSplitTextProps } from "@/components/SplitText";
 import type { RebornGuarantee } from "@/lib/data/rebornPointSection";
 
 /** 保証カードの並びは `rebornGuarantee` と同じ4件を想定 */
-const guaranteeIcons = [
-	HiOutlineBanknotes,
-	HiOutlineClock,
-	HiOutlineHomeModern,
-	HiOutlineShieldCheck,
+const guaranteeCardStyles = [
+	{
+		Icon: HiOutlineArrowTrendingUp,
+		label: "5年後売却時",
+		value: "100%差額保証",
+	},
+	{
+		Icon: HiOutlineCalendarDays,
+		label: "短期節税",
+		value: "4年〜6年",
+	},
+	{
+		Icon: HiOutlineHomeModern,
+		label: "サブリースによる",
+		value: "安定収入",
+	},
+	{
+		Icon: HiOutlineWrenchScrewdriver,
+		label: "設備＆原状回復費用",
+		value: "無料",
+	},
 ] as const;
 
 export type RebornGuaranteeProps = {
@@ -41,27 +57,31 @@ export function RebornGuarantee({ guarantee }: RebornGuaranteeProps) {
 					<br />
 					保証を標準化した仕組みを提供しています。
 				</p>
-				<div className="mt-8 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:mt-10 md:gap-6">
+				<div className="mt-8 grid w-full grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-4 lg:gap-5">
 					{guarantee.map(({ description }, i) => {
-						const Icon = guaranteeIcons[i % guaranteeIcons.length];
+						const { Icon, label, value } = guaranteeCardStyles[i % guaranteeCardStyles.length];
+
 						return (
 							<div
 								key={description}
-								className="group relative flex gap-4 rounded-xl border border-gold-light/90 bg-white px-4 py-4 shadow-sm transition-[border-color,box-shadow,transform] duration-300 motion-reduce:transition-none md:gap-5 md:px-5 md:py-5 hover:border-gold/35 hover:shadow-[0_12px_36px_rgba(30,58,95,0.08)] motion-reduce:hover:transform-none md:hover:-translate-y-0.5"
+								className="group relative flex aspect-square w-full max-w-[280px] flex-col justify-center overflow-hidden rounded-xl border border-white/80 bg-white p-5 text-center shadow-[0_12px_34px_rgba(15,23,42,0.055)] transition-[box-shadow,transform] duration-300 before:absolute before:inset-x-0 before:top-0 before:h-1.5 before:bg-linear-to-r before:from-[#e8d8b8] before:via-gold before:to-[#e8d8b8] hover:shadow-[0_18px_48px_rgba(15,23,42,0.09)] motion-reduce:transition-none motion-reduce:hover:transform-none md:max-w-[300px] md:p-6 md:hover:-translate-y-0.5 lg:max-w-none lg:p-5"
 							>
-								<span
-									className="pointer-events-none absolute inset-y-3 left-0 w-1 rounded-full bg-linear-to-b from-gold-light via-gold to-gold-light opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none"
-									aria-hidden
-								/>
 								<div
-									className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#e8d5a0] text-[#92753c] shadow-inner md:h-12 md:w-12"
+									className="relative mx-auto flex size-14 items-center justify-center rounded-full border-4 border-[#f3eee4] bg-navy text-gold shadow-[0_10px_20px_rgba(15,23,42,0.1)] md:size-16"
 									aria-hidden
 								>
-									<Icon className="size-5.5 md:size-6" />
+									<Icon className="size-6 stroke-[1.7] md:size-7" />
 								</div>
-								<p className="flex min-w-0 flex-1 items-center text-left text-sm font-semibold leading-relaxed text-navy md:text-base">
-									<span className="text-gray-700">{description}</span>
-								</p>
+								<div className="relative mt-5 font-serif text-navy md:mt-6">
+									<p className="text-sm leading-none md:text-xl">{label}</p>
+									<p className="mt-3 text-lg font-semibold leading-none text-gold md:text-3xl">
+										{value}
+									</p>
+									<span
+										className="mx-auto mt-6 block h-px w-12 bg-gold-light"
+										aria-hidden
+									/>
+								</div>
 							</div>
 						);
 					})}
