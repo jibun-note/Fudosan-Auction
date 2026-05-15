@@ -17,13 +17,15 @@ function RebornAchievementChartTable({ block }: { block: RebornTaxScenarioBlock 
 		<div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_10px_32px_rgba(30,58,95,0.08)]">
 			<div
 				className={cn(
-					"px-3 py-3 text-center text-sm font-bold leading-snug text-white sm:px-4 md:py-3.5 md:text-[0.95rem]",
+					"px-3 py-3 text-center text-sm font-bold leading-snug text-white sm:px-4 md:py-3.5 md:text-[1.05rem]",
 					headerClass,
 				)}
 			>
 				<span className="font-serif tracking-tight">{block.title}</span>
 				{block.subTitle ? (
-					<span className="mt-1 block text-xs font-medium text-white/95">{block.subTitle}</span>
+					<span className="mt-1 block text-xs font-medium text-white/95 md:text-sm">
+						{block.subTitle}
+					</span>
 				) : null}
 			</div>
 			<div className="divide-y divide-slate-200 font-serif">
@@ -32,12 +34,12 @@ function RebornAchievementChartTable({ block }: { block: RebornTaxScenarioBlock 
 						key={row.label}
 						className="grid gap-1.5 px-3 py-3 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-3 sm:px-4 sm:py-3.5"
 					>
-						<p className="text-left text-xs leading-relaxed text-slate-600 sm:text-sm">
+						<p className="text-left text-xs leading-relaxed text-slate-600 md:text-[15px]">
 							{row.label}
 						</p>
 						<p
 							className={cn(
-								"text-right text-base font-bold tabular-nums tracking-tight sm:text-lg sm:tabular-nums",
+								"text-right text-base font-bold tabular-nums tracking-tight md:text-lg sm:tabular-nums",
 								row.valueEmphasis ? "text-red-600" : "text-navy",
 							)}
 						>
@@ -65,10 +67,10 @@ export function RebornAchievementChart({
 				className,
 			)}
 		>
-			<div className="h-1 bg-gold" aria-hidden />
+			<div className="h-1 bg-linear-to-r from-[#e8d8b8] via-gold to-[#e8d8b8]" aria-hidden />
 			<CardContent className="p-0">
 				{d.title ? (
-					<p className="px-5 pb-0 pt-6 text-center text-lg font-bold text-navy md:px-10 md:pt-8 md:text-xl">
+					<p className="px-5 pb-0 pt-6 text-center text-lg font-bold text-navy md:px-10 md:pt-8 md:text-2xl">
 						{d.title}
 					</p>
 				) : null}
@@ -77,7 +79,7 @@ export function RebornAchievementChart({
 						"grid grid-cols-1 gap-5 p-5 md:p-6 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1.12fr)] lg:grid-rows-[auto_auto] lg:gap-x-2 lg:gap-y-4 lg:px-7 lg:pb-8 lg:pt-6",
 					)}
 				>
-					<p className="order-1 whitespace-pre-line text-sm font-bold leading-relaxed text-slate-700 lg:order-0 lg:col-start-3 lg:row-start-1 lg:max-w-none lg:pl-1 md:text-lg">
+					<p className="order-1 whitespace-pre-line text-sm font-bold leading-relaxed text-slate-700 lg:order-0 lg:col-start-3 lg:row-start-1 lg:max-w-none lg:pl-1 md:text-xl">
 						{d.intro}
 					</p>
 
@@ -107,7 +109,7 @@ export function RebornAchievementChart({
 							</svg>
 						</div>
 						{d.arrowLabel ? (
-							<span className="text-center text-[0.65rem] font-bold text-red-500 md:text-xs">
+							<span className="text-center text-[0.65rem] font-bold text-red-500 md:text-sm">
 								{d.arrowLabel}
 							</span>
 						) : null}
@@ -119,29 +121,29 @@ export function RebornAchievementChart({
 							"px-4 py-5 shadow-inner shadow-slate-900/4 sm:px-5 sm:py-6 lg:order-0 lg:col-start-3 lg:row-start-2",
 						)}
 					>
-						<p className="text-center text-sm leading-relaxed sm:text-base">
+						<p className="text-center text-sm leading-relaxed sm:text-lg">
 							<span className="whitespace-nowrap text-navy">
 								{d.summary.formulaLeft}－{d.summary.formulaRight}＝
 							</span>{" "}
 							差額
-							<span className="pl-0.5 text-2xl font-extrabold tabular-nums text-red-600 sm:text-3xl">
+							<span className="pl-0.5 text-2xl font-extrabold tabular-nums text-red-600 sm:text-4xl">
 								{d.summary.diffAmount}
 							</span>
 							<span className="font-bold text-red-600">{d.summary.diffSuffix}</span>
 						</p>
-						<p className="mt-4 text-center text-base font-bold leading-snug text-navy sm:mt-5 sm:text-lg">
-							<span className="text-2xl font-extrabold text-blue-600 sm:text-3xl">
+						<p className="mt-4 text-center text-base font-bold leading-snug text-navy sm:mt-5 sm:text-xl">
+							<span className="text-2xl font-extrabold text-blue-600 sm:text-4xl">
 								{d.summary.yearsHighlight}
 							</span>
 							{d.summary.savedMiddle}
-							<span className="ml-0.5 text-2xl font-extrabold text-red-600 sm:text-3xl sm:tracking-tight">
+							<span className="ml-0.5 text-2xl font-extrabold text-red-600 sm:text-4xl sm:tracking-tight">
 								{d.summary.savedAmount}
 							</span>
 							<span className="text-2xl font-extrabold text-red-600 sm:text-3xl">
 								{d.summary.savedUnit}
 							</span>
 						</p>
-						<p className="mt-4 text-center text-xs leading-relaxed text-slate-600 sm:text-sm">
+						<p className="mt-4 text-center text-xs leading-relaxed text-slate-600 sm:text-base">
 							{d.disclaimer}
 						</p>
 					</div>

@@ -19,36 +19,32 @@ export function RebornNavi() {
 					<div className="w-full min-w-0 px-6 py-14 sm:px-10 lg:px-12 lg:py-14 xl:px-14">
 						<div className="relative">
 							<hgroup className="relative z-10 mt-8 md:mt-10">
-								<p className="m-0 font-serif text-sm tracking-[0.2em] text-muted-foreground">
-									b&apos;CASA
-								</p>
 								<h2 className=" flex flex-wrap items-baseline gap-x-1 font-serif text-3xl font-light tracking-tight text-navy md:text-4xl lg:text-5xl">
 									<SplitText
 										tag="span"
 										text="re-born"
-										className="font-serif text-3xl font-light tracking-tight text-navy md:text-4xl lg:text-5xl"
+										className="font-serif text-3xl font-light tracking-tight text-navy md:text-5xl"
 										textAlign="left"
 										{...sectionHeadingSplitTextProps}
 									/>
-									<span className="text-xs text-muted-foreground md:text-sm">
-										（個人版）
-									</span>
 								</h2>
 							</hgroup>
 						</div>
 
 						<div className="mt-2 h-1 w-16 bg-gold" aria-hidden />
 
-						<p className="mt-4 text-base font-semibold text-navy md:text-xl lg:whitespace-nowrap">
-							築古アパートを活用した短期減価償却事業
+						<p className="mt-4 text-base font-semibold text-navy md:text-2xl lg:whitespace-nowrap">
+							中古アパートを活用した個人向け節税投資商品
 						</p>
 
-						<p className="mt-3 w-full text-sm leading-relaxed text-muted-foreground md:text-lg">
-							築古アパートの短期減価償却を活用した、[節税+家賃収入]投資商品
+						<p className="mt-3 w-full text-sm leading-relaxed text-muted-foreground md:text-xl">
+							節税×家賃収入×売却益の三得を実現する、資産形成の新常識。
 							<br className="hidden sm:block" />
-							業界初の売却時差額保証により売却時には購入価格の100%を保証。
+							家賃保証・設備保証に加え、業界初の売却時差額保証を
 							<br className="hidden sm:block" />
-							リスクを限りなく抑えた投資商品をご提案します。
+							組み込み、リスクを限りなく抑えた節税投資商品を
+							<br className="hidden sm:block" />
+							ご提案します。
 						</p>
 					</div>
 				</div>

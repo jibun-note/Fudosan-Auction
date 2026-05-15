@@ -18,7 +18,7 @@ export function SalePlanVideo({ embedUrl, title }: SalePlanVideoProps) {
 					allowFullScreen
 				/>
 			</div>
-			<p className="mt-3 text-center text-xs text-gray-500 md:text-sm">{title}</p>
+			<p className="mt-3 text-center text-xs text-gray-500 md:text-base">{title}</p>
 		</div>
 	);
 }

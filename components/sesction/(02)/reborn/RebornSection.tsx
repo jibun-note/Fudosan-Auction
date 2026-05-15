@@ -20,7 +20,7 @@ export default function ReborntSection() {
 					<GoldButton
 						href="https://towa-corporation.jp/re-born_fudousan/"
 						target="_blank"
-						className="w-full max-w-[min(100%,22rem)] self-center whitespace-normal px-4 py-3 text-center text-sm leading-snug sm:w-fit sm:max-w-none sm:whitespace-nowrap sm:px-10 sm:text-base md:px-20 md:py-3.5 md:text-lg"
+						className="w-full max-w-[min(100%,22rem)] self-center whitespace-normal px-4 py-3 text-center text-sm leading-snug sm:w-fit sm:max-w-none sm:whitespace-nowrap sm:px-10 sm:text-base md:px-20 md:py-3.5 md:text-xl"
 					>
 						b&apos;CASA re-born をさらに詳しく見る
 						<ChevronRight className="h-5 w-5" />

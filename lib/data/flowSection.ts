@@ -1,11 +1,6 @@
 /** `@/components/sesction/flow` 用 */
 
-export type FlowStepIconKey =
-	| "document"
-	| "currencyYen"
-	| "scale"
-	| "handshake"
-	| "chatBubble";
+export type FlowStepIconKey = "document" | "currencyYen" | "scale" | "handshake" | "chatBubble";
 
 export type FlowStepData = {
 	title: string;
@@ -17,7 +12,7 @@ export const flowStepsData: FlowStepData[] = [
 	{
 		iconKey: "document",
 		title: "資料請求・査定",
-		description: "フォーム入力・面談希望。市場データと現地/オンラインで査定します。",
+		description: "フォーム入力・面談実施。市場データと現地/オンラインで査定します。",
 	},
 	{
 		iconKey: "currencyYen",

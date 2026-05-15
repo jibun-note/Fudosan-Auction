@@ -152,7 +152,7 @@ export const rebornGuarantee: RebornGuarantee[] = [
 		description: "5年後売却時100％差額保証",
 	},
 	{
-		description: "短期節税（４年）",
+		description: "短期節税（4年～6年）",
 	},
 	{
 		description: "サブリースによる安定収入",

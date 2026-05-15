@@ -28,7 +28,7 @@ export default function SalePlanSection() {
 						<GoldButton
 							href="https://hudousantakakuuritai.com/keikakusyo/"
 							target="_blank"
-							className="w-full max-w-[min(100%,22rem)] whitespace-normal px-4 py-3 text-center text-sm leading-snug sm:w-fit sm:max-w-none sm:whitespace-nowrap sm:px-10 sm:text-base md:px-20 md:py-3.5 md:text-lg"
+							className="w-full max-w-[min(100%,22rem)] whitespace-normal px-4 py-3 text-center text-sm leading-snug sm:w-fit sm:max-w-none sm:whitespace-nowrap sm:px-10 sm:text-base md:px-20 md:py-3.5 md:text-xl"
 						>
 							不動産売却計画書をさらに詳しく見る
 							<ChevronRight className="h-5 w-5" />
@@ -36,7 +36,7 @@ export default function SalePlanSection() {
 						<GoldButton
 							href="https://fudosan-japanauction.jp/seller/"
 							target="_blank"
-							className="w-full max-w-[min(100%,22rem)] whitespace-normal px-4 py-3 text-center text-sm leading-snug sm:w-fit sm:max-w-none sm:whitespace-nowrap sm:px-10 sm:text-base md:px-20 md:py-3.5 md:text-lg"
+							className="w-full max-w-[min(100%,22rem)] whitespace-normal px-4 py-3 text-center text-sm leading-snug sm:w-fit sm:max-w-none sm:whitespace-nowrap sm:px-10 sm:text-base md:px-20 md:py-3.5 md:text-xl"
 						>
 							不動産オークションをさらに詳しく見る
 							<ChevronRight className="h-5 w-5" />

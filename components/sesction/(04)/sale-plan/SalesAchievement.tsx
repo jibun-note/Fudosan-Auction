@@ -10,7 +10,7 @@ export default function SalesAchievement() {
 				<SplitText
 					tag="h3"
 					text="不動産売却計画書で売却価格が大幅アップ！"
-					className="text-lg font-bold text-navy md:text-3xl"
+					className="text-lg font-bold text-navy md:text-4xl"
 					textAlign="center"
 					{...sectionHeadingSplitTextProps}
 				/>
