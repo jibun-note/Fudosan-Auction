@@ -51,7 +51,7 @@ const HERO_SLIDES = [
 	},
 ] as const;
 
-const COMMON_CAPTION = "顧問先の法人税の繰り延べ、資産、相続売却の新サービス開始";
+const COMMON_CAPTION = "顧問先の法人税の\n繰り延べ、資産、相続売却の\n新サービス開始";
 
 const heroSplitTextProps = {
 	delay: 35,
@@ -154,7 +154,7 @@ export default function Hero() {
 			<div className="pointer-events-none absolute inset-0 z-1 bg-linear-to-t from-navy/22 via-navy/10 to-navy/5" />
 			<div className="pointer-events-auto relative z-10 w-full max-w-7xl px-4 py-6 text-left md:px-24 md:py-16">
 				<div className="min-w-0 w-full max-w-7xl text-left" aria-live="polite">
-					<p className="mt-4 mb-3 inline-flex max-w-4xl text-left text-xl font-black tracking-tight bg-linear-to-b from-[#fffef7] via-[#fff0c9] via-35% to-[#c39a45] bg-clip-text text-transparent drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)] md:mt-5 md:mb-4 md:text-5xl">
+					<p className="whitespace-pre-line mt-4 mb-3 inline-flex max-w-4xl text-left text-xl font-black tracking-tight bg-linear-to-b from-[#fffef7] via-[#fff0c9] via-35% to-[#c39a45] bg-clip-text text-transparent drop-shadow-[0_4px_16px_rgba(0,0,0,0.6)] md:mt-5 md:mb-4 md:text-5xl">
 						{COMMON_CAPTION}
 					</p>
 					<SplitText
